@@ -1,0 +1,48 @@
+version: '3.3'
+
+services:
+  syg-backend:
+    container_name: syg-backend
+    build:
+      context: ../../../
+      dockerfile: ./SYG-bootstrap/src/docker/backend.Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      syg:
+        aliases:
+          - syg-backend
+      
+  syg-db:
+    container_name: syg-db
+    #image: mysql:latest
+    build:
+      context: ../../../
+      dockerfile: ./SYG-bootstrap/src/docker/database-mysql.Dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - ../sql/scheme.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+    networks:
+      syg:
+        aliases:
+          - syg-db
+#  syg-db:
+#    container_name: syg-db
+#    build:
+#      context: ../../../
+#      dockerfile: ./SYG-bootstrap/src/docker/database-postgres.Dockerfile
+#    ports:
+#      - 5432:5432
+#    volumes:
+#      - ../sql/scheme.sql:/docker-entrypoint-initdb.d/init.sql
+#    restart: always
+#    networks:
+#      syg:
+#        aliases:
+#          - syg-db
+      
+networks:
+    syg:
+      driver: bridge
