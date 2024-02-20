@@ -14,7 +14,7 @@ public class QuestionsController {
 	@Autowired
 	private QuestionService questionService;
 	
-    @GetMapping("/questions")
+    @GetMapping("/generate/questions")
     public void generateQuestions() {
     	questionService.generateQuestions();
     }

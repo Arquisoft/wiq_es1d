@@ -7,6 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Answer {
 
+	private Long id;
+	
 	private String text;
 
 	private Boolean isCorrect;

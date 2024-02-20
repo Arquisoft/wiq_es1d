@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import syg.mysql.adapter.SYGAdapter;
+import syg.mysql.adapter.QuestionAdapter;
 
 @SpringBootTest
 public class SYGAdapterIT {
 
 	@Autowired
-	private SYGAdapter SYGAdapter;
+	private QuestionAdapter SYGAdapter;
 
 //	@Test
 //	void saveQuestion() {

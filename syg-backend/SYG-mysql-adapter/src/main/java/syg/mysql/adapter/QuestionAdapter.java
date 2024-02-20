@@ -2,6 +2,7 @@ package syg.mysql.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ import syg.mysql.repositories.AnswerRepository;
 import syg.mysql.repositories.QuestionRepository;
 
 @Component
-public class SYGAdapter implements QuestionPersistence {
+public class QuestionAdapter implements QuestionPersistence {
 
 	private WikibaseDataFetcher wikidataDB = new WikibaseDataFetcher(BasicApiConnection.getWikidataApiConnection(), Datamodel.SITE_WIKIDATA);
 	
@@ -38,6 +39,25 @@ public class SYGAdapter implements QuestionPersistence {
 	@Autowired
 	private AnswerMapper answerMapper;
 			
+	@Override
+	public List<Question> findAll() {
+		return questionMapper.toDomain(questionRepository.findAll());
+	}
+
+	@Override
+	public Question findById(Long id) {
+		Optional<QuestionEntity> optionalQuestion =  questionRepository.findById(id);
+		if(!optionalQuestion.isPresent()) {
+			throw new NullPointerException();
+		}
+		return questionMapper.toDomain(questionRepository.findById(id).get());
+	}
+
+	@Override
+	public List<Question> findByCategory(Long categoryId) {
+		return questionMapper.toDomain(questionRepository.findByCategory_Id(categoryId));
+	}
+	
 	public void generatedQuestions() {
 		try {
 			Question question = getQuestionFromWikiData("Q43");
@@ -77,7 +97,7 @@ public class SYGAdapter implements QuestionPersistence {
 			EntityDocument entityDocument = wikidataDB.getEntityDocument(wikiQuestion);
 			ItemDocument itemDocument = (ItemDocument) entityDocument;
 			String correctAnswer = itemDocument.getLabels().get("es").getText();
-			return new Answer(correctAnswer, true);
+			return new Answer(null, correctAnswer, true);
 		} catch (Exception e) {
 			throw new NullPointerException(); //A cambiar por excepción personalizada
 		}
@@ -90,7 +110,7 @@ public class SYGAdapter implements QuestionPersistence {
 				EntityDocument entityDocument = wikidataDB.getEntityDocument(wikiQuestion + i);
 				ItemDocument itemDocument = (ItemDocument) entityDocument;
 				String incorrectAnswer = itemDocument.getLabels().get("es").getText();
-				incorrectAnswers.add(new Answer(incorrectAnswer, false));				
+				incorrectAnswers.add(new Answer(null, incorrectAnswer, false));				
 			}
 			if(incorrectAnswers.size() == 3) {
 				return incorrectAnswers;				

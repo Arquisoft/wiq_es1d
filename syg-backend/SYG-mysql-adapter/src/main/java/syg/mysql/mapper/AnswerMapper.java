@@ -22,4 +22,16 @@ public class AnswerMapper {
 		}
 		return answersEntity;
 	}
+	
+	public Answer toDomain(AnswerEntity answerEntity) {
+		return new Answer(answerEntity.getId(), answerEntity.getText(), answerEntity.getIsCorrect());
+	}
+	
+	public List<Answer> toDomain(List<AnswerEntity> answersEntity) {
+		List<Answer> answers = new ArrayList<Answer>();
+		for (AnswerEntity answerEntity : answersEntity) {
+			answers.add(toDomain(answerEntity));
+		}
+		return answers;
+	}
 }
