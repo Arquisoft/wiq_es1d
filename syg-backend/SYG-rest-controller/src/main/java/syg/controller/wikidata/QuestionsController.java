@@ -14,7 +14,7 @@ import syg.domain.model.Question;
 import syg.domain.ports.inbound.QuestionService;
 
 @RestController
-@RequestMapping("/questions")
+@RequestMapping("/question")
 public class QuestionsController {
 	
 	@Autowired
