@@ -10,11 +10,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "ANSWERS")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class AnswerEntity {
 
 	@Id
@@ -32,7 +34,8 @@ public class AnswerEntity {
 	@JoinColumn(name = "question", referencedColumnName = "ID")
 	private QuestionEntity question;
 
-	public AnswerEntity(String text, Boolean isCorrect) {
+	public AnswerEntity(Long id, String text, Boolean isCorrect) {
+		this.id = id;
 		this.text = text;
 		this.isCorrect = isCorrect;
 	}

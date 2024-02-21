@@ -15,9 +15,12 @@ public class QuestionMapper {
 	@Autowired
 	private AnswerMapper answerMapper;
 	
+	@Autowired
+	private CategoryMapper categoryMapper;
+	
 	public QuestionEntity toEntity(Question question) {
 		return new QuestionEntity(question.getId(), question.getText(), 60, 
-				null, answerMapper.toEntity(question.getAnswers()));
+				categoryMapper.toEntity(question.getCategory()));
 	}
 	
 	public List<QuestionEntity> toEntity(List<Question> questions) {
@@ -30,7 +33,7 @@ public class QuestionMapper {
 	
 	public Question toDomain(QuestionEntity questionEntity) {
 		return new Question(questionEntity.getId(), questionEntity.getText(), questionEntity.getTimeLimit(),
-				null, answerMapper.toDomain(questionEntity.getAnswers()));
+				categoryMapper.toDomain(questionEntity.getCategory()), answerMapper.toDomain(questionEntity.getAnswers()));
 	}
 	
 	public List<Question> toDomain(List<QuestionEntity> questionsEntity) {

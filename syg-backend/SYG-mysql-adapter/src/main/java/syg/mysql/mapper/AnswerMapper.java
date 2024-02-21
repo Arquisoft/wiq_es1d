@@ -12,7 +12,7 @@ import syg.mysql.entities.AnswerEntity;
 public class AnswerMapper {
 
 	public AnswerEntity toEntity(Answer answer) {
-		return new AnswerEntity(answer.getText(), answer.getIsCorrect());
+		return new AnswerEntity(answer.getId(), answer.getText(), answer.getIsCorrect());
 	}
 	
 	public List<AnswerEntity> toEntity(List<Answer> answers) {

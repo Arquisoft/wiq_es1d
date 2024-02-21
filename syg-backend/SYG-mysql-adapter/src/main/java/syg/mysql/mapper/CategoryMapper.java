@@ -3,7 +3,6 @@ package syg.mysql.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import syg.domain.model.Category;
@@ -12,11 +11,8 @@ import syg.mysql.entities.CategoryEntity;
 @Component
 public class CategoryMapper {
 	
-	@Autowired
-	private QuestionMapper questionMapper;
-	
 	public CategoryEntity toEntity(Category category) {
-		return new CategoryEntity(category.getId(), category.getName(), questionMapper.toEntity(category.getQuestions()));
+		return new CategoryEntity(category.getId(), category.getName());
 	}
 	
 	public List<CategoryEntity> toEntity(List<Category> categories) {
@@ -28,7 +24,7 @@ public class CategoryMapper {
 	}
 	
 	public Category toDomain(CategoryEntity categoryEntity) {
-		return new Category(categoryEntity.getId(), categoryEntity.getName(), questionMapper.toDomain(categoryEntity.getQuestions()));
+		return new Category(categoryEntity.getId(), categoryEntity.getName());
 	}
 	
 	public List<Category> toDomain(List<CategoryEntity> categoriesEntity) {

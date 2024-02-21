@@ -12,11 +12,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "CATEGORIES")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CategoryEntity {
 
 	@Id
@@ -29,5 +31,10 @@ public class CategoryEntity {
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<QuestionEntity> questions;
+	
+	public CategoryEntity(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 }

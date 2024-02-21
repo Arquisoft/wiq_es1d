@@ -14,11 +14,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "QUESTIONS")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class QuestionEntity {
 
 	@Id
@@ -39,7 +41,8 @@ public class QuestionEntity {
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
 	private List<AnswerEntity> answers;
 	
-	public QuestionEntity(String text, int timeLimit, CategoryEntity category) {
+	public QuestionEntity(Long id, String text, int timeLimit, CategoryEntity category) {
+		this.id = id;
 		this.text = text;
 		this.timeLimit = timeLimit;
 		this.category = category;
