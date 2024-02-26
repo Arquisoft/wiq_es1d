@@ -19,5 +19,15 @@ CREATE TABLE answers(
     FOREIGN KEY (question) REFERENCES questions(id)
 );
 
+CREATE TABLE users(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    total_games NUMERIC NOT NULL default 0,
+    correct_answers NUMERIC NOT NULL default 0,
+    incorrect_answers NUMERIC NOT NULL default 0,
+    UNIQUE KEY unique_name_password (name, password)
+);
+
 CREATE USER 'sygAdmin'@'%' IDENTIFIED BY 'sygAdmin';
 GRANT ALL PRIVILEGES ON `syg-db`.* TO 'sygAdmin'@'%';

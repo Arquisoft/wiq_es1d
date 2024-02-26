@@ -20,7 +20,7 @@ public class QuestionMapper {
 	
 	public QuestionEntity toEntity(Question question) {
 		return new QuestionEntity(question.getId(), question.getText(), 60, 
-				categoryMapper.toEntity(question.getCategory()));
+				question.getCategory() != null ? categoryMapper.toEntity(question.getCategory()) : null);
 	}
 	
 	public List<QuestionEntity> toEntity(List<Question> questions) {
@@ -33,7 +33,7 @@ public class QuestionMapper {
 	
 	public Question toDomain(QuestionEntity questionEntity) {
 		return new Question(questionEntity.getId(), questionEntity.getText(), questionEntity.getTimeLimit(),
-				categoryMapper.toDomain(questionEntity.getCategory()), answerMapper.toDomain(questionEntity.getAnswers()));
+				questionEntity.getCategory() != null ? categoryMapper.toDomain(questionEntity.getCategory()) : null, answerMapper.toDomain(questionEntity.getAnswers()));
 	}
 	
 	public List<Question> toDomain(List<QuestionEntity> questionsEntity) {
