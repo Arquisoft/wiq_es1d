@@ -23,7 +23,7 @@ public class UserController {
 	
     @GetMapping
     public ResponseEntity<User> findUser(@RequestParam(name = "id") Long id) {
-    	User user = userService.findUser(id);
+    	User user = userService.findById(id);
     	return ResponseEntity.status(HttpStatus.OK).body(user);
     }
     

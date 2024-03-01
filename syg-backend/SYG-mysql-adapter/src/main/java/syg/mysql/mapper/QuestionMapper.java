@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import syg.domain.model.Question;
+import syg.mysql.entities.AnswerEntity;
 import syg.mysql.entities.QuestionEntity;
 
 @Component
@@ -33,7 +34,8 @@ public class QuestionMapper {
 	
 	public Question toDomain(QuestionEntity questionEntity) {
 		return new Question(questionEntity.getId(), questionEntity.getText(), questionEntity.getTimeLimit(),
-				questionEntity.getCategory() != null ? categoryMapper.toDomain(questionEntity.getCategory()) : null, answerMapper.toDomain(questionEntity.getAnswers()));
+				questionEntity.getCategory() != null ? categoryMapper.toDomain(questionEntity.getCategory()) : null, 
+				answerMapper.toDomain(questionEntity.getAnswers() != null ? questionEntity.getAnswers() : new ArrayList<AnswerEntity>()));
 	}
 	
 	public List<Question> toDomain(List<QuestionEntity> questionsEntity) {

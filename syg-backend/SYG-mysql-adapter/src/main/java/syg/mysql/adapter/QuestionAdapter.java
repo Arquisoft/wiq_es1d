@@ -12,6 +12,7 @@ import org.wikidata.wdtk.datamodel.interfaces.ItemDocument;
 import org.wikidata.wdtk.wikibaseapi.BasicApiConnection;
 import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher;
 
+import syg.domain.exception.NotFoundException;
 import syg.domain.model.Answer;
 import syg.domain.model.Question;
 import syg.domain.ports.outbounds.QuestionPersistence;
@@ -48,7 +49,7 @@ public class QuestionAdapter implements QuestionPersistence {
 	public Question findById(Long id) {
 		Optional<QuestionEntity> optionalQuestion =  questionRepository.findById(id);
 		if(!optionalQuestion.isPresent()) {
-			throw new NullPointerException();
+			throw new NotFoundException("The question with id " + id + " does not exist");
 		}
 		return questionMapper.toDomain(questionRepository.findById(id).get());
 	}

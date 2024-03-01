@@ -4,7 +4,9 @@ import syg.domain.model.User;
 
 public interface UserPersistence {
 
-	public User findUser(Long id);
+	public User findById(Long id);
+	
+	public User findByName(String name);
 	
 	public User createUser(User user);
 	

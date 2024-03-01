@@ -26,7 +26,7 @@ CREATE TABLE users(
     total_games NUMERIC NOT NULL default 0,
     correct_answers NUMERIC NOT NULL default 0,
     incorrect_answers NUMERIC NOT NULL default 0,
-    UNIQUE KEY unique_name_password (name, password)
+    UNIQUE KEY unique_name_password (name)
 );
 
 CREATE USER 'sygAdmin'@'%' IDENTIFIED BY 'sygAdmin';

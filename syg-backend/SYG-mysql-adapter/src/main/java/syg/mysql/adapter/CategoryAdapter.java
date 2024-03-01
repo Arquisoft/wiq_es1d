@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import syg.domain.exception.NotFoundException;
 import syg.domain.model.Category;
 import syg.domain.ports.outbounds.CategoryPersistence;
 import syg.mysql.entities.CategoryEntity;
@@ -30,7 +31,7 @@ public class CategoryAdapter implements CategoryPersistence {
 	public Category findById(Long id) {
 		Optional<CategoryEntity> optionalCategory =  categoryRepository.findById(id);
 		if(!optionalCategory.isPresent()) {
-			throw new NullPointerException();
+			throw new NotFoundException("The category with id " + id + " does not exist");
 		}
 		return categoryMapper.toDomain(categoryRepository.findById(id).get());
 	}
