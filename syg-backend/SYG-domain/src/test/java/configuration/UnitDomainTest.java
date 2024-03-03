@@ -1,5 +1,5 @@
 
-package syg.mysql.configuration;
+package configuration;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -14,11 +14,11 @@ import org.springframework.test.context.ContextConfiguration;
  * Meta anotación para los tests unitarios
  *
  */
-@ContextConfiguration(classes = UnitTestConfiguration.class)
+@ContextConfiguration(classes = UnitDomainTestConfiguration.class)
 @SpringBootTest
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UnitTest {
+public @interface UnitDomainTest {
 
 }

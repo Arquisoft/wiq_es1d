@@ -18,13 +18,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import syg.domain.exception.NotFoundException;
 import syg.domain.model.Question;
 import syg.mysql.adapter.QuestionAdapter;
-import syg.mysql.configuration.UnitTest;
+import syg.mysql.configuration.UnitAdapterTest;
 import syg.mysql.entities.CategoryEntity;
 import syg.mysql.entities.QuestionEntity;
 import syg.mysql.repositories.AnswerRepository;
 import syg.mysql.repositories.QuestionRepository;
 
-@UnitTest
+@UnitAdapterTest
 public class QuestionAdapterTests {
 	
 	@Autowired

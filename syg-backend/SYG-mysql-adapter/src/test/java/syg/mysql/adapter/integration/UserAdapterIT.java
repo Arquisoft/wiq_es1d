@@ -13,9 +13,9 @@ import syg.domain.exception.NotFoundException;
 import syg.domain.model.User;
 import syg.mysql.SYGdbContainerIT;
 import syg.mysql.adapter.UserAdapter;
-import syg.mysql.configuration.IntegrationTest;
+import syg.mysql.configuration.IntegrationAdapterTest;
 
-@IntegrationTest
+@IntegrationAdapterTest
 public class UserAdapterIT extends SYGdbContainerIT {
 
 	@Autowired

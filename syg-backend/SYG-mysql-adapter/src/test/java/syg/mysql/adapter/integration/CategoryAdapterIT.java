@@ -15,9 +15,9 @@ import syg.domain.exception.NotFoundException;
 import syg.domain.model.Category;
 import syg.mysql.SYGdbContainerIT;
 import syg.mysql.adapter.CategoryAdapter;
-import syg.mysql.configuration.IntegrationTest;
+import syg.mysql.configuration.IntegrationAdapterTest;
 
-@IntegrationTest
+@IntegrationAdapterTest
 public class CategoryAdapterIT extends SYGdbContainerIT {
 
 	@Autowired

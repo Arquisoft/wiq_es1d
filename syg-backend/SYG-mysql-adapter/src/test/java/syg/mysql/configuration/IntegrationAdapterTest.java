@@ -11,12 +11,12 @@ import org.springframework.test.context.ContextConfiguration;
 
 import jakarta.transaction.Transactional;
 
-@ContextConfiguration(classes = IntegrationTestConfiguration.class)
+@ContextConfiguration(classes = IntegrationAdapterTestConfiguration.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Transactional
-public @interface IntegrationTest {
+public @interface IntegrationAdapterTest {
 
 }

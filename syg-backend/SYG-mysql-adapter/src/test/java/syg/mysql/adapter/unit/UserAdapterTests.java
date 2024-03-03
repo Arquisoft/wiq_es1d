@@ -19,11 +19,11 @@ import syg.domain.exception.ConflictException;
 import syg.domain.exception.NotFoundException;
 import syg.domain.model.User;
 import syg.mysql.adapter.UserAdapter;
-import syg.mysql.configuration.UnitTest;
+import syg.mysql.configuration.UnitAdapterTest;
 import syg.mysql.entities.UserEntity;
 import syg.mysql.repositories.UserRepository;
 
-@UnitTest
+@UnitAdapterTest
 public class UserAdapterTests {
 
 	@Autowired

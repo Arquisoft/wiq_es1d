@@ -76,8 +76,8 @@
 		</dependency>
 		
 		<dependency> 
-			<groupId>SYG_domain</groupId>
-			<artifactId>SYG_domain</artifactId>
+			<groupId>SYG-domain</groupId> 
+			<artifactId>SYG-domain</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

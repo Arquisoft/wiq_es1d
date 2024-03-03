@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
- 
 	<parent>
 		<groupId>syg-backend</groupId>
 		<artifactId>syg-backend</artifactId>
@@ -9,8 +8,8 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>SYG_domain</groupId>
-	<artifactId>SYG_domain</artifactId>
+	<groupId>SYG-domain</groupId>
+	<artifactId>SYG-domain</artifactId>
 	
 	<dependencies>
 		<!-- SPRING -->
@@ -29,6 +28,15 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- ============================================== -->
+		<!-- ============== TEST DEPENDENCIES ============= -->
+		<!-- ============================================== -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

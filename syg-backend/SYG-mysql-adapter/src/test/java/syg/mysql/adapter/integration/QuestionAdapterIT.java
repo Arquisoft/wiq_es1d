@@ -15,9 +15,9 @@ import syg.domain.exception.NotFoundException;
 import syg.domain.model.Question;
 import syg.mysql.SYGdbContainerIT;
 import syg.mysql.adapter.QuestionAdapter;
-import syg.mysql.configuration.IntegrationTest;
+import syg.mysql.configuration.IntegrationAdapterTest;
 
-@IntegrationTest
+@IntegrationAdapterTest
 public class QuestionAdapterIT extends SYGdbContainerIT {
 
 	@Autowired
