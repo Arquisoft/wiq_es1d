@@ -17,6 +17,15 @@
 		    <artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		<!-- ============================================== -->
+		<!-- ============== TEST DEPENDENCIES ============= -->
+		<!-- ============================================== -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Dependencia del repositorio del submódulo -->
         <dependency>
             <groupId>SYG-domain</groupId> 

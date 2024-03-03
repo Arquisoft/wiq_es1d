@@ -1,4 +1,4 @@
-package syg.controller.wikidata;
+package syg.controller;
 
 import java.util.List;
 

@@ -45,8 +45,8 @@ public class CategoryServiceTests {
 	}
 	
 	@Test
-	@DisplayName("Se busca una pregunta a traves de un id en base de datos")
-	void find_question_by_id() {
+	@DisplayName("Se busca una categoria a traves de un id en base de datos")
+	void find_category_by_id() {
 		Category CategoryResponse = new Category(4L, "plantas");
 		
 		when(categoryPersistence.findById(4L)).thenReturn(CategoryResponse);
