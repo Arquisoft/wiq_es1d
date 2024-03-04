@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import syg.domain.exception.NotFoundException;
 import syg.domain.model.Question;
 import syg.domain.ports.inbound.QuestionService;
 
@@ -21,18 +22,24 @@ public class QuestionsController {
 	private QuestionService questionService;
 	
     @GetMapping
-    public ResponseEntity<List<Question>> findAll() {
+    public ResponseEntity<Object> findAll() {
     	List<Question> questions = questionService.findAll();
     	return ResponseEntity.status(HttpStatus.OK).body(questions);
     }
     
     @GetMapping("/id")
-    public ResponseEntity<Question> findById(@RequestParam(name = "id") Long id) {
-    	Question question = questionService.findById(id);
-    	return ResponseEntity.status(HttpStatus.OK).body(question);
+    public ResponseEntity<Object> findById(@RequestParam(name = "id") Long id) {
+    	try {
+    		Question question = questionService.findById(id);
+    		return ResponseEntity.status(HttpStatus.OK).body(question);
+		} catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+		}
     }
     @GetMapping("/category")
-    public ResponseEntity<List<Question>> findByCategory(@RequestParam(name = "categoryId") Long categoryId) {
+    public ResponseEntity<Object> findByCategory(@RequestParam(name = "categoryId") Long categoryId) {
     	List<Question> questions = questionService.findByCategory(categoryId);
     	return ResponseEntity.status(HttpStatus.OK).body(questions);
     }

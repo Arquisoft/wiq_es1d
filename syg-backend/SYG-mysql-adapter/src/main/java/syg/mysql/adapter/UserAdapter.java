@@ -56,8 +56,8 @@ public class UserAdapter implements UserPersistence {
 
 	@Override
 	public User updateUser(User user) {
-		if(user.getId() == null || !userRepository.existsById(user.getId())) {
-			throw new NotFoundException("The user with id " + user.getId() + " alredy exist");
+		if(user.getId() == null || userRepository.existsById(user.getId()) == false) {
+			throw new NotFoundException("The user with id " + user.getId() + " not exist");
 		}
 		UserEntity userEntity = userRepository.save(userMapper.toEntity(user));
 		return userMapper.toDomain(userEntity);

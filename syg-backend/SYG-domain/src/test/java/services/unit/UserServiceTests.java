@@ -56,32 +56,32 @@ public class UserServiceTests {
 		assertThrows(NotFoundException.class, exec);
 	}
 	
-//	@Test
-//	@DisplayName("Se busca un usuario a traves de su nombre")
-//	void find_user_by_name() {
-//		User UserToReturn = new User(2L, "Pablo", "player", 8, 24, 12);
-//		
-//		when(userPersistence.findByName("Pablo")).thenReturn(UserToReturn);
-//		
-//		User user = userService.findByName("Pablo");
-//		verify(userPersistence, times(1)).findByName("Pablo");
-//		assertEquals(2L, user.getId());
-//		assertEquals("Pablo", user.getName());
-//		assertEquals(8, user.getTotalGames());
-//		assertEquals(24, user.getCorrectAnswers());
-//		assertEquals(12, user.getInCorrectAnswers());
-//	}
-//	
-//	@Test
-//	@DisplayName("Se busca un usuario a traves de nombre que no existe")
-//	void find_user_by_not_exist_name() {
-//		final Executable exec;
-//		
-//		when(userPersistence.findByName("NotExistPlayer")).thenThrow(NotFoundException.class);
-//		
-//		exec = () -> userService.findByName("NotExistPlayer");
-//		assertThrows(NotFoundException.class, exec);
-//	}
+	@Test
+	@DisplayName("Se busca un usuario a traves de su nombre")
+	void find_user_by_name() {
+		User UserToReturn = new User(2L, "Pablo", "player", 8, 24, 12);
+		
+		when(userPersistence.findByName("Pablo")).thenReturn(UserToReturn);
+		
+		User user = userService.findByName("Pablo");
+		verify(userPersistence, times(1)).findByName("Pablo");
+		assertEquals(2L, user.getId());
+		assertEquals("Pablo", user.getName());
+		assertEquals(8, user.getTotalGames());
+		assertEquals(24, user.getCorrectAnswers());
+		assertEquals(12, user.getInCorrectAnswers());
+	}
+	
+	@Test
+	@DisplayName("Se busca un usuario a traves de nombre que no existe")
+	void find_user_by_not_exist_name() {
+		final Executable exec;
+		
+		when(userPersistence.findByName("NotExistPlayer")).thenThrow(NotFoundException.class);
+		
+		exec = () -> userService.findByName("NotExistPlayer");
+		assertThrows(NotFoundException.class, exec);
+	}
 	
 	@Test
 	@DisplayName("Se crea un usuario")

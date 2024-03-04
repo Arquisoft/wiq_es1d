@@ -92,6 +92,7 @@ public class UserAdapterTests {
 		UserEntity userEntityToReturn = new UserEntity(4L, "Jugador 3", "player", 1, 3, 1);
 		UserEntity userToCreate = new UserEntity(null, "Jugador 3", "player", 1, 3, 1);
 		
+		when(userRepository.existsById(userToCreate.getId())).thenReturn(false);
 		when(userRepository.save(userToCreate)).thenReturn(userEntityToReturn);
 		
 		User user = userAdapter.createUser(new User(null, "Jugador 3", "player", 1, 3, 1));
@@ -109,6 +110,7 @@ public class UserAdapterTests {
 		final Executable exec;
 		UserEntity userToCreate = new UserEntity(1L, "Jugador 3", "player", 1, 3, 1);
 		
+		when(userRepository.existsById(userToCreate.getId())).thenReturn(true);
 		when(userRepository.save(userToCreate)).thenThrow(ConflictException.class);
 
 		exec = () -> userAdapter.createUser(new User(1L, "Jugador 3", "player", 1, 3, 1));
@@ -135,6 +137,7 @@ public class UserAdapterTests {
 		UserEntity userEntityToReturn = new UserEntity(1L, "Alvaro", "adminActualizado", 4, 40, 1);
 		UserEntity userToUpdate = new UserEntity(1L, "Alvaro", "adminActualizado", 4, 40, 1);
 		
+		when(userRepository.existsById(userToUpdate.getId())).thenReturn(true);
 		when(userRepository.save(userToUpdate)).thenReturn(userEntityToReturn);
 		
 		User user = userAdapter.updateUser(new User(1L, "Alvaro", "adminActualizado", 4, 40, 1));
@@ -152,6 +155,7 @@ public class UserAdapterTests {
 		final Executable exec;
 		UserEntity userToUpdate = new UserEntity(10L, "Alvaro", "player", 1, 3, 1);
 		
+		when(userRepository.existsById(userToUpdate.getId())).thenReturn(false);
 		when(userRepository.save(userToUpdate)).thenThrow(NotFoundException.class);
 
 		exec = () -> userAdapter.updateUser(new User(10L, "Alvaro", "player", 1, 3, 1));

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import syg.domain.exception.ConflictException;
+import syg.domain.exception.NotFoundException;
 import syg.domain.model.User;
 import syg.domain.ports.inbound.UserService;
 
@@ -22,21 +24,56 @@ public class UserController {
 	private UserService userService;
 	
     @GetMapping
-    public ResponseEntity<User> findUser(@RequestParam(name = "id") Long id) {
-    	User user = userService.findById(id);
-    	return ResponseEntity.status(HttpStatus.OK).body(user);
+    public ResponseEntity<Object> findUser(@RequestParam(name = "id") Long id) {
+    	try {
+    		User user = userService.findById(id);
+    		return ResponseEntity.status(HttpStatus.OK).body(user);			
+    	}catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
+		} 
+    	catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+		}
+    }
+    
+    @GetMapping("/name")
+    public ResponseEntity<Object> findName(@RequestParam(name = "userName") String userName) {
+    	try {
+    		User user = userService.findByName(userName);
+    		return ResponseEntity.status(HttpStatus.OK).body(user);			
+    	}catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
+		} 
+    	catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+		}
     }
     
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-    	System.out.println("USER --> " + user);
-    	User userCreated = userService.createUser(user);
-    	return ResponseEntity.status(HttpStatus.OK).body(userCreated);
+    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    	try {
+    		User userCreated = userService.createUser(user);
+    		return ResponseEntity.status(HttpStatus.OK).body(userCreated);			
+		} catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
+		} catch (ConflictException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+		}
     }
     
     @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-    	User userUpdated = userService.updateUser(user);
-    	return ResponseEntity.status(HttpStatus.OK).body(userUpdated);
+    public ResponseEntity<Object> updateUser(@RequestBody User user) {
+    	try {
+    		User userUpdated = userService.updateUser(user);
+    		return ResponseEntity.status(HttpStatus.OK).body(userUpdated);			
+    	} catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
+		} catch (ConflictException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+		}
     }
 }

@@ -17,6 +17,11 @@ public class UserServiceImpl implements UserService{
 	public User findById(Long id) {
 		return userPersistence.findById(id);
 	}
+	
+	@Override
+	public User findByName(String name) {
+		return userPersistence.findByName(name);
+	}
 
 	@Override
 	public User createUser(User user) {
