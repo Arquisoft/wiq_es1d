@@ -1,16 +1,12 @@
 import React from 'react';
-import 'Login.scss';
+import './Login.scss';
 
-interface LoginProps {
-  userName: string;
-  password: string;
-}
 
-const Login: React.FC<LoginProps> = (props: LoginProps) => {
+const Login: React.FC = () => {
   return (
     <div>
-      <h1>Hello, {props.userName}!</h1>
-      <p>Welcome to my React TypeScript example.</p>
+      <h1>Hello</h1>
+      <p>WPantalla de login</p>
     </div>
   );
 };
