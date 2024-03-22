@@ -1,10 +1,10 @@
     #syg-container{
-        padding: 2em;
+        padding: 1.5em;
         background-color: #f0eeee;
-        min-height: 93vh;
         display: grid;
         grid-template-columns: repeat(2, 1fr) repeat(10, 2fr);
         grid-template-rows: repeat(12, 1fr);
+        height: 94.5vh;
         #syg-content-container{
             margin-left:  1em;
             grid-column: 3/-1;
