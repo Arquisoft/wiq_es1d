@@ -1,20 +1,11 @@
 import React from 'react';
+import Content from './content/Content';
 import './App.scss';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Login from './modules/login/Login';
 
 function App() {
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Login/>,
-    },
-  ]);
-
   return (
-    <div className="App">
-      <RouterProvider router={router} />
+    <div id='app' className="App">
+      <Content/>
     </div>
   );
 }
