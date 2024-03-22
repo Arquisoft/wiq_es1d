@@ -1,4 +1,13 @@
-#app{
-    padding: 2em;
-    background-color: #f0eeee;
-}
+    #syg-container{
+        padding: 2em;
+        background-color: #f0eeee;
+        min-height: 93vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) repeat(10, 2fr);
+        grid-template-rows: repeat(12, 1fr);
+        #syg-content-container{
+            margin-left:  1em;
+            grid-column: 3/-1;
+            grid-row: 1/-1;
+        }
+    }
