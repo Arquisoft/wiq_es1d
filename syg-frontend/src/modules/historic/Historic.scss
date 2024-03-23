@@ -9,5 +9,16 @@
         margin-top: 1em;
         background-color: #ffffff;
         border-radius: 1em;
+        padding: 3em;
+        display: flex;
+        flex-direction: column;
+        #syg-historic-user-name{
+            font-size: 2em;
+            margin-bottom: 4em;
+        }
+        #syg-historic-user-info{
+            display: flex;
+            justify-content: space-around;
+        }
     }
 }

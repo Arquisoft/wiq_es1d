@@ -1,0 +1,22 @@
+#syg-historic-card-container{
+    width: 20%;
+    #syg-historic-card-header{
+        border-bottom: solid 1px #d8d8d8;
+        height: 3em;
+        #syg-historic-card-header-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            svg{
+                font-size: 1.7em;
+            }
+        }
+    }
+    #syg-historic-card-content{
+        height: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3em;
+    }
+}

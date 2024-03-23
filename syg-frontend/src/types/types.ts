@@ -1,7 +1,7 @@
 export interface User{
-    username: string;
+    name: string;
     password: string;
-    totalGames: Number;
-    correctAnswers: Number;
-    incorrectAnswers: Number;
+    totalGames: number;
+    correctAnswers: number;
+    inCorrectAnswers: number;
 }
