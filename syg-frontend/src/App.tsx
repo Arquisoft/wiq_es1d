@@ -5,6 +5,7 @@ import Login from './modules/login/Login';
 import Historic from './modules/historic/Historic';
 import Aside from './components/aside/Aside';
 import './App.scss';
+import Game from './modules/game/Game';
 
 function App() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/game" element={<Game />} />
           <Route path="/historic" element={<Historic />} />
         </Routes>
       </div>

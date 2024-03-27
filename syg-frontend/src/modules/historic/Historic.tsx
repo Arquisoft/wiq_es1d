@@ -12,7 +12,7 @@ const Historic: React.FC = () => {
     const [userActive, setUserActive] = useState<User | null>(null);
 
     useEffect(() => {
-        getUser(1).then(user => {
+        getUser(1).then((user: User) => {
             setUserActive(user)
         })
     }, [])

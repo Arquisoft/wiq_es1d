@@ -1,0 +1,36 @@
+#syg-game-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    #syg-game-content {
+        grid-column: 1/-1;
+        grid-row: 3/-1;
+        margin-top: 1em;
+        background-color: #ffffff;
+        border-radius: 1em;
+        padding: 3em;
+        display: flex;
+        justify-content: center;
+        .syg-game-question-content{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            .syg-game-question-time-limit{
+                margin-bottom: 2em;
+                p{
+                    z-index: 10;
+                    color: #000000;
+                }
+            }
+            .syg-game-question-title{
+
+            }
+            .syg-game-question-answers-content{
+                .syg-game-question-answer{
+                    
+                }
+            }
+        }
+    }
+}
