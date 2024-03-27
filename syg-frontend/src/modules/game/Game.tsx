@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/Header';
 import { Button } from '@mui/material';
-import { Answer, Question, User } from '../../types/types';
-import { getQuestions, updateUser } from '../../backend/dataSource';
+import { Answer, Category, Question, User } from '../../types/types';
+import { getCategories, getQuestions, getQuestionsByCategory, updateUser } from '../../backend/dataSource';
 import LinearProgress from '@mui/joy/LinearProgress';
 import { Typography } from '@mui/material';
 import './Game.scss';
 
 const Game: React.FC = () => {
+    const [categories, setCategories] = useState<Category[]>([]);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [idQuestion, setIdQuestion] = useState<number>(0);
     const [timeLeft, setTimeLeft] = useState<number>(0);
@@ -15,6 +16,14 @@ const Game: React.FC = () => {
     const [totalCorrectAnswers, setTotalCorrectAnswers] = useState<number>(0);
     const [totalIncorrectAnswers, setTotalIncorrectAnswers] = useState<number>(0);
     const [isGameFinished, setIsGameFinished] = useState<boolean>(false);
+
+    useEffect(()=>{
+        console.log("ENTRO")
+        getCategories().then((categories: Category[])=>{
+            console.log("CATEGORIAS", categories)
+            setCategories(categories)
+        })
+    }, [])
 
     useEffect(() => {
         if (questions !== undefined && questions.length > 0) {
@@ -49,10 +58,17 @@ const Game: React.FC = () => {
         handlePostUpdateStats();
     }, [totalCorrectAnswers, totalIncorrectAnswers])
 
-    function handleStartGame() {
-        getQuestions().then((questions: Question[]) => {
-            setQuestions(questions)
-        })
+    function handleStartGame(mode?: number) {
+        if(mode !== undefined){
+            getQuestionsByCategory(mode).then((questions: Question[]) => {
+                setQuestions(questions)
+            })
+        }
+        else{
+            getQuestions().then((questions: Question[]) => {
+                setQuestions(questions)
+            })
+        }
     }
 
     function handleAnswerQuestion(answer?: Answer){
@@ -93,38 +109,28 @@ const Game: React.FC = () => {
         <div id='syg-game-container'>
             <Header info='Juego' />
             <div id='syg-game-content'>
-                {questions === undefined || questions.length < 1 ? (
+                {categories.length > 0 && (questions === undefined || questions.length < 1) ? (
                     <div id='syg-game-content-start-game'>
                         <h2>Escoga el modo de juego</h2>
                         <div id='syg-game-content-start-game-options'>
                             <Button
                                 className='syg-game-start-game-button'
-                                onClick={handleStartGame}
+                                onClick={() => handleStartGame()}
                             >
                                 Modo estandar
                             </Button>
-                            <Button
+                            {categories.map((category)=>(
+                                <Button
                                 className='syg-game-start-game-button'
-                                onClick={handleStartGame}
+                                onClick={() => handleStartGame(category.id)}
                             >
-                                Animales
+                                {category.name}
                             </Button>
-                            <Button
-                                className='syg-game-start-game-button'
-                                onClick={handleStartGame}
-                            >
-                                plantas
-                            </Button>
-                            <Button
-                                className='syg-game-start-game-button'
-                                onClick={handleStartGame}
-                            >
-                                Deportes
-                            </Button>
+                            ))}
                         </div>
                     </div>
                 ) : (
-                    isGameFinished === false ? (
+                    questions !== undefined && questions.length > 0 && isGameFinished === false ? (
                         <div className='syg-game-question-content'>
                             <div className='syg-game-question-time-limit'>
                                 <LinearProgress determinate={true} variant="outlined" value={progress} color="primary" thickness={32} >
