@@ -17,20 +17,46 @@
             flex-direction: column;
             width: 80%;
             .syg-game-question-time-limit{
-                margin-bottom: 2em;
+                margin-bottom: 3em;
                 p{
                     z-index: 10;
                     color: #000000;
                 }
             }
             .syg-game-question-title{
+                font-size: 2em;
+                text-align: center;
 
             }
             .syg-game-question-answers-content{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5%;
+                margin-top: 5em;
                 .syg-game-question-answer{
-                    
+                    width: 47.5%;
+                    margin-bottom: 3em;
+                    padding: 2em 1em;
+                    color: #ffffff;
+                    &.answer-number-0{
+                        background-color: #E21B3C;
+                    }
+                    &.answer-number-1{
+                        background-color: #D89E00;
+                    }
+                    &.answer-number-2{
+                        background-color: #26890B;
+                    }
+                    &.answer-number-3{
+                        background-color: #0B6BCB;
+                    }
                 }
             }
+        }
+        #syg-game-finish{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
         }
     }
 }

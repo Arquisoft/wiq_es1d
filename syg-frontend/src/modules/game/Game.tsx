@@ -45,32 +45,17 @@ const Game: React.FC = () => {
         }
     }, [idQuestion])
 
+    useEffect(() => {
+        handlePostUpdateStats();
+    }, [totalCorrectAnswers, totalIncorrectAnswers])
+
     function handleStartGame() {
         getQuestions().then((questions: Question[]) => {
             setQuestions(questions)
         })
     }
 
-    function handleAnswerQuestion(answer?: Answer) {
-        updateGameStats(answer)
-
-        if((idQuestion + 1) <  questions.length){
-            setIdQuestion(idQuestion + 1);
-        }
-        else{
-            setIsGameFinished(true);
-            updateUser({
-                id: 1,
-                name: "alvaroActualizado",
-                password: "admin",
-                totalGames: 4,
-                correctAnswers: totalCorrectAnswers,
-                inCorrectAnswers: totalIncorrectAnswers,
-            } as User);
-        }
-    }
-
-    function updateGameStats(answer?: Answer){
+    function handleAnswerQuestion(answer?: Answer){
         if(answer !== undefined){
             if(answer.isCorrect){
                 setTotalCorrectAnswers(totalCorrectAnswers + 1)
@@ -83,6 +68,25 @@ const Game: React.FC = () => {
             setTotalIncorrectAnswers(totalIncorrectAnswers + 1)
         }
 
+    }
+
+    function handlePostUpdateStats(){
+        if(totalCorrectAnswers > 0 || totalIncorrectAnswers > 0){
+            if((idQuestion + 1) <  questions.length){
+                setIdQuestion(idQuestion + 1);
+            }
+            else{
+                setIsGameFinished(true);
+                updateUser({
+                    id: 1,
+                    name: "alvaroActualizado",
+                    password: "admin",
+                    totalGames: 4,
+                    correctAnswers: totalCorrectAnswers,
+                    inCorrectAnswers: totalIncorrectAnswers,
+                } as User);
+            }
+        }
     }
 
     return (
@@ -99,30 +103,31 @@ const Game: React.FC = () => {
                 ) : (
                     isGameFinished === false ? (
                         <div className='syg-game-question-content'>
-                        <div className='syg-game-question-time-limit'>
-                            <LinearProgress determinate={true} variant="outlined" value={progress} color="primary" thickness={32} >
-                                <Typography>
-                                    {timeLeft}
-                                </Typography>
-                            </LinearProgress>
+                            <div className='syg-game-question-time-limit'>
+                                <LinearProgress determinate={true} variant="outlined" value={progress} color="primary" thickness={32} >
+                                    <Typography>
+                                        {timeLeft}
+                                    </Typography>
+                                </LinearProgress>
+                            </div>
+                            <div className='syg-game-question-title'>
+                                {questions[idQuestion].text}
+                            </div>
+                            <div className='syg-game-question-answers-content'>
+                                {questions[idQuestion].answers.map((answer: Answer, index: number) => (
+                                    <Button
+                                        key={index}
+                                        className={`syg-game-question-answer answer-number-${index}`}
+                                        onClick={() => handleAnswerQuestion(answer)}
+                                    >
+                                        {answer.text}
+                                    </Button>
+                                ))}
+                            </div>
                         </div>
-                        <div className='syg-game-question-title'>
-                            {questions[idQuestion].text}
-                        </div>
-                        <div className='syg-game-question-answers-content'>
-                            {questions[idQuestion].answers.map((answer: Answer, index: number) => (
-                                <Button
-                                    key={index}
-                                    className='syg-game-question-answer'
-                                    onClick={() => handleAnswerQuestion(answer)}
-                                >
-                                    {answer.text}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
                     ):(
                         <div id='syg-game-finish'>
+                            <h2>Resumen de la partida</h2>
                             <span>Respuestas correctas: {totalCorrectAnswers}</span>
                             <span>Respuestas incorrectas: {totalIncorrectAnswers}</span>
                         </div>
