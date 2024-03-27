@@ -94,12 +94,35 @@ const Game: React.FC = () => {
             <Header info='Juego' />
             <div id='syg-game-content'>
                 {questions === undefined || questions.length < 1 ? (
-                    <Button
-                        id='syg-game-start-game-button'
-                        onClick={handleStartGame}
-                    >
-                        Empezar juego
-                    </Button>
+                    <div id='syg-game-content-start-game'>
+                        <h2>Escoga el modo de juego</h2>
+                        <div id='syg-game-content-start-game-options'>
+                            <Button
+                                className='syg-game-start-game-button'
+                                onClick={handleStartGame}
+                            >
+                                Modo estandar
+                            </Button>
+                            <Button
+                                className='syg-game-start-game-button'
+                                onClick={handleStartGame}
+                            >
+                                Animales
+                            </Button>
+                            <Button
+                                className='syg-game-start-game-button'
+                                onClick={handleStartGame}
+                            >
+                                plantas
+                            </Button>
+                            <Button
+                                className='syg-game-start-game-button'
+                                onClick={handleStartGame}
+                            >
+                                Deportes
+                            </Button>
+                        </div>
+                    </div>
                 ) : (
                     isGameFinished === false ? (
                         <div className='syg-game-question-content'>

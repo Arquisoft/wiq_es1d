@@ -12,6 +12,25 @@
         padding: 3em;
         display: flex;
         justify-content: center;
+        #syg-game-content-start-game{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            #syg-game-content-start-game-options{
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 4em;
+                gap: 5%;
+                .syg-game-start-game-button{
+                    width: 30%;
+                    padding: 2em 1em;
+                    background-color: #0B6BCB;
+                    border-radius: 1em;
+                    color: #ffffff;
+                    margin-bottom: 3em;
+                }
+            }
+        }
         .syg-game-question-content{
             display: flex;
             flex-direction: column;
@@ -38,6 +57,7 @@
                     margin-bottom: 3em;
                     padding: 2em 1em;
                     color: #ffffff;
+                    border-radius: 1em;
                     &.answer-number-0{
                         background-color: #E21B3C;
                     }
