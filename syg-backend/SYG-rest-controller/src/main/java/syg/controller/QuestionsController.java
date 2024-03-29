@@ -1,5 +1,6 @@
 package syg.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class QuestionsController {
     @GetMapping
     public ResponseEntity<Object> findAll() {
     	List<Question> questions = questionService.findAll();
-    	return ResponseEntity.status(HttpStatus.OK).body(questions);
+    	Collections.shuffle(questions);
+    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, 15));
     }
     
     @GetMapping("/id")
@@ -41,7 +43,8 @@ public class QuestionsController {
     @GetMapping("/category")
     public ResponseEntity<Object> findByCategory(@RequestParam(name = "categoryId") Long categoryId) {
     	List<Question> questions = questionService.findByCategory(categoryId);
-    	return ResponseEntity.status(HttpStatus.OK).body(questions);
+    	Collections.shuffle(questions);
+    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, 15));
     }
     
     @GetMapping("/generate")

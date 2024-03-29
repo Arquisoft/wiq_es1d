@@ -13,4 +13,9 @@ public class Answer {
 
 	private Boolean isCorrect;
 	
+	public Answer(String text, Boolean isCorrect) {
+		this.text = text;
+		this.isCorrect = isCorrect;
+	}
+	
 }
