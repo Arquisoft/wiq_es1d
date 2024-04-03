@@ -8,7 +8,7 @@ export interface User{
 }
 
 export interface Question{
-    id: number;
+    id: string;
     text: string;
     timeLimit: number;
     category: Category;

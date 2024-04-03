@@ -6,13 +6,14 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import UserInfoCard from '../../components/card/UserInfoCard';
+import {keycloak} from '../../secure/keycloak';
 import './Historic.scss';
 
 const Historic: React.FC = () => {
     const [userActive, setUserActive] = useState<User | null>(null);
 
     useEffect(() => {
-        getUser(1).then((user: User) => {
+        getUser(keycloak.subject ? keycloak.subject : '').then((user: User) => {
             setUserActive(user)
         })
     }, [])

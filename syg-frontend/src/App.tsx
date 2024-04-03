@@ -1,11 +1,11 @@
 import React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './modules/home/Home';
-import Login from './modules/login/Login';
 import Historic from './modules/historic/Historic';
 import Aside from './components/aside/Aside';
-import './App.scss';
 import Game from './modules/game/Game';
+import {keycloak} from './secure/keycloak';
+import './App.scss';
 
 function App() {
   const navigate = useNavigate();
@@ -19,23 +19,23 @@ function App() {
   };
 
   return (
-    <div id='syg-container' className="App">
-      <Aside
-        elements={[
-          { text: 'Game', onClickAsideElement: handleGameClick },
-          { text: 'Historico', onClickAsideElement: handleHistoricClick },
-        ]}
-        username={"Álvaro"}
-      />
-      <div id='syg-content-container'>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/game" element={<Game />} />
-          <Route path="/historic" element={<Historic />} />
-        </Routes>
-      </div>
-    </div>
+          <div id='syg-container' className="App">
+            <Aside
+              elements={[
+                { text: 'Game', onClickAsideElement: handleGameClick },
+                { text: 'Historico', onClickAsideElement: handleHistoricClick },
+              ]}
+              username={"Álvaro"}
+            />
+            <div id='syg-content-container'>
+              <Routes>
+                <Route path="/" element={keycloak.authenticated ? <Home /> : <Navigate to="/home" />} />
+                <Route path="/game" element={keycloak.authenticated ? <Game /> : <Navigate to="/home" />} />
+                <Route path="/historic" element={keycloak.authenticated ? <Historic /> : <Navigate to="/home" />} />
+              </Routes>
+            </div>
+          </div>
+
   );
 }
 

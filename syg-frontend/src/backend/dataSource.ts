@@ -1,7 +1,12 @@
 import { Category, Question, User } from "../types/types";
+import { keycloak } from '../secure/keycloak';
 
-export function getUser(id: number): Promise<User> {
-    return fetch(`http://localhost:8080/user?id=${id}`)
+export function getUser(id: string): Promise<User> {
+    return fetch(`http://localhost:8080/user?id=${id}`, {
+        headers: {
+            Authorization: `Bearer ${keycloak.token}`
+        }
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -14,6 +19,7 @@ export function updateUser(user: User): Promise<User> {
     return fetch(`http://localhost:8080/user`, {
         method: 'PUT',
         headers: {
+            Authorization: `Bearer ${keycloak.token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(user) 
@@ -27,7 +33,11 @@ export function updateUser(user: User): Promise<User> {
 }
 
 export function getQuestions():Promise<Question[]> {
-    return fetch(`http://localhost:8080/question`)
+    return fetch(`http://localhost:8080/question`, {
+        headers: {
+            Authorization: `Bearer ${keycloak.token}`
+        }
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -37,7 +47,11 @@ export function getQuestions():Promise<Question[]> {
 }
 
 export function getQuestionsByCategory(categoryId: number):Promise<Question[]> {
-    return fetch(`http://localhost:8080/question/category?categoryId=${categoryId}`)
+    return fetch(`http://localhost:8080/question/category?categoryId=${categoryId}`, {
+        headers: {
+            Authorization: `Bearer ${keycloak.token}`
+        }
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -47,7 +61,11 @@ export function getQuestionsByCategory(categoryId: number):Promise<Question[]> {
 }
 
 export function getCategories():Promise<Category[]> {
-    return fetch(`http://localhost:8080/category`)
+    return fetch(`http://localhost:8080/category`, {
+        headers: {
+            Authorization: `Bearer ${keycloak.token}`
+        }
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');

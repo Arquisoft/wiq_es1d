@@ -1,7 +1,8 @@
 import React from 'react';
-import './Aside.scss';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../secure/keycloak';
+import './Aside.scss';
 
 interface AsideProps {
   elements: {
@@ -19,7 +20,7 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
   }
 
   function handleOnClickLogoutElement() {
-    navigate('/login');
+    logout()
   }
 
   return (
