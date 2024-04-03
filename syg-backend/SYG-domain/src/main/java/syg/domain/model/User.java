@@ -26,5 +26,9 @@ public class User {
 	
 	@NotNull
 	private int inCorrectAnswers;
+	
+	//preguntas totales contestadas
+	
+	//Categoria preferida
 
 }
