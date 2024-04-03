@@ -1,4 +1,5 @@
 import Keycloak from 'keycloak-js';
+import { registryUser } from '../backend/dataSource';
 
 const keycloak = new Keycloak({
     url: 'http://localhost:8090',
@@ -6,19 +7,25 @@ const keycloak = new Keycloak({
     clientId: 'syg-client',
 });
 
-
-function login(){
-    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
+keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
         console.log("AUTH-->", authenticated)
     }).catch(error => {
         console.error('Error al inicializar Keycloak', error);
     });
-}
 
-login();
+keycloak.onAuthSuccess = function() {
+    console.log("Se registro ", keycloak)
+        registryUser({
+            id: keycloak.subject ? keycloak.subject : '',
+            name: keycloak.tokenParsed?.preferred_username,
+            totalGames: 0,
+            correctAnswers: 0,
+            inCorrectAnswers: 0
+        });
+};
 
 function logout(){
     keycloak.logout();
 }
 
-export { keycloak, login, logout };
+export { keycloak, logout };

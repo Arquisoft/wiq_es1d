@@ -15,6 +15,23 @@ export function getUser(id: string): Promise<User> {
     })
 }
 
+export function registryUser(user: User): Promise<User> {
+    return fetch(`http://localhost:8080/user`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${keycloak.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user) 
+    })
+    .then(response => {
+        if (!response.ok) { 
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+}
+
 export function updateUser(user: User): Promise<User> {
     return fetch(`http://localhost:8080/user`, {
         method: 'PUT',

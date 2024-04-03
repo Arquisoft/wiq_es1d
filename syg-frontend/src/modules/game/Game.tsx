@@ -18,9 +18,7 @@ const Game: React.FC = () => {
     const [isGameFinished, setIsGameFinished] = useState<boolean>(false);
 
     useEffect(()=>{
-        console.log("ENTRO")
         getCategories().then((categories: Category[])=>{
-            console.log("CATEGORIAS", categories)
             setCategories(categories)
         })
     }, [])
@@ -94,7 +92,7 @@ const Game: React.FC = () => {
             else{
                 setIsGameFinished(true);
                 updateUser({
-                    id: 1,
+                    id: "",
                     name: "alvaroActualizado",
                     password: "admin",
                     totalGames: 4,

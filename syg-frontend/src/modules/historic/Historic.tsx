@@ -6,7 +6,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import UserInfoCard from '../../components/card/UserInfoCard';
-import {keycloak} from '../../secure/keycloak';
+import { keycloak } from '../../secure/keycloak';
 import './Historic.scss';
 
 const Historic: React.FC = () => {
