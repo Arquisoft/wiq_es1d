@@ -1,5 +1,5 @@
 import Keycloak from 'keycloak-js';
-import { registryUser } from '../backend/dataSource';
+import { getUser, registryUser } from '../backend/dataSource';
 
 const keycloak = new Keycloak({
     url: 'http://localhost:8090',
@@ -14,14 +14,20 @@ keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
     });
 
 keycloak.onAuthSuccess = function() {
-    console.log("Se registro ", keycloak)
+    getUser(keycloak.subject ? keycloak.subject : '')
+    .then(user => {
+        return
+    })
+    .catch(error => {
         registryUser({
-            id: keycloak.subject ? keycloak.subject : '',
-            name: keycloak.tokenParsed?.preferred_username,
-            totalGames: 0,
-            correctAnswers: 0,
-            inCorrectAnswers: 0
-        });
+                id: keycloak.subject ? keycloak.subject : '',
+                name: keycloak.tokenParsed?.preferred_username,
+                totalGames: 0,
+                correctAnswers: 0,
+                inCorrectAnswers: 0
+            });
+    });
+
 };
 
 function logout(){
