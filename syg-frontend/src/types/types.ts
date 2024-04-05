@@ -4,6 +4,8 @@ export interface User{
     totalGames: number;
     correctAnswers: number;
     inCorrectAnswers: number;
+    totalQuestionAnswered: number;
+    lastCategoryPlayed: string;
 }
 
 export interface Question{

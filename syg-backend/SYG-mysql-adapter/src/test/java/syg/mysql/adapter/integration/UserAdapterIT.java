@@ -24,9 +24,9 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@Test
 	@DisplayName("Se busca un usuario a traves de un id en base de datos")
 	void find_user_by_id() {
-		User user = userAdapter.findById(2L);
+		User user = userAdapter.findById("4366fdc8-b32d-46bc-9df8-2e8ce68f0743");
 		
-		assertEquals(2, user.getId());
+		assertEquals("4366fdc8-b32d-46bc-9df8-2e8ce68f0743", user.getId());
 		assertEquals("Pablo", user.getName());
 		assertEquals(8, user.getTotalGames());
 		assertEquals(24, user.getCorrectAnswers());
@@ -38,7 +38,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	void find_user_by_not_exist_id() {
 		final Executable exec;
 		
-		exec = () -> userAdapter.findById(50L);
+		exec = () -> userAdapter.findById("5366fdc8-b32d-46bc-9df8-2e8ce68f0743");
 		
 		assertThrows(NotFoundException.class, exec);
 	}
@@ -68,7 +68,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@Test
 	@DisplayName("Se crea un usuario")
 	void create_user() {
-		User userToCreate = new User(null, "Jugador 3", "player", 1, 3, 1);
+		User userToCreate = new User(null, "Jugador 3", 1, 3, 1, 100, "Deportes");
 		
 		User user = userAdapter.createUser(userToCreate);
 		
@@ -83,7 +83,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@DisplayName("Se crea un usuario con un id ya existente")
 	void create_user_with_existent_id() {
 		final Executable exec;
-		User userToCreate = new User(1L, "Jugador 3", "player", 1, 3, 1);
+		User userToCreate = new User("4366fdc8-b32d-46bc-9df8-2e8ce68f0743", "Jugador 3", 1, 3, 1, 100, "Deportes");
 		
 		exec = () -> userAdapter.createUser(userToCreate);
 		
@@ -94,7 +94,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@DisplayName("Se crea un usuario con un nombre ya existente")
 	void create_user_with_existent_name() {
 		final Executable exec;
-		User userToCreate = new User(4L, "Alvaro", "player", 1, 3, 1);
+		User userToCreate = new User("6666fdc8-b32d-46bc-9df8-2e8ce68f0743", "Alvaro", 1, 3, 1, 100, "Deportes");
 		
 		exec = () -> userAdapter.createUser(userToCreate);
 		
@@ -104,7 +104,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@Test
 	@DisplayName("Se actualiza un usuario")
 	void update_user_() {
-		User userToUpdate = new User(1L, "Jugador Actualizado", "player", 10, 40, 1);
+		User userToUpdate = new User("4366fdc8-b32d-46bc-9df8-2e8ce68f0743", "Jugador Actualizado", 10, 40, 1, 100, "Deportes");
 		
 		User user = userAdapter.updateUser(userToUpdate);
 		
@@ -119,7 +119,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@DisplayName("Se actualiza un usuario con un id que no existe")
 	void update_user_with_not_existent_id() {
 		final Executable exec;
-		User userToUpdate = new User(40L, "Alvaro", "player", 1, 3, 1);
+		User userToUpdate = new User("5566fdc8-b32d-46bc-9df8-2e8ce68f0743", "Alvaro", 1, 3, 1, 100, "Deportes");
 		
 		exec = () -> userAdapter.updateUser(userToUpdate);
 		
@@ -130,7 +130,7 @@ public class UserAdapterIT extends SYGdbContainerIT {
 	@DisplayName("Se actualiza un usuario con un id nulo")
 	void update_user_with_null_id() {
 		final Executable exec;
-		User userToUpdate = new User(null, "Alvaro", "player", 1, 3, 1);
+		User userToUpdate = new User(null, "Alvaro", 1, 3, 1, 100, "Deportes");
 		
 		exec = () -> userAdapter.updateUser(userToUpdate);
 		

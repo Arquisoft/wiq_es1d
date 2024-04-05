@@ -10,7 +10,7 @@ public interface UserService {
 	 * @param id Identificador del usuario
 	 * @return User
 	 */
-	public User findById(Long id);
+	public User findById(String id);
 	
 	/**
 	 * Método para encontrar a un usuario por su nombre de usuario unico.

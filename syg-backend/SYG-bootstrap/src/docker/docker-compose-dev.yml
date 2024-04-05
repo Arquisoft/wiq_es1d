@@ -15,7 +15,6 @@ services:
       
   syg-db:
     container_name: syg-db
-    #image: mysql:latest
     build:
       context: ../../../
       dockerfile: ./SYG-bootstrap/src/docker/database-mysql.Dockerfile
@@ -35,13 +34,13 @@ services:
     ports:
       - 8090:8080
     volumes:
-      - ./keycloak/imports:/tmp/import
+      - ./keycloak/imports/realm.json:/opt/keycloak/data/import/realm.json
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KEYCLOAK_IMPORT=/tmp/import/realm-export.json
     command:
       - start-dev
+      - --import-realm
     networks:
       syg:
         aliases:

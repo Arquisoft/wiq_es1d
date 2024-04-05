@@ -24,7 +24,7 @@ public class UserAdapter implements UserPersistence {
 	private UserMapper userMapper;
 	
 	@Override
-	public User findById(Long id) {
+	public User findById(String id) {
 		Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
 		if(optionalUserEntity.isEmpty()) {
 			throw new NotFoundException("The user with id " + id + " does not exist");
@@ -43,7 +43,7 @@ public class UserAdapter implements UserPersistence {
 
 	@Override
 	public User createUser(User user) {
-		if(user.getId() != null && userRepository.existsById(user.getId())) {
+		if(user.getId() != null && userRepository.findById(user.getId()).isPresent()) {
 			throw new ConflictException("The user with id " + user.getId() + " alredy exist");
 		}
 		try {			
@@ -56,7 +56,7 @@ public class UserAdapter implements UserPersistence {
 
 	@Override
 	public User updateUser(User user) {
-		if(user.getId() == null || userRepository.existsById(user.getId()) == false) {
+		if(user.getId() == null || userRepository.findById(user.getId()).isEmpty()) {
 			throw new NotFoundException("The user with id " + user.getId() + " not exist");
 		}
 		UserEntity userEntity = userRepository.save(userMapper.toEntity(user));

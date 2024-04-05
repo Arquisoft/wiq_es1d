@@ -20,17 +20,19 @@ CREATE TABLE answers(
 );
 
 CREATE TABLE users(
-	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	id varchar(36) PRIMARY KEY,
     name varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
     total_games NUMERIC NOT NULL default 0,
     correct_answers NUMERIC NOT NULL default 0,
     incorrect_answers NUMERIC NOT NULL default 0,
+    total_questions_answered NUMERIC NOT NULL default 0,
+    last_category_played varchar(255) NOT NULL,
     UNIQUE KEY unique_name_password (name)
 );
 
-INSERT INTO users (ID, NAME, PASSWORD, TOTAL_GAMES, CORRECT_ANSWERS, INCORRECT_ANSWERS) VALUES (1, 'Alvaro', 'admin', 4, 33, 1);
-INSERT INTO users (ID, NAME, PASSWORD, TOTAL_GAMES, CORRECT_ANSWERS, INCORRECT_ANSWERS) VALUES (2, 'Pablo', 'player', 8, 24, 12);
+
+INSERT INTO users (ID, NAME, TOTAL_GAMES, CORRECT_ANSWERS, INCORRECT_ANSWERS, TOTAL_QUESTIONS_ANSWERED, last_category_played) VALUES (1, 'Alvaro', 4, 33, 1, 100, 'Deportes');
+INSERT INTO users (ID, NAME, TOTAL_GAMES, CORRECT_ANSWERS, INCORRECT_ANSWERS, TOTAL_QUESTIONS_ANSWERED, last_category_played) VALUES (2, 'Pablo', 8, 24, 12, 100, 'Deportes');
 
 INSERT INTO categories (ID, NAME) VALUES (1, 'animales');
 INSERT INTO categories (ID, NAME) VALUES (2, 'politica');

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/Header';
 import { Button } from '@mui/material';
 import { Answer, Category, Question, User } from '../../types/types';
-import { getCategories, getQuestions, getQuestionsByCategory, updateUser } from '../../backend/dataSource';
+import { getCategories, getQuestions, getQuestionsByCategory, getUser, updateUser } from '../../backend/dataSource';
 import LinearProgress from '@mui/joy/LinearProgress';
 import { Typography } from '@mui/material';
+import { keycloak } from '../../secure/keycloak';
 import './Game.scss';
 
 const Game: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
+    const [categorySelected, setCategorySelected] = useState<Category | undefined>(undefined);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [idQuestion, setIdQuestion] = useState<number>(0);
     const [timeLeft, setTimeLeft] = useState<number>(0);
@@ -16,8 +18,12 @@ const Game: React.FC = () => {
     const [totalCorrectAnswers, setTotalCorrectAnswers] = useState<number>(0);
     const [totalIncorrectAnswers, setTotalIncorrectAnswers] = useState<number>(0);
     const [isGameFinished, setIsGameFinished] = useState<boolean>(false);
+    const [userActive, setUserActive] = useState<User | null>(null);
 
     useEffect(()=>{
+        getUser(keycloak.subject ? keycloak.subject : '').then((user: User) => {
+            setUserActive(user)
+        })
         getCategories().then((categories: Category[])=>{
             setCategories(categories)
         })
@@ -56,9 +62,10 @@ const Game: React.FC = () => {
         handlePostUpdateStats();
     }, [totalCorrectAnswers, totalIncorrectAnswers])
 
-    function handleStartGame(mode?: number) {
-        if(mode !== undefined){
-            getQuestionsByCategory(mode).then((questions: Question[]) => {
+    function handleStartGame(category?: Category) {
+        if(category !== undefined){
+            setCategorySelected(category)
+            getQuestionsByCategory(category.id).then((questions: Question[]) => {
                 setQuestions(questions)
             })
         }
@@ -92,12 +99,13 @@ const Game: React.FC = () => {
             else{
                 setIsGameFinished(true);
                 updateUser({
-                    id: "",
-                    name: "alvaroActualizado",
-                    password: "admin",
-                    totalGames: 4,
-                    correctAnswers: totalCorrectAnswers,
-                    inCorrectAnswers: totalIncorrectAnswers,
+                    id: userActive?.id,
+                    name: userActive?.name,
+                    totalGames: userActive?.totalGames !== undefined ? userActive?.totalGames + 1 : 0,
+                    correctAnswers: userActive?.correctAnswers !== undefined ? userActive?.correctAnswers + totalCorrectAnswers : 0,
+                    inCorrectAnswers: userActive?.inCorrectAnswers !== undefined ? userActive?.inCorrectAnswers + totalIncorrectAnswers : 0,
+                    totalQuestionAnswered: userActive?.totalQuestionAnswered !== undefined ? userActive?.totalQuestionAnswered + (totalCorrectAnswers+totalIncorrectAnswers) : 0,
+                    lastCategoryPlayed: categorySelected !== undefined ? categorySelected.name : userActive?.lastCategoryPlayed
                 } as User);
             }
         }
@@ -120,7 +128,7 @@ const Game: React.FC = () => {
                             {categories.map((category)=>(
                                 <Button
                                 className='syg-game-start-game-button'
-                                onClick={() => handleStartGame(category.id)}
+                                onClick={() => handleStartGame(category)}
                             >
                                 {category.name}
                             </Button>

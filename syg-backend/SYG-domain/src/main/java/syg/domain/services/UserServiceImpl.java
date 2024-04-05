@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
 	private UserPersistence userPersistence;
 
 	@Override
-	public User findById(Long id) {
+	public User findById(String id) {
 		return userPersistence.findById(id);
 	}
 	

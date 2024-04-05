@@ -14,11 +14,20 @@
         flex-direction: column;
         #syg-historic-user-name{
             font-size: 2em;
-            margin-bottom: 4em;
+            margin-bottom: 1.5em;
         }
         #syg-historic-user-info{
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            #primary-info{
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 1.5em;
+            }
+            #secondary-info{
+                display: flex;
+                justify-content: space-around;
+            }
         }
     }
 }

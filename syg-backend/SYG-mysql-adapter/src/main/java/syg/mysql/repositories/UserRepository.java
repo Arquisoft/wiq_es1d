@@ -8,6 +8,8 @@ import syg.mysql.entities.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	
+	Optional<UserEntity> findById(String id);
+
 	Optional<UserEntity> findByName(String name);
 
 }

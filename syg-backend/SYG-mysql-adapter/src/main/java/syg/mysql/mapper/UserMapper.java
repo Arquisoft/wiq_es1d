@@ -12,8 +12,8 @@ import syg.mysql.entities.UserEntity;
 public class UserMapper {
 	
 	public UserEntity toEntity(User user) {
-		return new UserEntity(user.getId(),user.getName(), user.getPassword(), user.getTotalGames(), 
-				user.getCorrectAnswers(), user.getInCorrectAnswers());
+		return new UserEntity(user.getId(),user.getName(), user.getTotalGames(), 
+				user.getCorrectAnswers(), user.getInCorrectAnswers(), user.getTotalQuestionAnswered(), user.getLastCategoryPlayed());
 	}
 	
 	public List<UserEntity> toEntity(List<User> users) {
@@ -25,8 +25,8 @@ public class UserMapper {
 	}
 	
 	public User toDomain(UserEntity userEntity) {
-		return new User(userEntity.getId(),userEntity.getName(), userEntity.getPassword(), userEntity.getTotalGames(), 
-				userEntity.getCorrectAnswers(), userEntity.getInCorrectAnswers());
+		return new User(userEntity.getId(),userEntity.getName(), userEntity.getTotalGames(), 
+				userEntity.getCorrectAnswers(), userEntity.getInCorrectAnswers(), userEntity.getTotalQuestionAnswered(), userEntity.getLastCategoryPlayed());
 	}
 	
 	public List<User> toDomain(List<UserEntity> usersEntity) {

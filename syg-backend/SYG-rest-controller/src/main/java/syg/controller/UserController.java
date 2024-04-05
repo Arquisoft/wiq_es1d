@@ -24,7 +24,7 @@ public class UserController {
 	private UserService userService;
 	
     @GetMapping
-    public ResponseEntity<Object> findUser(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Object> findUser(@RequestParam(name = "id") String id) {
     	try {
     		User user = userService.findById(id);
     		return ResponseEntity.status(HttpStatus.OK).body(user);			

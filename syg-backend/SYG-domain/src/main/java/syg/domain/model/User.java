@@ -10,13 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
 	
-	private Long id;
+	private String id;
 	
 	@NotNull
 	private String name;
-
-	@NotNull
-	private String password;
 
 	@NotNull
 	private int totalGames;
@@ -27,8 +24,9 @@ public class User {
 	@NotNull
 	private int inCorrectAnswers;
 	
-	//preguntas totales contestadas
+	@NotNull
+	private int totalQuestionAnswered;
 	
-	//Categoria preferida
-
+	@NotNull
+	private String lastCategoryPlayed;
 }

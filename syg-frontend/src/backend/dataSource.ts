@@ -33,6 +33,7 @@ export function registryUser(user: User): Promise<User> {
 }
 
 export function updateUser(user: User): Promise<User> {
+    console.log("usuario", user)
     return fetch(`http://localhost:8080/user`, {
         method: 'PUT',
         headers: {
