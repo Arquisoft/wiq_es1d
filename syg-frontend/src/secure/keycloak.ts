@@ -37,28 +37,6 @@ function login(): Promise<User | null> {
     });
 }
 
-function regitry() {
-    keycloak.onAuthSuccess = function () {
-        console.log("ENTRO AQUI", keycloak.subject)
-        getUser(keycloak.subject ? keycloak.subject : '')
-            .then(user => {
-                return
-            })
-            .catch(error => {
-                registryUser({
-                    id: keycloak.subject ? keycloak.subject : '',
-                    name: keycloak.tokenParsed?.preferred_username,
-                    totalGames: 0,
-                    correctAnswers: 0,
-                    inCorrectAnswers: 0,
-                    totalQuestionAnswered: 0,
-                    lastCategoryPlayed: 'Ninguna'
-                });
-            });
-
-    };
-}
-
 function logout() {
     keycloak.logout();
 }

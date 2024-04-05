@@ -6,6 +6,8 @@ import Aside from '../../components/aside/Aside';
 import Game from '../../modules/game/Game';
 import { login } from '../../secure/keycloak';
 import { User } from '../../types/types';
+import GamesIcon from '@mui/icons-material/Games';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import './Content.scss';
 
 function Content() {
@@ -31,8 +33,8 @@ function Content() {
         <div id='syg-container' className="content">
           <Aside
             elements={[
-              { text: 'Game', onClickAsideElement: handleGameClick },
-              { text: 'Historico', onClickAsideElement: handleHistoricClick },
+              { text: 'Juego', icon: <GamesIcon/>, onClickAsideElement: handleGameClick },
+              { text: 'Historico', icon: <QueryStatsIcon/>, onClickAsideElement: handleHistoricClick },
             ]}
             username={userActive?.name}
           />

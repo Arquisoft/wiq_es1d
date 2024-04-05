@@ -24,7 +24,7 @@ const Historic: React.FC = () => {
         <div id='syg-historic-container'>
             <Header info='Historicos' />
             <div id='syg-historic-content'>
-                <span id='syg-historic-user-name'> Datos de juego de <i>{userActive?.name}</i></span>
+                <span id='syg-historic-user-name'> Datos de juego de: <i>{userActive?.name}</i></span>
                 <div id='syg-historic-user-info'>
                     <div id='primary-info'>
                         <UserInfoCard
