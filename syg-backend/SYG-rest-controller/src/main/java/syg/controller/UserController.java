@@ -1,5 +1,7 @@
 package syg.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,19 @@ public class UserController {
 	private UserService userService;
 	
     @GetMapping
+    public ResponseEntity<Object> findUsers() {
+    	try {
+    		List<User> users = userService.findAll();
+    		return ResponseEntity.status(HttpStatus.OK).body(users);			
+    	}catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
+		} 
+    	catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+		}
+    }
+    
+    @GetMapping("/user")
     public ResponseEntity<Object> findUser(@RequestParam(name = "id") String id) {
     	try {
     		User user = userService.findById(id);

@@ -1,8 +1,22 @@
 import { Category, Question, User } from "../types/types";
 import { keycloak } from '../secure/keycloak';
 
+export function getUsers(): Promise<User[]> {
+    return fetch(`http://localhost:8080/user`, {
+        headers: {
+            Authorization: `Bearer ${keycloak.token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+}
+
 export function getUser(id: string): Promise<User> {
-    return fetch(`http://localhost:8080/user?id=${id}`, {
+    return fetch(`http://localhost:8080/user/user?id=${id}`, {
         headers: {
             Authorization: `Bearer ${keycloak.token}`
         }

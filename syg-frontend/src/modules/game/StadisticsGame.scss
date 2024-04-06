@@ -1,0 +1,33 @@
+#stadistic-game-container{
+    width: 100%;
+    padding: 1em;
+    #stadistic-game-correct, #stadistic-game-incorrect{
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+        span{
+            font-size: 1.3em;
+        }
+    }
+    #stadistic-game-correct{
+        margin-bottom: 1.5em;
+        #stadistic-game-correct-bar{
+            padding: .3em 2em;
+            text-align: center;
+            border-radius: 2em;
+            background-color: #26890B;
+            color: #ffffff;
+        }
+    }
+
+    #stadistic-game-incorrect{
+        margin-bottom: 1.5em;
+        #stadistic-game-incorrect-bar{
+            padding: .3em 2em;
+            text-align: center;
+            border-radius: 2em;
+            background-color: #E21B3C;
+            color: #ffffff;
+        }
+    }
+}

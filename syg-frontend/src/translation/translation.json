@@ -1,0 +1,218 @@
+{
+  "English": {
+    "translation": {
+      "header": {
+        "language": {
+          "English": "English",
+          "Spain": "Spain",
+          "France": "France",
+          "German": "German"
+        },
+        "subtitle": {
+          "game": "Game",
+          "historics": "Historics",
+          "ranking": "Ranking"
+        }
+      },
+      "aside": {
+        "Juego": "GAME",
+        "Historico": "HISTORIC",
+        "Ranking": "RANKING",
+        "logout": "LOGOUT"
+      },
+      "game": {
+        "mode":{
+          "title": "Choose the game mode",
+          "standard": "Standard",
+          "Deportes": "sports",
+          "Paises": "Countries",
+          "Ciencia": "Science",
+          "Cine": "Cine",
+          "Videojuegos": "Videogames"
+        },
+        "results": {
+          "title": "Game Summary",
+          "correctAnswers": "Correct Answers",
+          "incorrectAnswers": "Inorrect Answers"
+        }
+      },
+      "historics": {
+        "title": "Game data from",
+        "totalGames": "Total games",
+        "correctAnswers": "Total hits",
+        "incorrectAnswers": "Total failures",
+        "totalQuestions": "Answered questions",
+        "lastCategory": "Last category played"
+      },
+      "ranking": {
+        "username": "Username",
+        "games": "Games",
+        "correctAnswer": "Correct answers",
+        "incorrectAnswer": "Incorrect answers",
+        "questionsAnswered": "Questions answered"
+      }
+    }
+  },
+  "Spain": {
+    "translation": {
+      "header": {
+        "language": {
+          "English": "Ingles",
+          "Spain": "Español",
+          "France": "Frances",
+          "German": "Alemán"
+        },
+        "subtitle": {
+          "game": "Juego",
+          "historics": "Historicos",
+          "ranking": "Ranking"
+        }
+      },
+      "aside": {
+        "Juego": "JUEGO",
+        "Historico": "HISTORICO",
+        "Ranking": "RANKING",
+        "logout": "DESCONECTARSE"
+      },
+      "game": {
+        "mode":{
+          "title": "Escoga el modo de juego",
+          "standard": "Estandar",
+          "Deportes": "Deportes",
+          "Paises": "Paises",
+          "Ciencia": "Ciencia",
+          "Cine": "Cine",
+          "Videojuegos": "Videojuegos"
+        },
+        "results": {
+          "title": "Resumen de la partida",
+          "correctAnswers": "Respuestas correctas",
+          "incorrectAnswers": "Respuestas incorrectas"
+        }
+      },
+      "historics": {
+        "title": "Datos de juego de",
+        "totalGames": "Juegos totales",
+        "correctAnswers": "Total de aciertos",
+        "incorrectAnswers": "Total de fallos",
+        "totalQuestions": "Preguntas respondidas",
+        "lastCategory": "Última categoria jugada"
+      },
+      "ranking": {
+        "username": "Nombre de usuario",
+        "games": "Juegos",
+        "correctAnswer": "Respuestas correctas",
+        "incorrectAnswer": "Respuestas incorrectas",
+        "questionsAnswered": "Preguntas respondidas"
+      }
+    }
+  },
+  "France": {
+    "translation": {
+      "header": {
+        "language": {
+          "English": "Anglais",
+          "Spain": "Espagnol",
+          "France": "Français",
+          "German": "Allemand"
+        },
+        "subtitle": {
+          "game": "Jeu",
+          "historics": "Historiques",
+          "ranking": "Ranking"
+        }
+      },
+      "aside": {
+        "Juego" : "JEU",
+        "Historico" : "HISTORIQUE",
+        "Ranking" : "RANKING",
+        "logout" : "LOGOUT"
+      },
+      "game": {
+        "mode":{
+          "title": "Choisissez le mode de jeu",
+          "standard": "Standard",
+          "Deportes": "Des sports",
+          "Paises": "Les pays",
+          "Ciencia": "Science",
+          "Cine": "Cinéma",
+          "Videojuegos": "Jeux video"
+        },
+        "results": {
+          "title": "Résumé du jeu",
+          "correctAnswers": "Réponses correctes",
+          "incorrectAnswers": "Mauvaises réponses"
+        }
+      },
+      "historics": {
+        "title": "Données de jeu de",
+        "totalGames": "Total des jeux",
+        "correctAnswers": "Nombre total de succès",
+        "incorrectAnswers": "Nombre total d'échecs",
+        "totalQuestions": "Questions répondues",
+        "lastCategory": "Dernière catégorie jouée"
+      },
+      "ranking": {
+        "username": "benutzername",
+        "games": "Spiele",
+        "correctAnswer": "Richtige Antworten",
+        "incorrectAnswer": "Falsche Antworten",
+        "questionsAnswered": "Beantwortete Fragen"
+      }
+    }
+  },
+  "German": {
+    "translation": {
+      "header": {
+        "language": {
+          "English": "Englisch",
+          "Spain": "Spanisch",
+          "France": "Französisch",
+          "German": "Deutsch"
+        },
+        "subtitle": {
+          "game": "Spiel",
+          "historics": "Historischs",
+          "ranking": "Ranking"
+        }
+      },
+      "aside": {
+        "Juego": "SPIEL",
+        "Historico": "HISTORISCH",
+        "Ranking": "RANKING",
+        "logout": "LOGOUT"
+      },
+      "game": {
+        "mode":{
+          "title": "Wählen Sie den Spielmodus",
+          "standard": "Standard",
+          "Deportes": "Sport",
+          "Paises": "Länder",
+          "Ciencia": "Wissenschaft",
+          "Cine": "Kino",
+          "Videojuegos": "Videospiel"
+        },
+        "results": {
+          "title": "Spielzusammenfassung",
+          "correctAnswers": "Korrekte Antworten",
+          "incorrectAnswers": "Falsche Antworten"
+        }
+      },
+      "historics": {
+        "title": "Spieldaten von",
+        "totalGames": "Spiele insgesamt",
+        "correctAnswers": "Gesamtzahl der Treffer",
+        "incorrectAnswers": "Fehlschüsse insgesamt",
+        "totalQuestions": "Beantwortete Fragen",
+        "lastCategory": "Zuletzt gespielte Kategorie"
+      },
+      "ranking": {
+        "username" : "nom d'utilisateur",
+        "games" : "Jeux",
+        "correctAnswer" : "réponses correctes",
+        "incorrectAnswer" : "réponses incorrectes",
+        "questionsAnswered" : "Questions répondues"
+      }
+    }
+  }
+}

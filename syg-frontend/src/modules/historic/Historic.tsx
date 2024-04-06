@@ -9,10 +9,12 @@ import CategoryIcon from '@mui/icons-material/Category';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import UserInfoCard from '../../components/card/UserInfoCard';
 import { keycloak } from '../../secure/keycloak';
+import { useTranslation } from 'react-i18next';
 import './Historic.scss';
 
 const Historic: React.FC = () => {
     const [userActive, setUserActive] = useState<User | null>(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         getUser(keycloak.subject ? keycloak.subject : '').then((user: User) => {
@@ -22,38 +24,38 @@ const Historic: React.FC = () => {
 
     return (
         <div id='syg-historic-container'>
-            <Header info='Historicos' />
+            <Header info='historics' />
             <div id='syg-historic-content'>
-                <span id='syg-historic-user-name'> Datos de juego de: <i>{userActive?.name}</i></span>
+                <span id='syg-historic-user-name'> {t('historics.title')}: <i>{userActive?.name}</i></span>
                 <div id='syg-historic-user-info'>
                     <div id='primary-info'>
                         <UserInfoCard
-                            title={'Juegos totales'}
+                            title={t('historics.totalGames')}
                             info={userActive !== null ? userActive.totalGames : 0}
                             iconItem={<SportsEsportsIcon color='secondary'/>}
                         />
 
                         <UserInfoCard
-                            title={'Total de aciertos'}
+                            title={t('historics.correctAnswers')}
                             info={userActive !== null ? userActive.correctAnswers : 0}
                             iconItem={<CheckIcon color='success'/>}
                         />
 
                         <UserInfoCard
-                            title={'Total de fallos'}
+                            title={t('historics.incorrectAnswers')}
                             info={userActive !== null ? userActive.inCorrectAnswers : 0}
                             iconItem={<ClearIcon color='error'/>}
                         />
                     </div>
                     <div id='secondary-info'>
                         <UserInfoCard
-                            title={'Preguntas respondidas'}
+                            title={t('historics.totalQuestions')}
                             info={userActive !== null ? userActive.totalQuestionAnswered : 0}
                             iconItem={<QuestionMarkIcon color='warning'/>}
                         />
 
                         <UserInfoCard
-                            title={'Última categoria jugada'}
+                            title={t('historics.lastCategory')}
                             info={userActive !== null ? userActive.lastCategoryPlayed.substring(0, 1).toUpperCase() + userActive.lastCategoryPlayed.substring(1) : ''}
                             iconItem={<CategoryIcon color='info'/>}
                         />

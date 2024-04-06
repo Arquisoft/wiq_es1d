@@ -1,0 +1,30 @@
+#syg-ranking-container{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    #syg-ranking-content{
+        grid-column: 1/-1;
+        grid-row: 3/-1;
+        margin-top: 1em;
+        background-color: #ffffff;
+        border-radius: 1em;
+        padding: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .syg-ranking-table{
+            padding: 0.4em 2em;
+            width: 67%;
+            border: none;
+            font-size: 1em;
+            .MuiDataGrid-row{
+                &.active{
+                    background-color: #0A75BD;
+                    color: #ffffff;
+                }
+
+            }
+        }
+    }
+}

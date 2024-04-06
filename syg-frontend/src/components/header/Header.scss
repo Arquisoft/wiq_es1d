@@ -18,9 +18,23 @@
             }
         }
         #syg-header-logo-letters{
+            display: flex;
+            gap: 4em;
             margin: 1em 2em 0 0;
             img{
                 height: 100%;
+            }
+            #syg-header-language-switch{
+                display: flex;
+                align-items: center;
+                gap: .5em;
+                button{
+                    padding: .2em 1em;
+                    &.active{
+                        background-color: #0A75BD;
+                        color: #ffffff;
+                    }
+                }
             }
         }
     }

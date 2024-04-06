@@ -8,6 +8,8 @@ import { login } from '../../secure/keycloak';
 import { User } from '../../types/types';
 import GamesIcon from '@mui/icons-material/Games';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import Ranking from '../ranking/Ranking';
 import './Content.scss';
 
 function Content() {
@@ -27,6 +29,10 @@ function Content() {
     function handleHistoricClick() {
       navigate('/historic');
     };
+
+    function handleRankingClick() {
+      navigate('/ranking');
+    };
   
     return (
         userActive ? (
@@ -35,6 +41,7 @@ function Content() {
             elements={[
               { text: 'Juego', icon: <GamesIcon/>, onClickAsideElement: handleGameClick },
               { text: 'Historico', icon: <QueryStatsIcon/>, onClickAsideElement: handleHistoricClick },
+              { text: 'Ranking', icon: <BarChartIcon/>, onClickAsideElement: handleRankingClick },
             ]}
             username={userActive?.name}
           />
@@ -43,6 +50,7 @@ function Content() {
               <Route path="/" element={<Home/>} />
               <Route path="/game" element={<Game />} />
               <Route path="/historic" element={<Historic />} />
+              <Route path="/ranking" element={<Ranking />} />
             </Routes>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../secure/keycloak';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './Aside.scss';
+import { useTranslation } from 'react-i18next';
 
 interface AsideProps {
   elements: {
@@ -15,7 +16,7 @@ interface AsideProps {
 }
 
 const Aside: React.FC<AsideProps> = (props: AsideProps) => {
-  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   function handleOnClickAsideElement(onClickAsideElement: () => void) {
     onClickAsideElement();
@@ -32,7 +33,7 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
           <div className='syg-aside-navigation-menu-element' onClick={()=>handleOnClickAsideElement(element.onClickAsideElement)}>
           {element.icon}
           <div className='syg-aside-navigation-menu-element-text'>
-            {element.text}
+            {t(`aside.${element.text}`)}
           </div>
           </div>
         ))}
@@ -44,7 +45,7 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
         </div>
         <div id='syg-aside-logout' onClick={handleOnClickLogoutElement}>
           <LogoutIcon/>
-          <div className='aside-element'>Logout</div>
+          <div className='aside-element'>{t('aside.logout')}</div>
         </div>
       </div>
     </div>

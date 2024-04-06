@@ -6,9 +6,12 @@ import { getCategories, getQuestions, getQuestionsByCategory, getUser, updateUse
 import LinearProgress from '@mui/joy/LinearProgress';
 import { Typography } from '@mui/material';
 import { keycloak } from '../../secure/keycloak';
+import Chart from './StadisticsGame';
 import './Game.scss';
+import { useTranslation } from 'react-i18next';
 
 const Game: React.FC = () => {
+    const { t } = useTranslation();
     const [categories, setCategories] = useState<Category[]>([]);
     const [categorySelected, setCategorySelected] = useState<Category | undefined>(undefined);
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -113,24 +116,24 @@ const Game: React.FC = () => {
 
     return (
         <div id='syg-game-container'>
-            <Header info='Juego' />
+            <Header info='game' />
             <div id='syg-game-content'>
                 {categories.length > 0 && (questions === undefined || questions.length < 1) ? (
                     <div id='syg-game-content-start-game'>
-                        <h2>Escoga el modo de juego</h2>
+                        <h2>{t('game.mode.title')}</h2>
                         <div id='syg-game-content-start-game-options'>
                             <Button
                                 className='syg-game-start-game-button'
                                 onClick={() => handleStartGame()}
                             >
-                                Modo estandar
+                                {t('game.mode.standard')}
                             </Button>
                             {categories.map((category)=>(
                                 <Button
                                 className='syg-game-start-game-button'
                                 onClick={() => handleStartGame(category)}
                             >
-                                {category.name}
+                               {t(`game.mode.${category.name}`)}
                             </Button>
                             ))}
                         </div>
@@ -162,9 +165,11 @@ const Game: React.FC = () => {
                         </div>
                     ):(
                         <div id='syg-game-finish'>
-                            <h2>Resumen de la partida</h2>
-                            <span>Respuestas correctas: {totalCorrectAnswers}</span>
-                            <span>Respuestas incorrectas: {totalIncorrectAnswers}</span>
+                            <h2>{t('game.results.tittle')}</h2>
+                            <Chart
+                                correctAnswers={totalCorrectAnswers}
+                                incorrectAnswers={totalIncorrectAnswers}
+                            />
                         </div>
                     )
                 )}

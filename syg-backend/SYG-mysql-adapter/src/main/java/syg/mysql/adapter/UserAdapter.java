@@ -1,5 +1,6 @@
 package syg.mysql.adapter;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ public class UserAdapter implements UserPersistence {
 	
 	@Autowired
 	private UserMapper userMapper;
+
+	@Override
+	public List<User> findAll() {
+		List<UserEntity> usersEntity = userRepository.findAll();
+		if(usersEntity.isEmpty()) {
+			throw new NotFoundException("There are no users in this application");
+		}
+		return userMapper.toDomain(usersEntity);
+	}
 	
 	@Override
 	public User findById(String id) {

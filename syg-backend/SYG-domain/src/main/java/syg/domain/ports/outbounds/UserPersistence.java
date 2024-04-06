@@ -1,9 +1,18 @@
 package syg.domain.ports.outbounds;
 
+import java.util.List;
+
 import syg.domain.model.User;
 
 public interface UserPersistence {
 
+	/**
+	 * Método para encontrar a todos los usuarios.
+	 * 
+	 * @return List<User> La lista con todos los usuarios
+	 */
+	public List<User> findAll();
+	
 	/**
 	 * Método para encontrar a un usuario por su identificador unico.
 	 * 
