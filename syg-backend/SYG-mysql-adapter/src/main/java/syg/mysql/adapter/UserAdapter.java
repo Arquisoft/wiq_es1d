@@ -27,9 +27,6 @@ public class UserAdapter implements UserPersistence {
 	@Override
 	public List<User> findAll() {
 		List<UserEntity> usersEntity = userRepository.findAll();
-		if(usersEntity.isEmpty()) {
-			throw new NotFoundException("There are no users in this application");
-		}
 		return userMapper.toDomain(usersEntity);
 	}
 	

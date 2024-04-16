@@ -37,7 +37,7 @@
         }
       },
       "historics": {
-        "title": "Game data from",
+        "title": "Game data from", 
         "totalGames": "Total games",
         "correctAnswers": "Total hits",
         "incorrectAnswers": "Total failures",

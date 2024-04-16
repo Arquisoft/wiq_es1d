@@ -57,6 +57,11 @@ public class QuestionAdapter implements QuestionPersistence {
 	public List<Question> findByCategory(Long categoryId) {
 		return questionMapper.toDomain(questionRepository.findByCategory_Id(categoryId));
 	}
+	
+	@Override
+	public void deleteQuestions() {
+		questionRepository.deleteAll();
+	}
 
 	@Override
 	public void generatedQuestions() {
@@ -78,6 +83,14 @@ public class QuestionAdapter implements QuestionPersistence {
 		}
 	}
 
+	/**
+	 * Genera las preguntas, con sus respuestas incorrecta.
+	 * Las forma de manera totalmente al azar, para que no se repitan nunca.
+	 * 
+	 * @param wikisQuestions Las preguntas generadas
+	 * @param categoryEntity La categoria a la que pertencen
+	 * @return
+	 */
 	private List<QuestionEntity> generatedQuestionsLogic(List<WikiData> wikisQuestions, CategoryEntity categoryEntity) {
 		List<QuestionEntity> questionsGenerated = new ArrayList<QuestionEntity>();
 		for (int i = 0; i < wikisQuestions.size(); i++) {

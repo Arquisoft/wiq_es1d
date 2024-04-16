@@ -29,13 +29,19 @@ public class WikiData {
 			+ "  ?item wdt:P31 wd:%s .\n" + "  ?item rdfs:label ?label .\n"
 			+ "  ?item schema:description ?description .\n"
 			+ "  FILTER(LANG(?label) = \"es\" && LANG(?description) = \"es\")\n" + "	} LIMIT 50";
-
+	
 	private String id;
 
 	private String description;
 
 	private String response;
 
+	/**
+	 * Ejecuta la query de búsqueda de preguntas por categoria
+	 * 
+	 * @param sparqlQuery
+	 * @return
+	 */
 	public List<WikiData> executeSparqlQuery(String sparqlQuery) {
 		List<WikiData> resultList = new ArrayList<>();
 
@@ -56,7 +62,7 @@ public class WikiData {
 				}
 			}
 		} catch (RepositoryException e) {
-			throw new NullPointerException(); // A cambiar por excepción personalizada
+			throw new RepositoryException();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -67,9 +73,18 @@ public class WikiData {
 		return resultList;
 	}
 
+	/**
+	 * Genéra números aleatorios para el índice de las preguntas incorrectas de wikidata.
+	 * Nunca pueden coincidir con las correcta
+	 * 
+	 * @param size El tamaño de la lista de preguntas
+	 * @param excludedIndex El indice excluido para que no coincida con la respuesta correcta
+	 * @param count El número de respuestas incorrectas
+	 * @return
+	 */
 	public List<Integer> generateUniqueRandomIndex(int size, int excludedIndex, int count) {
 		if (count > size - 1) {
-			throw new IllegalArgumentException("La cantidad de números solicitada es mayor que el rango disponible.");
+			throw new IllegalArgumentException("The number of numbers requested is greater than the available range.");
 		}
 
 		List<Integer> indices = new ArrayList<>();

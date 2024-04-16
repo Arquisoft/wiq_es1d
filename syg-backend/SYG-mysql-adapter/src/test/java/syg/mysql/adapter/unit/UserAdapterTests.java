@@ -7,6 +7,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +33,36 @@ public class UserAdapterTests {
 	
 	@MockBean
 	private UserRepository userRepository;
+	
+	@Test
+	@DisplayName("Se buscan todos los usuarios")
+	void find_all_users() {
+		List<UserEntity> usersEntity = new ArrayList<UserEntity>();
+		usersEntity.add(new UserEntity("4366fdc8-b32d-46bc-9df8-2e8ce68f0743", "Pablo", 8, 24, 12, 100, "Deportes"));
+		usersEntity.add(new UserEntity("5366fdc8-b32d-46bc-9df8-2e8ce68f0723", "Alex", 8, 24, 12, 100, "Deportes"));
+		usersEntity.add(new UserEntity("6366fdc8-b32d-46bc-9df8-2e8ce68f0743", "Alvaro", 8, 24, 12, 100, "Deportes"));
+		
+		when(userRepository.findAll()).thenReturn(usersEntity);
+		
+		List<User> users = userAdapter.findAll();
+		verify(userRepository, times(1)).findAll();
+		assertEquals(3, users.size());
+		assertEquals("4366fdc8-b32d-46bc-9df8-2e8ce68f0743", users.get(0).getId());
+		assertEquals("Alvaro", users.get(2).getName());
+		assertEquals(8, users.get(1).getTotalGames());
+	}
+	
+	@Test
+	@DisplayName("Se buscan todos los usuarios pero no existe ninguno")
+	void find_all_users_with_empty_results() {
+		List<UserEntity> usersEntity = new ArrayList<UserEntity>();
+		
+		when(userRepository.findAll()).thenReturn(usersEntity);
+		
+		List<User> users = userAdapter.findAll();
+		verify(userRepository, times(1)).findAll();
+		assertEquals(0, users.size());
+	}
 	
 	@Test
 	@DisplayName("Se busca un usuario a traves de un id en base de datos")

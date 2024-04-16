@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *
  */
 @SpringBootApplication
-@ComponentScan(basePackages = "syg.mysql.**")
+@ComponentScan(basePackages = {"syg.mysql.**", "syg.domain.**"})
 @EnableJpaRepositories(basePackages = "syg.mysql.**.repositories")
 @EntityScan(basePackages = "syg.mysql.**.entities")
 public class IntegrationAdapterTestConfiguration {

@@ -34,5 +34,10 @@ public class QuestionsServiceImpl implements QuestionService {
 	public List<Question> findByCategory(Long categoryId) {
 		return questionPersistence.findByCategory(categoryId);
 	}
+	
+	@Override
+	public void deleteQuestions() {
+		questionPersistence.deleteQuestions();
+	}
 }
 

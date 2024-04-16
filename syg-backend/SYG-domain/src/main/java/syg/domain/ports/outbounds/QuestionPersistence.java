@@ -33,5 +33,11 @@ public interface QuestionPersistence {
 	 * 
 	 */
 	public void generatedQuestions();
+	
+	/**
+	 * Método encargado de borrar todas las preguntas de la base de datos
+	 * 
+	 */
+	public void deleteQuestions();
 
 }

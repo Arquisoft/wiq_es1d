@@ -33,5 +33,11 @@ public interface QuestionService {
 	 * 
 	 */
 	public void generateQuestions();
+	
+	/**
+	 * Método encargado de borrar todas las preguntas de la base de datos
+	 * 
+	 */
+	public void deleteQuestions();
 
 }
