@@ -72,7 +72,7 @@
         "Juego": "JUEGO",
         "Historico": "HISTORICO",
         "Ranking": "RANKING",
-        "logout": "DESCONECTARSE"
+        "logout": "LOGOUT"
       },
       "game": {
         "mode":{

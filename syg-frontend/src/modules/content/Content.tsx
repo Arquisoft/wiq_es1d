@@ -47,7 +47,7 @@ function Content() {
           />
           <div id='syg-content-container'>
             <Routes>
-              <Route path="/" element={<Home/>} />
+              <Route path="/" element={<Game/>} />
               <Route path="/game" element={<Game />} />
               <Route path="/historic" element={<Historic />} />
               <Route path="/ranking" element={<Ranking />} />
