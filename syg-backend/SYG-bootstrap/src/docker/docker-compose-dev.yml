@@ -45,6 +45,17 @@ services:
       syg:
         aliases:
           - syg-keycloak
+          
+  syg-frontend:
+    build:
+      context: ../../../../
+      dockerfile: ./syg-frontend/frontend.Dockerfile
+    ports:
+      - 3200:3000
+    networks:
+      syg:
+        aliases:
+          - syg-frontend
 
 networks:
     syg:
