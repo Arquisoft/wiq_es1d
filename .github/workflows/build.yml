@@ -18,6 +18,7 @@ jobs:
     
     - name: Build with Maven and generate JaCoCo report
       run: mvn clean verify
+      working-directory: ./syg-backend
 
     - name: Upload JaCoCo report
       uses: actions/upload-artifact@v4
