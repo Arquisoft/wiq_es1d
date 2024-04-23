@@ -30,6 +30,13 @@ jobs:
     
     - name: List files in target directory
       run: ls -R ./
+
+    - name: Generate JaCoCo Badge
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        generate-branches-badge: true
+        jacoco-csv-file: target/site/jacoco/jacoco.csv
+        coverage-label: coverage
         
      # Mover el reporte de cobertura a la raíz del proyecto
     - name: Move coverage report to project root
