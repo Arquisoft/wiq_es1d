@@ -21,10 +21,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn --batch-mode --update-snapshots verify
+      run: mvn clean verify
 
      # Mover el reporte de cobertura a la raíz del proyecto
     - name: Move coverage report to project root
       run: |
          mkdir -p coverage
-         cp target/site/jacoco/* coverage/
+         cp SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
