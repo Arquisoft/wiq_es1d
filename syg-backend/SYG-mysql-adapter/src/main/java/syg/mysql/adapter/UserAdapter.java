@@ -50,7 +50,7 @@ public class UserAdapter implements UserPersistence {
 
 	@Override
 	public User createUser(User user) {
-		if(user.getId() != null && userRepository.findById(user.getId()).isPresent()) {
+		if(user.getId() != null && (userRepository.findById(user.getId()).isPresent() || userRepository.findByName(user.getName()).isPresent())) {
 			throw new ConflictException("The user with id " + user.getId() + " alredy exist");
 		}
 		try {			

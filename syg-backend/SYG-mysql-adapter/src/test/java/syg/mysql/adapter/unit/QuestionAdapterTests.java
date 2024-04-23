@@ -22,6 +22,7 @@ import syg.mysql.configuration.UnitAdapterTest;
 import syg.mysql.entities.CategoryEntity;
 import syg.mysql.entities.QuestionEntity;
 import syg.mysql.repositories.AnswerRepository;
+import syg.mysql.repositories.CategoryRepository;
 import syg.mysql.repositories.QuestionRepository;
 
 @UnitAdapterTest
@@ -35,6 +36,9 @@ public class QuestionAdapterTests {
 	
 	@MockBean
 	private AnswerRepository answerRepository;
+	
+	@MockBean
+	private CategoryRepository categoryRepository;
 	
 	@Test
 	@DisplayName("Se buscan todas las preguntas en base de datos")

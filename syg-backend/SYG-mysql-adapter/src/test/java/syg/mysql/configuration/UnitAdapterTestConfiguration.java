@@ -15,6 +15,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "syg.mysql.mapper", "syg.mysql.adapter" }, lazyInit = true)
+@ComponentScan(basePackages = { "syg.mysql.mapper", "syg.mysql.adapter", "syg.domain.model" }, lazyInit = true)
 public class UnitAdapterTestConfiguration {
 }

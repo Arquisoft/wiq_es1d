@@ -38,7 +38,7 @@ public class UserController {
 		}
     }
     
-    @GetMapping("/user")
+    @GetMapping("/userId")
     public ResponseEntity<Object> findUser(@RequestParam(name = "id") String id) {
     	try {
     		User user = userService.findById(id);

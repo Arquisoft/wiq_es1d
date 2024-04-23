@@ -50,17 +50,17 @@ public class UserControllerTests {
 		
 		when(userService.findById("4366fdc8-b32d-46bc-9df8-2e8ce68f0743")).thenReturn(userToReturn);
 		
-		mockMvc.perform(get("/user").param("id", "4366fdc8-b32d-46bc-9df8-2e8ce68f0743"))
+		mockMvc.perform(get("/user/userId").param("id", "4366fdc8-b32d-46bc-9df8-2e8ce68f0743"))
 			.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.OK.value()))
 			.andExpect(jsonPath("$.id", is("4366fdc8-b32d-46bc-9df8-2e8ce68f0743")));
 	}
 	
 	@Test
-	@DisplayName("Se busca un  usuarios a traves de un id que no existe")
+	@DisplayName("Se busca un usuario a traves de un id que no existe")
 	void find_user_by_not_exist_id() throws Exception {
 		when(userService.findById("5566fdc8-b32d-46bc-9df8-2e8ce68f0743")).thenThrow(NotFoundException.class);
 		
-		mockMvc.perform(get("/user").param("id", "5566fdc8-b32d-46bc-9df8-2e8ce68f0743"))
+		mockMvc.perform(get("/user/userId").param("id", "5566fdc8-b32d-46bc-9df8-2e8ce68f0743"))
 			.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.NOT_FOUND.value()));
 	}
 	

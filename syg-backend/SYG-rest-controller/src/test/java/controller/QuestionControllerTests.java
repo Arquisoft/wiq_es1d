@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import configuration.ControllerTest;
+import syg.controller.QuestionsController;
 import syg.domain.exception.NotFoundException;
 import syg.domain.model.Category;
 import syg.domain.model.Question;
@@ -25,7 +26,7 @@ import syg.domain.ports.inbound.CategoryService;
 import syg.domain.ports.inbound.QuestionService;
 import syg.domain.ports.inbound.UserService;
 
-@ControllerTest(QuestionControllerTests.class)
+@ControllerTest(QuestionsController.class)
 public class QuestionControllerTests {
 
 	@Autowired
@@ -51,7 +52,8 @@ public class QuestionControllerTests {
 		when(questionService.findAll()).thenReturn(questionResponse);
 		
 		mockMvc.perform(get("/question"))
-			.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.OK.value()))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(status().is(HttpStatus.OK.value()))
 			.andExpect(jsonPath("$.length()", is(3)));
 	}
 	

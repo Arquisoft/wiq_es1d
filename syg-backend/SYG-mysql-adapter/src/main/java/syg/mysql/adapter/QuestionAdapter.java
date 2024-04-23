@@ -55,7 +55,7 @@ public class QuestionAdapter implements QuestionPersistence {
 
 	@Override
 	public List<Question> findByCategory(Long categoryId) {
-		return questionMapper.toDomain(questionRepository.findByCategory_Id(categoryId));
+		return questionMapper.toDomain(questionRepository.findByCategory_Id(categoryId));			
 	}
 	
 	@Override
