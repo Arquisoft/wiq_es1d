@@ -23,9 +23,6 @@ jobs:
       
     - name: Build with Maven
       run: mvn clean verify
-
-    - name: List files in target directory
-      run: ls -R SYG-bootstrap/target/
       
     # - name: Generate JaCoCo Badge
     #   uses: cicirello/jacoco-badge-generator@v2
@@ -39,6 +36,11 @@ jobs:
       run: |
          mkdir -p coverage
          cp -r SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
+
+    - name: Configurar Git para el commit
+      run: |
+        git config --global user.name "AlvaroGlezC"
+        git config --global user.email "uo251891@uniovi.es"
     
     - name: Hacer commit y push de la cobertura
       run: |
