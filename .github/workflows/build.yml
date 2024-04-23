@@ -27,12 +27,12 @@ jobs:
     - name: List files in target directory
       run: ls -R SYG-bootstrap/target/
       
-    - name: Generate JaCoCo Badge
-      uses: cicirello/jacoco-badge-generator@v2
-      with:
-        generate-branches-badge: true
-        jacoco-csv-file: SYG-bootstrap/target/site/jacoco-aggregate/jacoco.csv
-        coverage-label: coverage
+    # - name: Generate JaCoCo Badge
+    #   uses: cicirello/jacoco-badge-generator@v2
+    #   with:
+    #     generate-branches-badge: true
+    #     jacoco-csv-file: SYG-bootstrap/target/site/jacoco-aggregate/jacoco.csv
+    #     coverage-label: coverage
         
      # Mover el reporte de cobertura a la raíz del proyecto
     - name: Move coverage report to project root
