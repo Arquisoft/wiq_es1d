@@ -7,22 +7,22 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  unit-tests:
+  backend-tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: syg-backend
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-java@v4
       with:
         java-version: '17'
-        distribution: 'temurin'
     
     - name: Build with Maven and generate JaCoCo report
       run: mvn clean verify
-      working-directory: syg-backend
 
-    - name: Upload JaCoCo report
-      uses: actions/upload-artifact@v4
-      with:
-        name: jacoco-report
-        path: |
-          */target/site/jacoco/jacoco-aggregate
+     # Mover el reporte de cobertura a la raíz del proyecto
+    - name: Move coverage report to project root
+      run: |
+         mkdir -p coverage
+         cp target/site/jacoco/* coverage/
