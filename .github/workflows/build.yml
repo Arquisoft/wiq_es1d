@@ -42,7 +42,7 @@ jobs:
     
     - name: Hacer commit y push de la cobertura
       run: |
-        git add coverage
+        git -f add coverage
         git commit -m "Agregar reporte de cobertura"
         git push
 
@@ -58,7 +58,7 @@ jobs:
     
     - name: Guardar badge en el repositorio
       run: |
-        git add backend-coverage-badge.svg
+        git -f add backend-coverage-badge.svg
         git commit -m "Agregar badge de cobertura del backend"
         git push
 
