@@ -24,18 +24,11 @@ jobs:
     - name: Build with Maven
       run: mvn clean verify
 
-    - name: Generate Coverage Report
-      run: |
-        mvn -B package --file pom.xml
-    
-    - name: List files in target directory
-      run: ls -R ./
-
     - name: Generate JaCoCo Badge
       uses: cicirello/jacoco-badge-generator@v2
       with:
         generate-branches-badge: true
-        jacoco-csv-file: target/site/jacoco/jacoco.csv
+        jacoco-csv-file: SYG-bootstrap/target/site/jacoco-aggregate/jacoco.csv
         coverage-label: coverage
         
      # Mover el reporte de cobertura a la raíz del proyecto
