@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>QuestionEntity.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">SYG_bootstrap</a> &gt; <a href="../index.html" class="el_bundle">SYG-mysql-adapter</a> &gt; <a href="index.source.html" class="el_package">syg.mysql.entities</a> &gt; <span class="el_source">QuestionEntity.java</span></div><h1>QuestionEntity.java</h1><pre class="source lang-java linenums">package syg.mysql.entities;
+
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = &quot;QUESTIONS&quot;)
+<span class="nc bnc" id="L21" title="All 46 branches missed.">@Data</span>
+<span class="fc" id="L22">@AllArgsConstructor</span>
+<span class="fc" id="L23">@NoArgsConstructor</span>
+public class QuestionEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = &quot;ID&quot;)
+<span class="fc" id="L29">	private Long id;</span>
+
+	@Column(name = &quot;TEXT&quot;)
+<span class="fc" id="L32">	private String text;</span>
+
+	@Column(name = &quot;TIME_LIMIT&quot;)
+<span class="fc" id="L35">	private Integer timeLimit;</span>
+
+	@ManyToOne
+	@JoinColumn(name = &quot;category&quot;, referencedColumnName = &quot;ID&quot;)
+<span class="fc" id="L39">	private CategoryEntity category;</span>
+
+	@OneToMany(mappedBy = &quot;question&quot;, cascade = CascadeType.ALL)
+<span class="fc" id="L42">	private List&lt;AnswerEntity&gt; answers;</span>
+	
+<span class="fc" id="L44">	public QuestionEntity(Long id, String text, int timeLimit, CategoryEntity category) {</span>
+<span class="fc" id="L45">		this.id = id;</span>
+<span class="fc" id="L46">		this.text = text;</span>
+<span class="fc" id="L47">		this.timeLimit = timeLimit;</span>
+<span class="fc" id="L48">		this.category = category;</span>
+<span class="fc" id="L49">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
