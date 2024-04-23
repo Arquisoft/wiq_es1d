@@ -23,6 +23,10 @@ jobs:
       
     - name: Build with Maven
       run: mvn clean verify
+
+    - name: Generate Coverage Report
+      run: |
+        mvn -B package --file pom.xml
     
     - name: List files in target directory
       run: ls -R ./
