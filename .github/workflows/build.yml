@@ -22,7 +22,7 @@ jobs:
         cache: maven
       
     - name: Build with Maven
-      run: mvn clean verify
+      run: mvn clean install
     
     - name: List files in target directory
       run: ls -R SYG-bootstrap/target/
