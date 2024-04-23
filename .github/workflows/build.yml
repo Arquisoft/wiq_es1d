@@ -23,9 +23,6 @@ jobs:
       
     - name: Build with Maven
       run: mvn --batch-mode --update-snapshots verify
-
-    - name: List files in target directory
-      run: ls -R SYG-bootstrap/target/
         
      # Mover el reporte de cobertura a la raíz del proyecto
     - name: Move coverage report to project root
