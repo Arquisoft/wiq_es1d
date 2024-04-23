@@ -38,4 +38,4 @@ jobs:
     - name: Move coverage report to project root
       run: |
          mkdir -p coverage
-         cp SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
+         cp -r SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
