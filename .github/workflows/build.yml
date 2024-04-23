@@ -39,3 +39,27 @@ jobs:
       run: |
          mkdir -p coverage
          cp -r SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
+    
+    - name: Hacer commit y push de la cobertura
+      run: |
+        git add coverage
+        git commit -m "Agregar reporte de cobertura"
+        git push
+
+    - name: Obtener cobertura
+      id: obtener-cobertura
+      run: |
+        cobertura=$(awk '/^TOTAL/{print $NF}' SYG-bootstrap/target/site/jacoco/index.html)
+        echo "::set-output name=cobertura::$cobertura"
+
+    - name: Generar badge de cobertura
+      run: |
+        curl -o backend-coverage-badge.svg "https://img.shields.io/badge/backend%20cobertura-${{ steps.obtener-cobertura.outputs.cobertura }}%25-green"
+    
+    - name: Guardar badge en el repositorio
+      run: |
+        git add backend-coverage-badge.svg
+        git commit -m "Agregar badge de cobertura del backend"
+        git push
+
+    
