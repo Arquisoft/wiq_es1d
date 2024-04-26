@@ -19,7 +19,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		
-		<junit-jupiter.version>5.8.2</junit-jupiter.version>
+		<junit-jupiter.version>5.10.2</junit-jupiter.version>
 	</properties>
 
 	<dependencyManagement>
@@ -33,34 +33,7 @@
 				<scope>import</scope>
 			</dependency>
 
-			<!-- TESTS -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<version>2.5.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<!-- POSTGRESQL -->
-<!--			<dependency>
-				<groupId>org.postgresql</groupId>
-				<artifactId>postgresql</artifactId>
-				<scope>runtime</scope>
-				<version>42.7.1</version>
-			</dependency>-->
-			
-			
+			<!-- MYSQL -->	
 			<dependency>
 			    <groupId>mysql</groupId>
 			    <artifactId>mysql-connector-java</artifactId>
@@ -81,6 +54,23 @@
 				<artifactId>h2</artifactId>
 				<version>2.2.224</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>2.5.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -92,8 +82,99 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>3.2.2</version>
 				</plugin>
+				<plugin>
+		          <groupId>org.apache.maven.plugins</groupId>
+		          <artifactId>maven-surefire-plugin</artifactId>
+		          <version>3.0.0-M5</version>
+		        </plugin>
+				<plugin>
+                	<groupId>org.apache.maven.plugins</groupId>
+                	<artifactId>maven-failsafe-plugin</artifactId>
+                	<version>3.0.0-M5</version>
+            	</plugin>
+            	<plugin>
+		          <groupId>org.jacoco</groupId>
+		          <artifactId>jacoco-maven-plugin</artifactId>
+		          <version>0.8.12</version>
+		        </plugin>
 			</plugins>
 		</pluginManagement>
+		 <plugins>
+            <!-- Surefire Plugin para ejecutar pruebas unitarias -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+				    <includes>
+				        <include>**/*Tests.java</include>
+				    </includes>
+				</configuration>
+            </plugin>
+
+            <!-- Failsafe Plugin para ejecutar pruebas de integración -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+			        <execution>
+			            <goals>
+			                <goal>integration-test</goal>
+			                <goal>verify</goal>
+			            </goals>
+					</execution>
+			    </executions>
+			    <configuration>
+			        <includes>
+			            <include>**/*IT.java</include>
+			        </includes>
+			    </configuration>
+            </plugin>
+
+            <!-- Jacoco Plugin para generar informes de cobertura de código -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                 <executions>
+			         <execution>
+			            <id>jacoco-initialize</id>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>generate-code-coverage-report</id>
+			            <phase>test</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
+			            <configuration>
+				            <excludes>
+				              <exclude>syg/mysql/entities/**/*.java</exclude> <!-- Ruta de exclusión -->
+				            </excludes>
+			          	</configuration>
+			        </execution>
+			      </executions>
+            </plugin>
+
+            <!-- PMD Plugin para análisis estático de código -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.21.2</version>
+                 <configuration>
+                	<!-- Directorio para almacenar los informes de PMD -->
+                	<targetDirectory>${project.build.directory}/pmd</targetDirectory>
+	            </configuration>
+	            <executions>
+	                <execution>
+	                    <phase>verify</phase>
+	                    <goals>
+	                        <goal>pmd</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>

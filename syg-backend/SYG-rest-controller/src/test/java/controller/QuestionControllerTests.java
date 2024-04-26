@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import configuration.ControllerTest;
+import syg.controller.QuestionsController;
 import syg.domain.exception.NotFoundException;
 import syg.domain.model.Category;
 import syg.domain.model.Question;
@@ -25,7 +26,7 @@ import syg.domain.ports.inbound.CategoryService;
 import syg.domain.ports.inbound.QuestionService;
 import syg.domain.ports.inbound.UserService;
 
-@ControllerTest(QuestionControllerTests.class)
+@ControllerTest(QuestionsController.class)
 public class QuestionControllerTests {
 
 	@Autowired
@@ -51,8 +52,22 @@ public class QuestionControllerTests {
 		when(questionService.findAll()).thenReturn(questionResponse);
 		
 		mockMvc.perform(get("/question"))
-			.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.OK.value()))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(status().is(HttpStatus.OK.value()))
 			.andExpect(jsonPath("$.length()", is(3)));
+	}
+	
+	@Test
+	@DisplayName("Se buscan todas las preguntas en base de datos y no hay ninguna")
+	void find_all_questions_but_no_one_exists() throws Exception {
+		List<Question> questionResponse = new ArrayList<Question>();
+		
+		when(questionService.findAll()).thenReturn(questionResponse);
+		
+		mockMvc.perform(get("/question"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(status().is(HttpStatus.OK.value()))
+			.andExpect(jsonPath("$.length()", is(0)));
 	}
 	
 	@Test
@@ -74,6 +89,15 @@ public class QuestionControllerTests {
 		
 		mockMvc.perform(get("/question/id").param("id", "50"))
 			.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.NOT_FOUND.value()));
+	}
+	
+	@Test
+	@DisplayName("Se busca una pregunta a traves de un id y algo va mal")
+	void find_question_by_id_and_something_goes_wrong() throws Exception {
+		when(questionService.findById(1L)).thenThrow(new RuntimeException("Service is unavailable"));
+		
+		mockMvc.perform(get("/question/id").param("id", "1"))
+			.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.SERVICE_UNAVAILABLE.value()));
 	}
 	
 	@Test

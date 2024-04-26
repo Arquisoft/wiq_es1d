@@ -75,4 +75,13 @@ public class CategoryControllerTests {
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.NOT_FOUND.value()));
 	}
 	
+	@Test
+	@DisplayName("Se busca una categoria a traves de un id y algo falla")
+	void find_category_by_id_and_something_goes_wrong() throws Exception {
+		when(categoryService.findById(1L)).thenThrow(new RuntimeException("Service is unavailable"));
+		
+		mockMvc.perform(get("/category/id").param("id", "1"))
+				.andDo(MockMvcResultHandlers.print()).andExpect(status().is(HttpStatus.SERVICE_UNAVAILABLE.value()));
+	}
+	
 }

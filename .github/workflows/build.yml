@@ -3,28 +3,48 @@ on:
   push:
     branches:
       - master
+      - develop
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  unit-tests:
+  backend-tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: syg-backend
     steps:
     - uses: actions/checkout@v4
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
       with:
-        fetch-depth: 0
-    - uses: actions/setup-node@v4
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+      
+    - name: Build with Maven
+      run: mvn clean verify
+        
+     # Mover el reporte de cobertura a la raíz del proyecto
+    # - name: Move coverage report to project root
+    #   run: |
+    #      mkdir -p coverage
+    #      cp -r SYG-bootstrap/target/site/jacoco-aggregate/jacoco.csv coverage/
+    #      cp -r SYG-bootstrap/target/site/jacoco-aggregate/index.html coverage/
+
+    # - name: Configurar Git para el commit
+    #   run: |
+    #     git config --global user.name "AlvaroGlezC"
+    #     git config --global user.email "uo251891@uniovi.es"
+    
+    # - name: Hacer commit y push de la cobertura
+    #   run: |
+    #     git add -f coverage
+    #     git commit -m "Agregar reporte de cobertura"
+    #     git push
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
       with:
-        node-version: 20
-    - run: npm --prefix users/authservice ci
-    - run: npm --prefix users/userservice ci
-    - run: npm --prefix gatewayservice ci
-    - run: npm --prefix webapp ci
-    - run: npm --prefix users/authservice test -- --coverage
-    - run: npm --prefix users/userservice test -- --coverage
-    - run: npm --prefix gatewayservice test -- --coverage
-    - run: npm --prefix webapp test -- --coverage
-    - name: Analyze with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: SYG-bootstrap/target/site/jacoco-aggregate/jacoco.xml
+    

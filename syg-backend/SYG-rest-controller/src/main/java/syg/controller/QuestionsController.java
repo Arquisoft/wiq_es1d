@@ -25,8 +25,11 @@ public class QuestionsController {
     @GetMapping
     public ResponseEntity<Object> findAll() {
     	List<Question> questions = questionService.findAll();
+    	if(questions.size() <= 0) {
+    		return ResponseEntity.status(HttpStatus.OK).body(questions);
+    	}
     	Collections.shuffle(questions);
-    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, 15));
+    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, Math.min(questions.size(), 15)));
     }
     
     @GetMapping("/id")
@@ -37,18 +40,16 @@ public class QuestionsController {
 		} catch (NotFoundException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());	
 		}
     }
     @GetMapping("/category")
     public ResponseEntity<Object> findByCategory(@RequestParam(name = "categoryId") Long categoryId) {
     	List<Question> questions = questionService.findByCategory(categoryId);
+    	if(questions.size() <= 0) {
+    		return ResponseEntity.status(HttpStatus.OK).body(questions);
+    	}
     	Collections.shuffle(questions);
-    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, 15));
-    }
-    
-    @GetMapping("/generate")
-    public void generateQuestions() {
-    	questionService.generateQuestions();
+    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, Math.min(questions.size(), 15)));    		
     }
 }
