@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CategoryServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">SYG_bootstrap</a> &gt; <a href="../index.html" class="el_bundle">SYG-domain</a> &gt; <a href="index.source.html" class="el_package">syg.domain.services</a> &gt; <span class="el_source">CategoryServiceImpl.java</span></div><h1>CategoryServiceImpl.java</h1><pre class="source lang-java linenums">package syg.domain.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import syg.domain.model.Category;
+import syg.domain.ports.inbound.CategoryService;
+import syg.domain.ports.outbounds.CategoryPersistence;
+
+@Service
+<span class="fc" id="L13">public class CategoryServiceImpl implements CategoryService {</span>
+
+	@Autowired
+	private CategoryPersistence categoryPersistence;
+	
+	@Override
+	public List&lt;Category&gt; findAll() {
+<span class="fc" id="L20">		return categoryPersistence.findAll();</span>
+	}
+
+	@Override
+	public Category findById(Long id) {
+<span class="fc" id="L25">		return categoryPersistence.findById(id);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
