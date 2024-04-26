@@ -23,13 +23,13 @@ public class QuestionsController {
 	private QuestionService questionService;
 	
     @GetMapping
-    public ResponseEntity<Object> findAll() {
+    public ResponseEntity<Object> findAll(@RequestParam(name = "maxNumberOfQuestions", defaultValue = "15", required = false) int maxNumberOfQuestions) {
     	List<Question> questions = questionService.findAll();
     	if(questions.size() <= 0) {
     		return ResponseEntity.status(HttpStatus.OK).body(questions);
     	}
     	Collections.shuffle(questions);
-    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, Math.min(questions.size(), 15)));
+    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, Math.min(questions.size(), maxNumberOfQuestions)));
     }
     
     @GetMapping("/id")
@@ -44,12 +44,13 @@ public class QuestionsController {
 		}
     }
     @GetMapping("/category")
-    public ResponseEntity<Object> findByCategory(@RequestParam(name = "categoryId") Long categoryId) {
+    public ResponseEntity<Object> findByCategory(@RequestParam(name = "categoryId") Long categoryId,
+    		@RequestParam(name = "maxNumberOfQuestions", defaultValue = "15", required = false) int maxNumberOfQuestions) {
     	List<Question> questions = questionService.findByCategory(categoryId);
     	if(questions.size() <= 0) {
     		return ResponseEntity.status(HttpStatus.OK).body(questions);
     	}
     	Collections.shuffle(questions);
-    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, Math.min(questions.size(), 15)));    		
+    	return ResponseEntity.status(HttpStatus.OK).body(questions.subList(0, Math.min(questions.size(), maxNumberOfQuestions)));    		
     }
 }
