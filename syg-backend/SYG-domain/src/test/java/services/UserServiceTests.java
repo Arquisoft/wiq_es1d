@@ -1,4 +1,4 @@
-package services.unit;
+package services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -6,6 +6,9 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +31,33 @@ public class UserServiceTests {
 	
 	@MockBean
 	private UserPersistence userPersistence;
+	
+	@Test
+	@DisplayName("Se busca todos los usuarios existentes")
+	void find_all_users() {
+		List<User> usersExpected = new ArrayList<User>();
+		usersExpected.add(new User("4366fdc8-b32d-46bc-9df8-2e8ce68f0743", "Pablo", 8, 24, 12, 100, "Deportes"));
+		usersExpected.add(new User("4366fdc8-b32d-46bc-9df8-2e8ce68f0753", "Alvaro", 8, 4, 1, 100, "Animales"));
+		usersExpected.add(new User("4366fdc8-b32d-46bc-9df8-2e8ce68f0763", "Juan", 5, 2, 2, 100, "Deportes"));
+		
+		when(userPersistence.findAll()).thenReturn(usersExpected);
+		
+		List<User> users = userService.findAll();
+		verify(userPersistence, times(1)).findAll();
+		assertEquals(3, users.size());
+	}
+	
+	@Test
+	@DisplayName("Se busca todos los usuarios existentes pero no existe ninguno")
+	void find_all_users_but_no_one_exist() {
+		List<User> usersExpected = new ArrayList<User>();
+		
+		when(userPersistence.findAll()).thenReturn(usersExpected);
+		
+		List<User> users = userService.findAll();
+		verify(userPersistence, times(1)).findAll();
+		assertEquals(0, users.size());
+	}
 	
 	@Test
 	@DisplayName("Se busca un usuario a traves de un id")

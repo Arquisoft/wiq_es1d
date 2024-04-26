@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.assertj.core.util.IterableUtil;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,6 +20,7 @@ import syg.mysql.adapter.QuestionAdapter;
 import syg.mysql.configuration.IntegrationAdapterTest;
 
 @IntegrationAdapterTest
+@TestMethodOrder(OrderAnnotation.class)
 public class QuestionAdapterIT extends SYGdbContainerIT {
 
 	@Autowired
@@ -71,5 +74,31 @@ public class QuestionAdapterIT extends SYGdbContainerIT {
 		List<Question> questions = questionAdapter.findByCategory(100L);
 		
 		assertEquals(0, IterableUtil.sizeOf(questions));
+	}
+	
+	@Test
+	@DisplayName("Se borran todas las preguntas")
+	void delete_all_question() {
+		List<Question> questions = questionAdapter.findAll();
+		assertEquals(8, IterableUtil.sizeOf(questions));
+		
+		questionAdapter.deleteQuestions();
+		List<Question> questionsAfterDelete = questionAdapter.findAll();
+		assertEquals(0, IterableUtil.sizeOf(questionsAfterDelete));
+	}
+	
+	@Test
+	@DisplayName("Se genera preguntas de wikidata")
+	void generate_wikidata_question() {
+		List<Question> questions = questionAdapter.findAll();
+		assertEquals(8, IterableUtil.sizeOf(questions));
+		
+		questionAdapter.deleteQuestions();
+		List<Question> questionsAfterDelete = questionAdapter.findAll();
+		assertEquals(0, IterableUtil.sizeOf(questionsAfterDelete));
+		
+		questionAdapter.generatedQuestions();
+		List<Question> questionsAfterGenerate = questionAdapter.findAll();
+		assertEquals(222, IterableUtil.sizeOf(questionsAfterGenerate));
 	}
 }

@@ -1,7 +1,9 @@
-package services.unit;
+package services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -97,6 +99,26 @@ public class QuestionServiceTests {
 		
 		List<Question> questions = questionService.findByCategory(100L);
 		assertEquals(0, IterableUtil.sizeOf(questions));
+	}
+	
+	@Test
+	@DisplayName("Se borran todas las preguntas")
+	void delete_all_question() {
+		doNothing().when(questionPersistence).deleteQuestions();
+		
+		questionService.deleteQuestions();
+		
+		verify(questionPersistence).deleteQuestions();
+	}
+	
+	@Test
+	@DisplayName("Se generan las preguntas")
+	void generate_questions() {
+		doNothing().when(questionPersistence).generatedQuestions();
+		
+		questionService.generateQuestions();
+		
+		verify(questionPersistence).generatedQuestions();
 	}
 
 }

@@ -33,25 +33,7 @@
 				<scope>import</scope>
 			</dependency>
 
-			<!-- TESTS -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<version>2.5.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-					
+			<!-- MYSQL -->	
 			<dependency>
 			    <groupId>mysql</groupId>
 			    <artifactId>mysql-connector-java</artifactId>
@@ -71,6 +53,23 @@
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
 				<version>2.2.224</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>2.5.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -148,6 +147,11 @@
 			            <goals>
 			                <goal>report</goal>
 			            </goals>
+			            <configuration>
+				            <excludes>
+				              <exclude>syg/mysql/entities/**/*.java</exclude> <!-- Ruta de exclusión -->
+				            </excludes>
+			          	</configuration>
 			        </execution>
 			      </executions>
             </plugin>

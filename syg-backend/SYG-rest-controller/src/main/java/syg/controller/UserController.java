@@ -27,15 +27,8 @@ public class UserController {
 	
     @GetMapping
     public ResponseEntity<Object> findUsers() {
-    	try {
-    		List<User> users = userService.findAll();
-    		return ResponseEntity.status(HttpStatus.OK).body(users);			
-    	}catch (NotFoundException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
-		} 
-    	catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
-		}
+    	List<User> users = userService.findAll();
+    	return ResponseEntity.status(HttpStatus.OK).body(users);			
     }
     
     @GetMapping("/userId")
@@ -47,7 +40,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
 		} 
     	catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());	
 		}
     }
     
@@ -60,7 +53,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
 		} 
     	catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());	
 		}
     }
     
@@ -69,12 +62,10 @@ public class UserController {
     	try {
     		User userCreated = userService.createUser(user);
     		return ResponseEntity.status(HttpStatus.OK).body(userCreated);			
-		} catch (NotFoundException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());	
 		} catch (ConflictException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());	
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());	
 		}
     }
     
@@ -88,7 +79,7 @@ public class UserController {
 		} catch (ConflictException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());	
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());	
+			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());	
 		}
     }
 }

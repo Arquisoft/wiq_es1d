@@ -2,6 +2,8 @@ package syg.mysql.adapter.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import syg.domain.exception.NotFoundException;
 import syg.domain.model.Question;
+import syg.domain.model.WikiData;
 import syg.mysql.adapter.QuestionAdapter;
 import syg.mysql.configuration.UnitAdapterTest;
 import syg.mysql.entities.CategoryEntity;
@@ -39,6 +42,9 @@ public class QuestionAdapterTests {
 	
 	@MockBean
 	private CategoryRepository categoryRepository;
+	
+	@MockBean
+	private WikiData wikiData;
 	
 	@Test
 	@DisplayName("Se buscan todas las preguntas en base de datos")
@@ -108,5 +114,14 @@ public class QuestionAdapterTests {
 		List<Question> questions = questionAdapter.findByCategory(100L);
 		assertEquals(0, IterableUtil.sizeOf(questions));
 	}
-
+	
+	@Test
+	@DisplayName("Se borran todas las preguntas")
+	void delete_all_question() {
+		doNothing().when(questionRepository).deleteAll();
+		
+		questionAdapter.deleteQuestions();
+		
+		verify(questionRepository).deleteAll();
+	}
 }
