@@ -70,7 +70,7 @@ jobs:
       
       - name: Run coverage
         run: npm run coverage
-        timeout-minutes: 15
+        timeout-minutes: 0.3
 
       # Si quieres guardar el reporte de cobertura, puedes usar esta sección:
       - name: Save coverage report
