@@ -7,23 +7,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  create-bags:
-   runs-on: ubuntu-latest
-   steps:
-    - name: Create Coverage Badges
-      uses: jaywcjlove/coverage-badges-cli@main
-      with:
-        style: flat
-        source: coverage/coverage-summary.json
-        output: coverage/badges.svg
-        jsonPath: totals.percent_covered
-
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-    
   backend-tests:
     runs-on: ubuntu-latest
     defaults:
@@ -80,16 +63,6 @@ jobs:
           node-version: '21'  # Cambia según tu versión de Node.js
       - run: npm ci
       - run: npm test
-      - run: npm run jest-coverage
-      - run: npm i coverage-badges-cli -g
-      - run: coverage-badges --output coverage/badges.svg
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage
       # - name: Install dependencies
       #   run: npm install
       
