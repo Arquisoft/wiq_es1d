@@ -30,9 +30,9 @@ const QuestionTimer: React.FC<QuestionTimerProps> = (props: QuestionTimerProps) 
   }, [timeLeft])
 
   return (
-    <div id='syg-interval-question-progress'>
-      <LinearProgress determinate={true} variant="outlined" value={progress}  color="primary" thickness={32} >
-        <Typography>
+    <div id='syg-interval-question-progress' data-testid='syg-interval-question-progress'>
+      <LinearProgress determinate={true} variant="outlined" value={progress}  color="primary" thickness={32} data-testid='syg-interval-question-linear-progress'>
+        <Typography data-testid='syg-interval-question-text'>
           {timeLeft}
         </Typography>
       </LinearProgress>

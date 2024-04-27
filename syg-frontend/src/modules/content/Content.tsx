@@ -36,7 +36,7 @@ function Content() {
   
     return (
         userActive ? (
-        <div id='syg-container' className="content">
+        <div id='syg-container' className="content" data-testid='syg-container'>
           <Aside
             elements={[
               { text: 'Juego', icon: <GamesIcon/>, onClickAsideElement: handleGameClick },
@@ -45,7 +45,7 @@ function Content() {
             ]}
             username={userActive?.name}
           />
-          <div id='syg-content-container'>
+          <div id='syg-content-container' data-testid='syg-content-container'>
             <Routes>
               <Route path="/" element={<Game/>} />
               <Route path="/game" element={<Game />} />

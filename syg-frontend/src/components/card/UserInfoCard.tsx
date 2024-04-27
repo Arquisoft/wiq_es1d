@@ -11,18 +11,19 @@ interface UserInfoCardProps {
 
 const UserInfoCard: React.FC<UserInfoCardProps> = (props: UserInfoCardProps) => {
     return (
-        <Card id='syg-historic-card-container'>
+        <Card id='syg-historic-card-container' data-testid='syg-historic-card-container'>
             <CardHeader 
                 id='syg-historic-card-header'
+                data-testid='syg-historic-card-header'
                 title ={
-                    <div id='syg-historic-card-header-content' >
+                    <div id='syg-historic-card-header-content' data-testid='syg-historic-card-header-content'>
                         {props.iconItem}
-                        <span>{props.title}</span>
+                        <span data-testid='syg-historic-card-header-title'>{props.title}</span>
                     </div>
                 }
             />
-            <CardContent id='syg-historic-card-content'>
-                <span>{props.info}</span>
+            <CardContent id='syg-historic-card-content' data-testid='syg-historic-card-content'>
+                <span data-testid='syg-historic-card-content-info'>{props.info}</span>
             </CardContent>
         </Card>
     );

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { logout } from '../../secure/keycloak';
 import LogoutIcon from '@mui/icons-material/Logout';
-import './Aside.scss';
 import { useTranslation } from 'react-i18next';
+import './Aside.scss';
 
 interface AsideProps {
   elements: {
@@ -27,8 +25,8 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
   }
 
   return (
-    <div id='syg-aside-container'>
-      <div id='syg-aside-navigation-menu'>
+    <div id='syg-aside-container' data-testid='syg-aside-container'>
+      <div id='syg-aside-navigation-menu' data-testid='syg-aside-navigation-menu'>
         {props.elements.map((element) => (
           <div className='syg-aside-navigation-menu-element' onClick={()=>handleOnClickAsideElement(element.onClickAsideElement)}>
           {element.icon}
@@ -38,14 +36,14 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
           </div>
         ))}
       </div>
-      <div id='syg-aside-login-menu'>
-        <div id='syg-aside-username'>
-          <div id='syg-aside-username-initial'>{props.username.substring(0, 1).toUpperCase()}</div>
-          <span id='syg-aside-username-complete'>{props.username}</span>
+      <div id='syg-aside-login-menu' data-testid='syg-aside-login-menu'>
+        <div id='syg-aside-username' data-testid='syg-aside-username'>
+          <div id='syg-aside-username-initial' data-testid='syg-aside-username-initial'>{props.username.substring(0, 1).toUpperCase()}</div>
+          <span id='syg-aside-username-complete' data-testid='syg-aside-username-complete'>{props.username}</span>
         </div>
-        <div id='syg-aside-logout' onClick={handleOnClickLogoutElement}>
+        <div id='syg-aside-logout' onClick={handleOnClickLogoutElement} data-testid='syg-aside-logout'>
           <LogoutIcon/>
-          <div className='aside-element'>{t('aside.logout')}</div>
+          <div id='syg-aside-logout-text' className='aside-element' data-testid='syg-aside-logout-text'>{t('aside.logout')}</div>
         </div>
       </div>
     </div>

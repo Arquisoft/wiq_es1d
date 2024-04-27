@@ -48,9 +48,9 @@ const Ranking: React.FC = () => {
     }
 
     return (
-        <div id='syg-ranking-container'>
+        <div id='syg-ranking-container' data-testid='syg-ranking-container'>
             <Header info='ranking' />
-            <div id='syg-ranking-content'>
+            <div id='syg-ranking-content' data-testid='syg-ranking-content'>
                 <DataGrid
                     className='syg-ranking-table'
                     rows={getRows()}

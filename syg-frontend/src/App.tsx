@@ -4,7 +4,7 @@ import './App.scss';
 function App() {
   
   return (
-    <Content/>
+    <Content data-testid='app-content'/>
   );
 }
 

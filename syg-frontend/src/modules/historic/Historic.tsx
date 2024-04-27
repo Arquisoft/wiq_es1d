@@ -23,12 +23,12 @@ const Historic: React.FC = () => {
     }, [])
 
     return (
-        <div id='syg-historic-container'>
+        <div id='syg-historic-container' data-testid='syg-historic-container'>
             <Header info='historics' />
-            <div id='syg-historic-content'>
-                <span id='syg-historic-user-name'> {t('historics.title')}: <i>{userActive?.name}</i></span>
-                <div id='syg-historic-user-info'>
-                    <div id='primary-info'>
+            <div id='syg-historic-content' data-testid='syg-historic-content'>
+                <span id='syg-historic-user-name' data-testid='syg-historic-user-name'> {t('historics.title')}: <i data-testid='syg-historic-user-active-name'>{userActive?.name}</i></span>
+                <div id='syg-historic-user-info' data-testid='syg-historic-user-info'>
+                    <div id='primary-info' data-testid='syg-header-primary-info'>
                         <UserInfoCard
                             title={t('historics.totalGames')}
                             info={userActive !== null ? userActive.totalGames : 0}
@@ -47,7 +47,7 @@ const Historic: React.FC = () => {
                             iconItem={<ClearIcon color='error'/>}
                         />
                     </div>
-                    <div id='secondary-info'>
+                    <div id='secondary-info' data-testid='syg-header-secondary-info'>
                         <UserInfoCard
                             title={t('historics.totalQuestions')}
                             info={userActive !== null ? userActive.totalQuestionAnswered : 0}

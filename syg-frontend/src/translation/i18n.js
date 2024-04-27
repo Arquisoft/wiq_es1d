@@ -8,7 +8,7 @@ i18n
   .init({
     resources: translation,
     lng: 'Spain',
-    fallbackLng: 'Spain',
+    fallbackLng: 'es',
     interpolation: {
       escapeValue: false,
     },
