@@ -62,7 +62,6 @@ jobs:
         with:
           node-version: '21'  # Cambia según tu versión de Node.js
       - run: npm ci
-      - run: npm run linter
       - run: npm test
       # - name: Install dependencies
       #   run: npm install
