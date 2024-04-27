@@ -52,13 +52,6 @@ describe('Historic', () => {
         render(<Historic/>)
         
         const userNameHistoric = screen.getByTestId('syg-historic-user-name')
-        expect(userNameHistoric).toHaveTextContent("Datos de juego de:");
-    })
-
-    test('Historic get user active', () => {       
-        render(<Historic/>)
-
-        const userNameHistoric = screen.getByTestId('syg-historic-user-active-name')
-        expect(userNameHistoric).toHaveTextContent("");
+        expect(userNameHistoric).toHaveTextContent("Datos de juego");
     })
 })

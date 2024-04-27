@@ -37,7 +37,7 @@
         }
       },
       "historics": {
-        "title": "Game data from", 
+        "title": "Game data", 
         "totalGames": "Total games",
         "correctAnswers": "Total hits",
         "incorrectAnswers": "Total failures",
@@ -91,7 +91,7 @@
         }
       },
       "historics": {
-        "title": "Datos de juego de",
+        "title": "Datos de juego",
         "totalGames": "Juegos totales",
         "correctAnswers": "Total de aciertos",
         "incorrectAnswers": "Total de fallos",
@@ -145,7 +145,7 @@
         }
       },
       "historics": {
-        "title": "Données de jeu de",
+        "title": "Données de jeu",
         "totalGames": "Total des jeux",
         "correctAnswers": "Nombre total de succès",
         "incorrectAnswers": "Nombre total d'échecs",

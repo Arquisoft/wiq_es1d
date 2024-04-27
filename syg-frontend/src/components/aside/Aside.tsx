@@ -27,10 +27,10 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
   return (
     <div id='syg-aside-container' data-testid='syg-aside-container'>
       <div id='syg-aside-navigation-menu' data-testid='syg-aside-navigation-menu'>
-        {props.elements.map((element) => (
-          <div className='syg-aside-navigation-menu-element' onClick={()=>handleOnClickAsideElement(element.onClickAsideElement)}>
-          {element.icon}
-          <div className='syg-aside-navigation-menu-element-text'>
+        {props.elements.map((element, index) => (
+          <div key={'syg-aside-navigation-menu-element' + index} className='syg-aside-navigation-menu-element' onClick={()=>handleOnClickAsideElement(element.onClickAsideElement)}>
+            {element.icon}
+          <div key={'syg-aside-navigation-menu-element-text' + index} className='syg-aside-navigation-menu-element-text'>
             {t(`aside.${element.text}`)}
           </div>
           </div>

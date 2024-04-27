@@ -26,7 +26,7 @@ const Historic: React.FC = () => {
         <div id='syg-historic-container' data-testid='syg-historic-container'>
             <Header info='historics' />
             <div id='syg-historic-content' data-testid='syg-historic-content'>
-                <span id='syg-historic-user-name' data-testid='syg-historic-user-name'> {t('historics.title')}: <i data-testid='syg-historic-user-active-name'>{userActive?.name}</i></span>
+                <span id='syg-historic-user-name' data-testid='syg-historic-user-name'> {t('historics.title')}</span>
                 <div id='syg-historic-user-info' data-testid='syg-historic-user-info'>
                     <div id='primary-info' data-testid='syg-header-primary-info'>
                         <UserInfoCard

@@ -115,13 +115,13 @@ const Game: React.FC = () => {
     }
 
     return (
-        <div id='syg-game-container'>
+        <div id='syg-game-container' data-testid='syg-game-container'>
             <Header info='game' />
-            <div id='syg-game-content'>
+            <div id='syg-game-content' data-testid='syg-game-content'>
                 {categories.length > 0 && (questions === undefined || questions.length < 1) ? (
-                    <div id='syg-game-content-start-game'>
-                        <h2>{t('game.mode.title')}</h2>
-                        <div id='syg-game-content-start-game-options'>
+                    <div id='syg-game-content-start-game' data-testid='syg-game-content-start-game'>
+                        <h2 >{t('game.mode.title')}</h2>
+                        <div id='syg-game-content-start-game-options' data-testid='syg-game-content-start-game-options'>
                             <Button
                                 className='syg-game-start-game-button'
                                 onClick={() => handleStartGame()}
@@ -165,7 +165,7 @@ const Game: React.FC = () => {
                         </div>
                     ):(
                         <div id='syg-game-finish'>
-                            <h2>{t('game.results.tittle')}</h2>
+                            <h2>{t('game.results.title')}</h2>
                             <Chart
                                 correctAnswers={totalCorrectAnswers}
                                 incorrectAnswers={totalIncorrectAnswers}
