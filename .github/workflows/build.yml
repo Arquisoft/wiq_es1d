@@ -69,5 +69,6 @@ jobs:
       - name: Save coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
-          path: coverage/
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info  # Ruta al archivo de cobertura
+          fail_ci_if_error: true
