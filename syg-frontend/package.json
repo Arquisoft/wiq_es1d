@@ -34,9 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "npm test -- --coverage --watchAll",
-    "jest-coverage": "jest --coverage",
-    "make-badges": "coverage-badges"
+    "test:coverage": "react-scripts test --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
@@ -57,10 +55,6 @@
     ]
   },
   "jest": {
-    "collectCoverageFrom": [
-      "./src/**/*.{tsx,ts}",
-      "!**/*.{js,d.ts}"
-    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/src/App.tsx",
@@ -71,8 +65,8 @@
       "/src/backend/dataSource.ts"
     ],
     "coverageReporters": [
-      "lcov",
-      "json-summary"
+      "html",
+      "text"
     ]
   }
 }
