@@ -21,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class OauthSecurityConfiguration {
 
     private static final String[] AUTH_WHITELIST = { "/v3/api-docs/**",
-            "/swagger-ui.html", "/swagger-ui/**", "/openapi.json", "/error" };
+            "/swagger-ui.html", "/swagger-ui/**", "/openapi.json", "/error", "/actuator/prometheus" };
     
     @Value("${app.security.auth.certificates.url}")
     private String                authCerts;
