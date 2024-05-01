@@ -7,8 +7,8 @@ import LinearProgress from '@mui/joy/LinearProgress';
 import { Typography } from '@mui/material';
 import { keycloak } from '../../secure/keycloak';
 import Chart from './StadisticsGame';
-import './Game.scss';
 import { useTranslation } from 'react-i18next';
+import './Game.scss';
 
 const Game: React.FC = () => {
     const { t } = useTranslation();
@@ -124,6 +124,7 @@ const Game: React.FC = () => {
                         <div id='syg-game-content-start-game-options' data-testid='syg-game-content-start-game-options'>
                             <Button
                                 className='syg-game-start-game-button'
+                                data-testid='syg-game-content-start-game-standard-button'
                                 onClick={() => handleStartGame()}
                             >
                                 {t('game.mode.standard')}
@@ -140,22 +141,23 @@ const Game: React.FC = () => {
                     </div>
                 ) : (
                     questions !== undefined && questions.length > 0 && isGameFinished === false ? (
-                        <div className='syg-game-question-content'>
-                            <div className='syg-game-question-time-limit'>
+                        <div className='syg-game-question-content' data-testid='syg-game-content-question-game'>
+                            <div className='syg-game-question-time-limit' data-testid='syg-game-content-question-time-limit'>
                                 <LinearProgress determinate={true} variant="outlined" value={progress} color="primary" thickness={32} >
                                     <Typography>
                                         {timeLeft}
                                     </Typography>
                                 </LinearProgress>
                             </div>
-                            <div className='syg-game-question-title'>
+                            <div className='syg-game-question-title' data-testid='syg-game-content-question-title'>
                                 {questions[idQuestion].text}
                             </div>
-                            <div className='syg-game-question-answers-content'>
+                            <div className='syg-game-question-answers-content' data-testid='syg-game-content-question-content'>
                                 {questions[idQuestion].answers.map((answer: Answer, index: number) => (
                                     <Button
                                         key={index}
                                         className={`syg-game-question-answer answer-number-${index}`}
+                                        data-testid={`syg-game-question-answer-answer-number-${index}`}
                                         onClick={() => handleAnswerQuestion(answer)}
                                     >
                                         {answer.text}
@@ -164,7 +166,7 @@ const Game: React.FC = () => {
                             </div>
                         </div>
                     ):(
-                        <div id='syg-game-finish'>
+                        <div id='syg-game-finish' data-testid='syg-game-content-game-finish'>
                             <h2>{t('game.results.title')}</h2>
                             <Chart
                                 correctAnswers={totalCorrectAnswers}
