@@ -45,6 +45,23 @@ services:
       syg:
         aliases:
           - syg-keycloak
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+      - 3200:3000
+    restart: unless-stopped
+    volumes:
+      - ../grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
           
   syg-frontend:
     build:
