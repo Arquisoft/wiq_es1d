@@ -35,7 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:coverage": "react-scripts test --coverage --watchAll=false"
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --ignore-pattern \"**/*.test.tsx\""
   },
   "eslintConfig": {
     "extends": [
@@ -70,5 +71,12 @@
       "text",
       "lcov"
     ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.1.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "globals": "^15.1.0",
+    "typescript-eslint": "^7.8.0"
   }
 }

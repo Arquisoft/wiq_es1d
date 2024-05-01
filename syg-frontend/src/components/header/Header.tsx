@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss';
 import { useTranslation } from 'react-i18next';
-import { Button, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button} from '@mui/material';
 
 interface HeaderProps {
   info: string;

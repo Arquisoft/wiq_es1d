@@ -15,7 +15,7 @@ function login(): Promise<User | null> {
                 .then((user: User) => {
                     return user;
                 })
-                .catch(error => {
+                .catch(() => {
                     return registryUser({
                         id: keycloak.subject ? keycloak.subject : '',
                         name: keycloak.tokenParsed?.preferred_username,

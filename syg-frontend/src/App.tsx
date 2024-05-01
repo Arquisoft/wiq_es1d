@@ -1,3 +1,4 @@
+import React from 'react';
 import Content from './modules/content/Content';
 import './App.scss';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography } from '@mui/material';
+import { Paper } from '@mui/material';
 import './StadisticsGame.scss'
 import { useTranslation } from 'react-i18next';
 

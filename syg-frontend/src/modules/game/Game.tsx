@@ -129,8 +129,9 @@ const Game: React.FC = () => {
                             >
                                 {t('game.mode.standard')}
                             </Button>
-                            {categories.map((category)=>(
+                            {categories.map((category, index)=>(
                                 <Button
+                                key={`syg-game-start-game-button-${index}`}
                                 className='syg-game-start-game-button'
                                 onClick={() => handleStartGame(category)}
                             >

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUser, getUsers } from '../../backend/dataSource';
 import { User } from '../../types/types';
 import { keycloak } from '../../secure/keycloak';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridValidRowModel } from '@mui/x-data-grid';
 import Header from '../../components/header/Header';
 import { useTranslation } from 'react-i18next';
 import './Ranking.scss';
@@ -22,7 +22,7 @@ const Ranking: React.FC = () => {
     }, [])
 
     function getRows(){
-        const rows: any[] = []
+        const rows: GridValidRowModel[] = []
         allUsers.forEach(user => {
             rows.push({
                 id: user.id,

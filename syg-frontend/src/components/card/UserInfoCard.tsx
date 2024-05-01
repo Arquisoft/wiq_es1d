@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, IconButton, SvgIconTypeMap } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import './UserInfoCard.scss';
+import React from 'react';
+import { Card, CardContent, CardHeader } from '@mui/material';
 import { ReactElement } from 'react';
+import './UserInfoCard.scss';
 
 interface UserInfoCardProps {
     title: string;

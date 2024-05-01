@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import Home from '../../modules/home/Home';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Historic from '../../modules/historic/Historic';
 import Aside from '../../components/aside/Aside';
 import Game from '../../modules/game/Game';
