@@ -40,7 +40,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run test:coverage
-      - run: nom run linter
+      - run: nom run lint
 
   sonarcloudBackend:
     name: sonarcloudBackend
@@ -48,13 +48,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+          fetch-depth: 0
+
+      # Build and test the project
+      - name: Build and Test
+        run: mvn clean install
+
+      # SonarCloud analysis
+      - name: SonarCloud Analysis
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: syg-backend/
           
   sonarcloudFrontend:
     name: sonarcloudFrontend
