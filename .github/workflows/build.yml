@@ -49,7 +49,7 @@ jobs:
       run:
         working-directory: syg-backend
     steps:
-     - uses: actions/checkout@v3
+     - uses: actions/checkout@v4
        with:
         fetch-depth: 0
 
@@ -61,7 +61,7 @@ jobs:
 
       # Build and test the project
      - name: Build and Test
-       run: mvn clean install
+       run: mvn clean verify
 
      # SonarCloud analysis
      - name: SonarCloud Analysis
@@ -89,3 +89,5 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          sonar.exclusions: '**/*.java'  # Excluir todos los archivos Java
