@@ -72,6 +72,9 @@ jobs:
   sonarcloudFrontend:
     name: sonarcloudFrontend
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: syg-frontend
     steps:
       - uses: actions/checkout@v4
         with:
@@ -84,5 +87,3 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: syg-frontend/
