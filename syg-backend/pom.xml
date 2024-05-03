@@ -24,6 +24,7 @@
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.projectKey>Arquisoft_wiq_es1d</sonar.projectKey>
     	<sonar.organization>arquisoft</sonar.organization>
+    	<sonar.coverage.jacoco.xmlReportPaths>SYG-bootstrap/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     	<sonar.exclusions>SYG-bootstrap/**, SYG-domain/src/main/java/syg/domain/model/** </sonar.exclusions>
 
 	</properties>
