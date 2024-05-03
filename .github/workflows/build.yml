@@ -73,11 +73,15 @@ jobs:
     name: sonarcloudFrontend
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21
+      - run: npm run test:coverage
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
