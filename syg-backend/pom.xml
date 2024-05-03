@@ -24,6 +24,7 @@
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.projectKey>Arquisoft_wiq_es1d</sonar.projectKey>
     	<sonar.organization>arquisoft</sonar.organization>
+    	<sonar.exclusions>SYG-bootstrap/**, SYG-domain/src/main/java/syg/domain/model/** </sonar.exclusions>
 
 	</properties>
 
