@@ -104,7 +104,7 @@ jobs:
             
       - name: Delete images
         run: |
-          az login --service-principal -u ${{ secrets.AZURE_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+          az login -u ${{ secrets.AZURE_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_REGISTRY_PASSWORD }} --tenant ${{ secrets.AZURE_TENANT_ID }}
           az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
           az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository syg-docker-db --yes
       
