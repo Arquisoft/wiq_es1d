@@ -127,11 +127,11 @@ jobs:
         run: |
           docker build -f ./docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ./docker
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT
-          docker build -f ./syg-backend/SYG-bootstrap/src/docker/backend.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-backend:0.1.0-SNAPSHOT ./docker
+          docker build -f ./syg-backend/SYG-bootstrap/src/docker/backend.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-backend:0.1.0-SNAPSHOT .
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-backend:0.1.0-SNAPSHOT
-          docker build -f ./docker/keycloak/keycloak.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-keycloak:0.1.0-SNAPSHOT ./docker
+          docker build -f ./docker/keycloak/keycloak.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-keycloak:0.1.0-SNAPSHOT ./docker/keycloak
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-keycloak:0.1.0-SNAPSHOT
-          docker build -f ./syg-frontend/frontend.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-frontend:0.1.0-SNAPSHOT ./docker
+          docker build -f ./syg-frontend/frontend.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-frontend:0.1.0-SNAPSHOT .
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-frontend:0.1.0-SNAPSHOT
           docker build -f ./docker/prometheus.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-prometheus:0.1.0-SNAPSHOT ./docker
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-prometheus:0.1.0-SNAPSHOT
