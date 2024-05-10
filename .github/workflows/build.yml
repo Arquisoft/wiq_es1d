@@ -103,7 +103,10 @@ jobs:
       - name: Delete images
         run: |
           az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
-          az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository syg-docker-db --yes
+          # Si la imagen existe, eliminarla, si no, imprimir mensaje
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-docker-db" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-docker-d" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-docker-d:0.1.0-SNAPSHOT' does not exist, skipping deletion."
       
       - name: Push images
         run: |
