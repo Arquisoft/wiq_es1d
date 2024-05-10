@@ -89,3 +89,25 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+  
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+            login-server: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io
+            username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+            password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+            
+      - name: Delete images
+      - run: |
+          az login --service-principal -u ${{ secrets.AZURE_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+          az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
+      - run: az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository syg-docker-db --yes
+      
+      - name: Push images
+      - run: docker build -f ../../docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ../../docker
+      - run: docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT
