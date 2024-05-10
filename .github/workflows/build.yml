@@ -103,11 +103,12 @@ jobs:
             password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
             
       - name: Delete images
-      - run: |
+        run: |
           az login --service-principal -u ${{ secrets.AZURE_REGISTRY_USERNAME }} -p ${{ secrets.AZURE_REGISTRY_PASSWORD }}
           az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
-      - run: az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository syg-docker-db --yes
+          az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository syg-docker-db --yes
       
       - name: Push images
-      - run: docker build -f ../../docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ../../docker
-      - run: docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT
+        run: |
+          docker build -f ../../docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ../../docker
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT
