@@ -89,5 +89,3 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          sonar.exclusions: '**/*.java'  # Excluir todos los archivos Java
