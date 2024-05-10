@@ -38,5 +38,4 @@ INSERT INTO categories (ID, NAME) VALUES (3, 'Ciencia');
 INSERT INTO categories (ID, NAME) VALUES (4, 'Cine');
 INSERT INTO categories (ID, NAME) VALUES (5, 'Videojuegos');
 
-CREATE USER 'sygAdmin'@'%' IDENTIFIED BY 'sygAdmin';
-GRANT ALL PRIVILEGES ON `syg-db`.* TO 'sygAdmin'@'%';
+GRANT ALL PRIVILEGES ON `syg-db`.* TO 'root'@'%';

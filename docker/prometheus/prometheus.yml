@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: 'syg-backend'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['syg-backend.evcjhqa3dabdhtfj.westeurope.azurecontainer.io:8080']
+        labels:
+          application: 'Syg-backend Application'

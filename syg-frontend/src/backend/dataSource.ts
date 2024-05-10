@@ -1,8 +1,9 @@
 import { Category, Question, User } from "../types/types";
 import { keycloak } from '../secure/keycloak';
 
+
 export function getUsers(): Promise<User[]> {
-    return fetch(`http://localhost:8080/user`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/user`, {
         headers: {
             Authorization: `Bearer ${keycloak.token}`
         }
@@ -16,7 +17,7 @@ export function getUsers(): Promise<User[]> {
 }
 
 export function getUser(id: string): Promise<User> {
-    return fetch(`http://localhost:8080/user/userId?id=${id}`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/user/userId?id=${id}`, {
         headers: {
             Authorization: `Bearer ${keycloak.token}`
         }
@@ -30,7 +31,7 @@ export function getUser(id: string): Promise<User> {
 }
 
 export function registryUser(user: User): Promise<User> {
-    return fetch(`http://localhost:8080/user`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/user`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${keycloak.token}`,
@@ -47,7 +48,7 @@ export function registryUser(user: User): Promise<User> {
 }
 
 export function updateUser(user: User): Promise<User> {
-    return fetch(`http://localhost:8080/user`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/user`, {
         method: 'PUT',
         headers: {
             Authorization: `Bearer ${keycloak.token}`,
@@ -64,7 +65,7 @@ export function updateUser(user: User): Promise<User> {
 }
 
 export function getQuestions():Promise<Question[]> {
-    return fetch(`http://localhost:8080/question`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/question`, {
         headers: {
             Authorization: `Bearer ${keycloak.token}`
         }
@@ -78,7 +79,7 @@ export function getQuestions():Promise<Question[]> {
 }
 
 export function getQuestionsByCategory(categoryId: number):Promise<Question[]> {
-    return fetch(`http://localhost:8080/question/category?categoryId=${categoryId}`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/question/category?categoryId=${categoryId}`, {
         headers: {
             Authorization: `Bearer ${keycloak.token}`
         }
@@ -92,7 +93,7 @@ export function getQuestionsByCategory(categoryId: number):Promise<Question[]> {
 }
 
 export function getCategories():Promise<Category[]> {
-    return fetch(`http://localhost:8080/category`, {
+    return fetch(`http://${process.env.REACT_APP_BACKEND_HOST}/category`, {
         headers: {
             Authorization: `Bearer ${keycloak.token}`
         }

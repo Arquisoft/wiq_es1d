@@ -3,12 +3,13 @@ import { getUser, registryUser } from '../backend/dataSource';
 import { User } from '../types/types';
 
 const keycloak = new Keycloak({
-    url: 'http://localhost:8090',
+    url: `${process.env.REACT_APP_KEYCLOAK_HOST}`,
     realm: 'syg',
     clientId: 'syg-client',
 });
 
 function login(): Promise<User | null> {
+
     return keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
         if (authenticated) {
             return getUser(keycloak.subject !== undefined ? keycloak.subject : '')
@@ -38,7 +39,10 @@ function login(): Promise<User | null> {
 }
 
 function logout() {
-    keycloak.logout();
+    keycloak.logout().then(()=>{
+        window.location.href = '/';
+        window.location.reload();
+    });
 }
 
 export { keycloak, login, logout };

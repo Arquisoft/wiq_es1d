@@ -2,7 +2,9 @@ package syg.mysql.adapter.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -123,5 +125,33 @@ public class QuestionAdapterTests {
 		questionAdapter.deleteQuestions();
 		
 		verify(questionRepository).deleteAll();
+	}
+	
+	@Test
+	@DisplayName("Se generan todas las preguntas para la aplicación")
+	void generated_all_question() {
+		List<CategoryEntity> categories = new ArrayList<CategoryEntity>();
+		categories.add(new CategoryEntity(1L, "Deportes"));
+		categories.add(new CategoryEntity(2L, "Paises"));
+		categories.add(new CategoryEntity(3L, "Ciencia"));
+		categories.add(new CategoryEntity(4L, "Cine"));
+		categories.add(new CategoryEntity(5L, "Videojuegos"));
+		List<QuestionEntity> questionsGenerated = new ArrayList<QuestionEntity>();
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 1", 10, categories.get(0)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 2", 10, categories.get(0)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 3", 10, categories.get(1)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 4", 10, categories.get(0)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 5", 10, categories.get(1)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 6", 10, categories.get(2)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 7", 10, categories.get(2)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 8", 10, categories.get(3)));
+		questionsGenerated.add(new QuestionEntity(1L, "Pregunta 9", 10, categories.get(4)));
+		
+		when(categoryRepository.findAll()).thenReturn(categories);
+		when(questionRepository.saveAll(questionsGenerated)).thenReturn(questionsGenerated);
+		
+		questionAdapter.generatedQuestions();
+		verify(categoryRepository, times(1)).findAll();
+		verify(questionRepository, times(5)).saveAll(any());
 	}
 }
