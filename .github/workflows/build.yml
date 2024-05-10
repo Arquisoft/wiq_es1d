@@ -107,5 +107,5 @@ jobs:
       
       - name: Push images
         run: |
-          docker build -f ../../docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ../../docker
+          docker build -f ./docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ./docker
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT
