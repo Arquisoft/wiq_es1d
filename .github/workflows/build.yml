@@ -117,4 +117,4 @@ jobs:
         run: az container stop --name syg-docker-db --resource-group syg-demo
 
       - name: Start Container in Azure Container Instances
-        run: az container start --name syg-docker-db --resource-group syg-demo
+        run: az container start --name syg-docker-db --resource-group syg-demo 
