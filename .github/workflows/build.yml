@@ -99,7 +99,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_SERVICE_PRINCIPAL }}
-            
+             
       - name: Delete images
         run: |
           az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
