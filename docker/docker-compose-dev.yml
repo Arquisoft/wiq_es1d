@@ -5,17 +5,9 @@ services:
     container_name: syg-backend
     build:
       context: ../
-      dockerfile: ./syg-backend/SYG-bootstrap/src/docker/backend.Dockerfile
+      dockerfile: ./syg-backend/SYG-bootstrap/src/docker/backendlocal.Dockerfile
     ports:
       - 8080:8080
-    environment:
-      - OAUTH_ISSUER_URI=http://keycloak:8090/realms/syg
-      - CERTIFICATES_URL=http://keycloak:8090/realms/syg/protocol/openid-connect/certs
-      - DB_URL=jdbc:mysql://syg-docker-db:3306/syg-db
-      - DB_USERNAME=sygAdmin
-      - DB_PASSWORD=sygAdmin
-    depends_on:
-      - syg-docker-db
     restart: always
     networks:
       syg:
@@ -24,11 +16,14 @@ services:
       
   syg-docker-db:
     container_name: syg-docker-db
-    build:
-      context: .
-      dockerfile: ./database-mysql.Dockerfile
+    image: mysql:8.0.36
     ports:
       - 3306:3306
+    environment:
+      - MYSQL_DATABASE=syg-db
+      - MYSQL_ROOT_PASSWORD=sygAdmin
+    volumes:
+      - ./sql/scheme.sql:/docker-entrypoint-initdb.d/scheme.sql
     restart: always
     networks:
       syg:
@@ -53,52 +48,44 @@ services:
         aliases:
           - syg-keycloak
 
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus
-    ports:
-      - 9090:9090
-    environment:
-      - BACKEND_HOST=syg-backend
-      - BACKEND_PORT=8080                 
-    volumes:
-      - ./syg-backend/SYG-bootstrap/src/prometheus:/etc/prometheus
-    command: ["sh", "-c", "envsubst < /etc/prometheus/prometheus.yml.template > /etc/prometheus/prometheus.yml && prometheus --config.file=/etc/prometheus/prometheus.yml"]
-    networks:
-      syg:
-        aliases:
-          - syg-prometheus
+  # prometheus:
+  #   container_name: prometheus
+  #   image: prom/prometheus
+  #   ports:
+  #     - 9090:9090              
+  #   volumes:
+  #     - ./syg-backend/SYG-bootstrap/src/prometheus:/etc/prometheus
+  #   command: ["sh", "-c", "envsubst < /etc/prometheus/prometheus.yml.template > /etc/prometheus/prometheus.yml && prometheus --config.file=/etc/prometheus/prometheus.yml"]
+  #   restart: always
+  #   networks:
+  #     syg:
+  #       aliases:
+  #         - syg-prometheus
 
-  grafana:
-    container_name: grafana
-    image: grafana/grafana
-    restart: unless-stopped
-    volumes:
-      - ./syg-backend/SYG-bootstrap/src/grafana/provisioning:/etc/grafana/provisioning
-    environment:
-      - GF_SERVER_HTTP_PORT=9091
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-    ports:
-      - 9091:9091
-    depends_on:
-      prometheus:
-        condition: service_healthy
-    networks:
-      syg:
-        aliases:
-          - syg-grafana
+  # grafana:
+  #   container_name: grafana
+  #   image: grafana/grafana
+  #   volumes:
+  #     - ./syg-backend/SYG-bootstrap/src/grafana/provisioning:/etc/grafana/provisioning
+  #   environment:
+  #     - GF_SERVER_HTTP_PORT=9091
+  #     - GF_AUTH_DISABLE_LOGIN_FORM=true
+  #     - GF_AUTH_ANONYMOUS_ENABLED=true
+  #     - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+  #   ports:
+  #     - 9091:9091
+  #   restart: always
+  #   networks:
+  #     syg:
+  #       aliases:
+  #         - syg-grafana
           
   syg-frontend:
     build:
       context: ../
-      dockerfile: ./syg-frontend/frontend.Dockerfile
+      dockerfile: ./syg-frontend/frontendlocal.Dockerfile
     ports:
       - 3000:80
-    environment:
-      - REACT_APP_BACKEND_HOST=syg-backend
-      - REACT_APP_BACKEND_PORT=8080
     networks:
       syg:
         aliases:
