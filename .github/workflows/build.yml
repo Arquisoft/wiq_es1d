@@ -138,20 +138,20 @@ jobs:
           docker build -f ./docker/grafana.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-grafana:0.1.0-SNAPSHOT ./docker
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-grafana:0.1.0-SNAPSHOT
       
-      # - name: Stop All Containers in syg resource Group
-      #   run: |
-      #     az container stop --name syg-docker-db --resource-group syg-demo
-      #     az container stop --name syg-backend --resource-group syg-demo
-      #     az container stop --name syg-keycloak --resource-group syg-demo          
-      #     az container stop --name syg-frontend --resource-group syg-demo
-      #     az container stop --name syg-prometheus --resource-group syg-demo         
-      #     az container stop --name syg-grafana --resource-group syg-demo
+      - name: Stop All Containers in syg resource Group
+        run: |
+          az container stop --name syg-docker-db --resource-group syg-demo
+          az container stop --name syg-backend --resource-group syg-demo
+          az container stop --name syg-keycloak --resource-group syg-demo          
+          az container stop --name syg-frontend --resource-group syg-demo
+          az container stop --name syg-prometheus --resource-group syg-demo         
+          az container stop --name syg-grafana --resource-group syg-demo
                 
-      # - name: Start All Containers in syg resource Group
-      #   run: |
-      #     az container start --name syg-docker-db --resource-group syg-demo
-      #     az container start --name syg-backend --resource-group syg-demo
-      #     az container start --name syg-keycloak --resource-group syg-demo
-      #     az container start --name syg-frontend --resource-group syg-demo
-      #     az container start --name syg-prometheus --resource-group syg-demo
-      #     az container start --name syg-grafana --resource-group syg-demo
+      - name: Start All Containers in syg resource Group
+        run: |
+          az container start --name syg-docker-db --resource-group syg-demo
+          az container start --name syg-backend --resource-group syg-demo
+          az container start --name syg-keycloak --resource-group syg-demo
+          az container start --name syg-frontend --resource-group syg-demo
+          az container start --name syg-prometheus --resource-group syg-demo
+          az container start --name syg-grafana --resource-group syg-demo
