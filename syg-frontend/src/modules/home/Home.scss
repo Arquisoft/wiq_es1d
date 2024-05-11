@@ -4,9 +4,57 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
     #syg-home-content{
+        padding: 5em;
         background-color: #ffffff;
-        margin-top: 2em;
         grid-column: 1/-1;
         grid-row: 3/-1;
+        display: flex;
+        border-radius: 1em;
+        margin-top: 1em;
+        flex-direction: column;
+        gap: 3em;
+        font-size: 1.1em;
+        #syg-home-description{
+            display: flex;
+            max-height: 45%;
+            gap: 3em;
+            #syg-home-description-image{
+                width: 25%;
+            }
+            #syg-home-description-content{
+                max-height: 35%;
+                width: 50%;
+                h3{
+                    font-style: italic;
+                    color: #0A75BD;
+                }
+                p{
+                    line-height: 1.5;
+                }
+            }
+        }
+        #syg-home-instructions{
+            display: flex;
+            justify-content: flex-end;
+            max-height: 55%;
+            gap: 3em;      
+            font-size: 1.1em;
+            #syg-home-instructions-image{
+                width: 30%;
+            }
+            #syg-home-instructions-content{
+                max-height: 35%;
+                width: 60%;
+                h3{
+                    font-style: italic;
+                    color: #0A75BD;
+                }
+                ul{
+                    li{
+                        margin-top: .3em;
+                    }
+                }
+            }
+        }
     }
 }

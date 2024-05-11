@@ -19,5 +19,24 @@ describe('Home', () => {
         
         const homeContent = screen.getByTestId('syg-home-content')
         expect(homeContent).toBeInTheDocument();
+        
+        const homeDescription = screen.getByTestId('syg-home-description')
+        expect(homeDescription).toBeInTheDocument();
+
+        const homeDescriptionImage = screen.getByTestId('syg-home-description-image')
+        expect(homeDescriptionImage).toBeInTheDocument();
+
+        const homeDescriptionContent = screen.getByTestId('syg-home-description-content')
+        expect(homeDescriptionContent).toBeInTheDocument();
+
+        const homeInstructions = screen.getByTestId('syg-home-instructions')
+        expect(homeInstructions).toBeInTheDocument();
+
+        const homeInstructionsImage = screen.getByTestId('syg-home-instructions-image')
+        expect(homeInstructionsImage).toBeInTheDocument();
+
+        const homeInstructionsContent = screen.getByTestId('syg-home-instructions-content')
+        expect(homeInstructionsContent).toBeInTheDocument();
+
     })
 })

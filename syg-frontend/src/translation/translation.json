@@ -9,16 +9,33 @@
           "German": "German"
         },
         "subtitle": {
+          "Home": "HOME",
           "game": "Game",
           "historics": "Historics",
           "ranking": "Ranking"
         }
       },
       "aside": {
+        "Home": "HOME",
         "Juego": "GAME",
         "Historico": "HISTORIC",
         "Ranking": "RANKING",
         "logout": "LOGOUT"
+      },
+      "home": {
+        "description":{
+          "title": "Description",
+          "content": "This game is based on the legendary television game 'Saber y ganar', where each contestant will answer a series of questions in a given time to try to test their knowledge of all types of categories and various questions."
+        },
+        "instructions":{
+          "title": "Game instructions",
+          "access":"Access 'Game' in the navigation barAccess 'Game' in the navigation bar",
+          "category":"Once on the correct screen, you can choose between several categories, the standard one includes all the categories",
+          "categorySelection":"We select a category and the game will start",
+          "response":"You will have a question with 4 answers and a certain time to answer the questions",
+          "answered":"Once all the questions have been answered, a summary of the game will be generated, with the correct and failed questions",
+          "historicRanking":"You can consult both your statistics and your position in the general ranking through the navigation menu"
+        }
       },
       "game": {
         "mode":{
@@ -49,7 +66,12 @@
         "games": "Games",
         "correctAnswer": "Correct answers",
         "incorrectAnswer": "Incorrect answers",
-        "questionsAnswered": "Questions answered"
+        "questionsAnswered": "Questions answered",
+        "pagination": {
+          "of": "of",
+          "more": "more than",
+          "rowsPerPage": "Rows per page"
+        }
       }
     }
   },
@@ -63,16 +85,33 @@
           "German": "Alemán"
         },
         "subtitle": {
+          "Home": "HOME",
           "game": "Juego",
           "historics": "Historicos",
           "ranking": "Ranking"
         }
       },
       "aside": {
+        "Home": "HOME",
         "Juego": "JUEGO",
         "Historico": "HISTORICO",
         "Ranking": "RANKING",
         "logout": "LOGOUT"
+      },
+      "home": {
+        "description":{
+          "title": "Descripción",
+          "content": "Este juego está basado en el mítico juego de televisión 'Saber y ganar', donde cada concursante responderá a una serie de preguntas en un tiempo determinado para intentar poner a prueba sus conocimientos de todo tipo de categorías y preguntas diversas."
+        },
+        "instructions":{
+          "title": "Instrucciones de juego",
+          "access":"Accede en la barra de navegación a 'Juego'",
+          "category":"Una vez en la pantalla correcta, podras escoger entre varias categorías, la estandar engloba todas las categorías",
+          "categorySelection":"Seleccionamos una categoría y se inciará el juego",
+          "response":"Tendras una pregunta con 4 respuestas y un tiempo determinado para contestar las preguntas",
+          "answered":"Una vez contestadas todas las pregutnas se le generará un resumen del juego, con las preguntas acertadas y falladas",
+          "historicRanking":"Podra consultar tanto sus estadisticas como su posicion en el ranking general a traves del menu de navegación"
+        }
       },
       "game": {
         "mode":{
@@ -103,7 +142,12 @@
         "games": "Juegos",
         "correctAnswer": "Respuestas correctas",
         "incorrectAnswer": "Respuestas incorrectas",
-        "questionsAnswered": "Preguntas respondidas"
+        "questionsAnswered": "Preguntas respondidas",
+        "pagination": {
+          "of": "de",
+          "more": "mas que",
+          "rowsPerPage": "Filas por página"
+        }
       }
     }
   },
@@ -117,16 +161,33 @@
           "German": "Allemand"
         },
         "subtitle": {
+          "Home": "HOME",
           "game": "Jeu",
           "historics": "Historiques",
           "ranking": "Ranking"
         }
       },
       "aside": {
+        "Home": "HOME",
         "Juego" : "JEU",
         "Historico" : "HISTORIQUE",
         "Ranking" : "RANKING",
         "logout" : "LOGOUT"
+      },
+      "home": {
+        "description":{
+          "title": "Description",
+          "content": "Ce jeu est basé sur le légendaire jeu télévisé « Know and Win », dans lequel chaque participant répondra à une série de questions dans un temps imparti pour tenter de tester ses connaissances sur tous types de catégories et de questions diverses."
+        },
+        "instructions":{
+          "title": "Règles du jeu",
+          "access":"Accédez à « Jeu » dans la barre de navigation",
+          "category":"Une fois sur le bon écran, vous pouvez choisir entre plusieurs catégories, la standard regroupe toutes les catégories",
+          "categorySelection":"Nous sélectionnons une catégorie et le jeu commencera",
+          "response":"Vous aurez une question avec 4 réponses et un certain temps pour répondre aux questions",
+          "answered":"Une fois toutes les questions répondues, un résumé du jeu sera généré, avec les questions correctes et échouées",
+          "historicRanking":"Vous pouvez consulter à la fois vos statistiques et votre position au classement général via le menu de navigation"
+        }
       },
       "game": {
         "mode":{
@@ -157,7 +218,12 @@
         "games": "Spiele",
         "correctAnswer": "Richtige Antworten",
         "incorrectAnswer": "Falsche Antworten",
-        "questionsAnswered": "Beantwortete Fragen"
+        "questionsAnswered": "Beantwortete Fragen",
+        "pagination": {
+          "of": "sur",
+          "more": "plus que",
+          "rowsPerPage": "lignes par page"
+        }
       }
     }
   },
@@ -171,16 +237,33 @@
           "German": "Deutsch"
         },
         "subtitle": {
+          "Home": "HOME",
           "game": "Spiel",
           "historics": "Historischs",
           "ranking": "Ranking"
         }
       },
       "aside": {
+        "Home": "HOME",
         "Juego": "SPIEL",
         "Historico": "HISTORISCH",
         "Ranking": "RANKING",
         "logout": "LOGOUT"
+      },
+      "home": {
+        "description":{
+          "title": "Beschreibung",
+          "content": "Dieses Spiel basiert auf dem legendären Fernsehspiel „Know and Win“, bei dem jeder Teilnehmer innerhalb einer bestimmten Zeit eine Reihe von Fragen beantwortet, um sein Wissen über alle Arten von Kategorien und verschiedene Fragen zu testen."
+        },
+        "instructions":{
+          "title": "Spielanleitung",
+          "access":"Greifen Sie in der Navigationsleiste auf 'Spiel' zu",
+          "category":"Sobald Sie auf dem richtigen Bildschirm sind, können Sie zwischen mehreren Kategorien wählen, die Standardkategorie umfasst alle Kategorien",
+          "categorySelection":"Wir wählen eine Kategorie aus und das Spiel beginnt",
+          "response":"Sie erhalten eine Frage mit 4 Antworten und einer bestimmten Zeit für die Beantwortung der Fragen",
+          "answered":"Sobald alle Fragen beantwortet wurden, wird eine Zusammenfassung des Spiels mit den richtigen und nicht bestandenen Fragen erstellt.",
+          "historicRanking":"Über das Navigationsmenü können Sie sowohl Ihre Statistiken als auch Ihre Position im Gesamtranking einsehen."
+        }
       },
       "game": {
         "mode":{
@@ -211,7 +294,12 @@
         "games" : "Jeux",
         "correctAnswer" : "réponses correctes",
         "incorrectAnswer" : "réponses incorrectes",
-        "questionsAnswered" : "Questions répondues"
+        "questionsAnswered" : "Questions répondues",
+        "pagination": {
+          "of": "von",
+          "more": "mehr als",
+          "rowsPerPage": "Zeilen pro Seite"
+        }
       }
     }
   }

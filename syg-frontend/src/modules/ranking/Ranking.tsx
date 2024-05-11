@@ -68,6 +68,13 @@ const Ranking: React.FC = () => {
                         }
                     }}
                     pageSizeOptions={[5, 10, 25]}
+                    localeText={{
+                        MuiTablePagination: {
+                            labelRowsPerPage: t('ranking.pagination.rowsPerPage'),
+                            labelDisplayedRows: ({ from, to, count }) =>
+                              `${from} - ${to} ${t('ranking.pagination.of')} ${count === -1 ? `${t('ranking.pagination.more')} ${to}` : count}`,
+                        },
+                    }}
                 />
             </div>
         </div>
