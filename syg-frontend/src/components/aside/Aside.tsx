@@ -3,6 +3,7 @@ import { logout } from '../../secure/keycloak';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useTranslation } from 'react-i18next';
 import './Aside.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface AsideProps {
   elements: {
@@ -14,6 +15,7 @@ interface AsideProps {
 }
 
 const Aside: React.FC<AsideProps> = (props: AsideProps) => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   function handleOnClickAsideElement(onClickAsideElement: () => void) {
@@ -21,6 +23,7 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
   }
 
   function handleOnClickLogoutElement() {
+    navigate('/');
     logout()
   }
 

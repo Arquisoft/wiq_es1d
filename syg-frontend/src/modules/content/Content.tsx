@@ -22,13 +22,6 @@ function Content() {
             setUserActive(user)
         });
     }, []);
-
-    useEffect(() => {
-      if(userActive === null){
-        logout();
-        navigate('/');
-      }
-  }, [userActive]);
   
     function handleHomeClick() {
       navigate('/');

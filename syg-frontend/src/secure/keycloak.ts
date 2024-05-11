@@ -39,10 +39,7 @@ function login(): Promise<User | null> {
 }
 
 function logout() {
-    keycloak.logout().then(()=>{
-        window.location.href = '/';
-        window.location.reload();
-    });
+    keycloak.logout()
 }
 
 export { keycloak, login, logout };
