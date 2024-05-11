@@ -89,3 +89,69 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+  
+      - name: Login to Azure Container Registry
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_SERVICE_PRINCIPAL }}
+             
+      - name: Delete images
+        run: |
+          az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
+          # Si las imagenes existen, eliminarlsa, si no, imprimir mensaje
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-docker-db" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-docker-db" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-docker-db:0.1.0-SNAPSHOT' does not exist, skipping deletion."
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-backend" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-backend" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-backend:0.1.0-SNAPSHOT' does not exist, skipping deletion."
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-keycloak" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-keycloak" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-keycloak:0.1.0-SNAPSHOT' does not exist, skipping deletion."
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-frontend" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-frontend" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-frontend:0.1.0-SNAPSHOT' does not exist, skipping deletion."
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-prometheus" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-prometheus" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-prometheus:0.1.0-SNAPSHOT' does not exist, skipping deletion."
+          az acr repository show-manifests --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-grafana" --query "[?tags[0]=='0.1.0-SNAPSHOT']" > /dev/null 2>&1 \
+          && az acr repository delete --name ${{ secrets.AZURE_REGISTRY_NAME }} --repository "syg-grafana" --image "0.1.0-SNAPSHOT" --yes \
+          || echo "Image 'syg-grafana:0.1.0-SNAPSHOT' does not exist, skipping deletion."
+      
+      - name: Push images
+        run: |
+          docker build -f ./docker/database-mysql.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT ./docker
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-docker-db:0.1.0-SNAPSHOT
+          docker build -f ./syg-backend/SYG-bootstrap/src/docker/backend.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-backend:0.1.0-SNAPSHOT .
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-backend:0.1.0-SNAPSHOT
+          docker build -f ./docker/keycloak/keycloak.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-keycloak:0.1.0-SNAPSHOT ./docker/keycloak
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-keycloak:0.1.0-SNAPSHOT
+          docker build -f ./syg-frontend/frontend.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-frontend:0.1.0-SNAPSHOT .
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-frontend:0.1.0-SNAPSHOT
+          docker build -f ./docker/prometheus.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-prometheus:0.1.0-SNAPSHOT ./docker
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-prometheus:0.1.0-SNAPSHOT
+          docker build -f ./docker/grafana.Dockerfile -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-grafana:0.1.0-SNAPSHOT ./docker
+          docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/syg-grafana:0.1.0-SNAPSHOT
+      
+      - name: Stop All Containers in syg resource Group
+        run: |
+          az container stop --name syg-docker-db --resource-group syg-demo
+          az container stop --name syg-backend --resource-group syg-demo
+          az container stop --name syg-keycloak --resource-group syg-demo          
+          az container stop --name syg-frontend --resource-group syg-demo
+          az container stop --name syg-prometheus --resource-group syg-demo         
+          az container stop --name syg-grafana --resource-group syg-demo
+                
+      - name: Start All Containers in syg resource Group
+        run: |
+          az container start --name syg-docker-db --resource-group syg-demo
+          az container start --name syg-backend --resource-group syg-demo
+          az container start --name syg-keycloak --resource-group syg-demo
+          az container start --name syg-frontend --resource-group syg-demo
+          az container start --name syg-prometheus --resource-group syg-demo
+          az container start --name syg-grafana --resource-group syg-demo
