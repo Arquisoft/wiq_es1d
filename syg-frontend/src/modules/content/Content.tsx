@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Historic from '../../modules/historic/Historic';
 import Aside from '../../components/aside/Aside';
 import Game from '../../modules/game/Game';
-import { login } from '../../secure/keycloak';
+import { login, logout } from '../../secure/keycloak';
 import { User } from '../../types/types';
 import HomeIcon from '@mui/icons-material/Home';
 import GamesIcon from '@mui/icons-material/Games';
@@ -22,6 +22,13 @@ function Content() {
             setUserActive(user)
         });
     }, []);
+
+    useEffect(() => {
+      if(userActive === null){
+        logout();
+        navigate('/');
+      }
+  }, [userActive]);
   
     function handleHomeClick() {
       navigate('/');
