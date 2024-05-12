@@ -13,7 +13,6 @@
     "@testing-library/jest-dom": "^5.4.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^29.5.12",
     "@types/node": "^16.18.91",
     "@types/react": "^18.2.67",
     "@types/react-dom": "^18.2.22",
@@ -36,7 +35,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "lint": "eslint \"src/**/*.{ts,tsx}\" --ignore-pattern \"**/*.test.tsx\""
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --ignore-pattern \"**/*.test.tsx\"",
+    "cy:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -74,6 +74,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.1.1",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
+    "cypress": "^13.9.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.1.0",
