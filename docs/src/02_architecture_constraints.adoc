@@ -11,8 +11,6 @@ ifndef::imagesdir[:imagesdir: ../images]
 |Maven| Maven is a Java software project management tool that facilitates building, dependency management and reporting, promoting agile and standardised development practices
 |SpringBoot| Spring Boot is a Java application development framework that simplifies configuration and development through pre-defined conventions and auto-configuration features
 |JPA| A Java specification that provides a standard for mapping Java objects to relational databases
-
-Translated with DeepL.com (free version)
 |===
 
 === Technical constraints frontend
