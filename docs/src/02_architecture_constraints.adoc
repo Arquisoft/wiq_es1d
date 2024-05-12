@@ -3,25 +3,50 @@ ifndef::imagesdir[:imagesdir: ../images]
 [[section-architecture-constraints]]
 == Architecture Constraints
 
+=== Technical constraints backend
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constraints software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+|===
+|Constraint|Explanation
+|Java| Java is a high-level, object-oriented programming language known for its portability and widespread adoption in application development.
+|Maven| Maven is a Java software project management tool that facilitates building, dependency management and reporting, promoting agile and standardised development practices. 
+|SpringBoot| Spring Boot| Spring Boot is a Java application development framework that simplifies configuration and development through pre-defined conventions and auto-configuration features.
+|JPA| A Java specification that provides a standard for mapping Java objects to relational databases.
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+Translated with DeepL.com (free version)
+|===
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
+=== Technical constraints frontend
 
+|===
+|Constraint|Explanation
+|React| We will use the React Framework for the UI (User Interface)
+|TypeScrypt| TypeScript is the techonology used for the backend. Based on JavaScript is quite similar
+|Node.js| Based on JavaScript, is a backend technology wich allows us to execute our code
+|MUI| is a library of user interface components for React, based on Google's Material Design, which offers a wide range of predefined elements for building web applications. 
+|Sass| It is a CSS preprocessor that extends its functionality by allowing the use of variables, rule nesting, mixins and other features
+|===
 
-.Further Information
+=== Technical constraints git/deploy
 
-See https://docs.arc42.org/section-2/[Architecture Constraints] in the arc42 documentation.
+|===
+|Constraint|Explanation
+|Docker| The application will be running in a Docker Host
+|GitHub| We will use GitHub to deploy the project and all the files related with it.
+|===
 
-****
+=== Organizational and political constraints
+
+|===
+|Constraint|Explanation
+|Team and meetings| It is a course application. The development team consists of only one person, so that organisational decisions are decided and changed if necessary by that person. Being one person means a loss of opinions and experience, but a gain in agility.
+|Development| The project has a very tight time to be finished. This means that our application will not be as developed as it could be
+|===
+
+=== Conventions
+
+|===
+|Constraint|Explanation
+|Aesthetic and ease of use|The UI (User Interface) has to be aesthetic and easy to use. Both of them are very important criteria in our application, so all of our decisions need to have this in mind
+|Documentation|We will use Arc42 template to develop documentation
+|TypeScript|We will use TypeScript/JavaScript naming conventions
+|===
