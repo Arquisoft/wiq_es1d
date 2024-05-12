@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, waitFor } from "@testing-library/react"
+import { screen, render, waitFor } from "@testing-library/react"
 import Ranking from "./Ranking"
 import i18n from '../../translation/i18n';
 import { MemoryRouter } from "react-router-dom";
@@ -58,7 +58,6 @@ describe('Ranking', () => {
 
 
     jest.spyOn(global, 'fetch').mockImplementation((url) => {
-      console.log(url)
       if (url === 'http://localhost:8080/user') {
         return Promise.resolve(mockUsersResponse);
       } else if (url === 'http://localhost:8080/user/userId?id=') {

@@ -9,14 +9,22 @@ describe('Header', () => {
     });
 
     test('Aside renders correctly', () => {
-        render(<Aside elements={[]} username={"Alvaro"} />)
+        render(
+            <MemoryRouter>
+                <Aside elements={[]} username={"Alvaro"} />
+            </MemoryRouter>
+        )
         
         const element = screen.getByTestId('syg-aside-container')
         expect(element).toBeInTheDocument();
     })
 
     test('Header components renders correctly', () => {
-        render(<Aside elements={[]} username={"Alvaro"} />)
+        render(
+            <MemoryRouter>
+                <Aside elements={[]} username={"Alvaro"} />
+            </MemoryRouter>
+        )
         
         const asideNavigationMenu = screen.getByTestId('syg-aside-navigation-menu')
         expect(asideNavigationMenu).toBeInTheDocument();
@@ -41,7 +49,11 @@ describe('Header', () => {
     })
 
     test('Aside login user info text', () => {
-        render(<Aside elements={[]} username={"Alvaro"} />)
+        render(
+            <MemoryRouter>
+                <Aside elements={[]} username={"Alvaro"} />
+            </MemoryRouter>
+        )
         
         const asideUsernameInitial = screen.getByTestId('syg-aside-username-initial')
         expect(asideUsernameInitial).toHaveTextContent("A");
@@ -51,7 +63,11 @@ describe('Header', () => {
     })
 
     test('Aside logout user info text', () => {
-        render(<Aside elements={[]} username={"Alvaro"} />)
+        render(
+            <MemoryRouter>
+                <Aside elements={[]} username={"Alvaro"} />
+            </MemoryRouter>
+        )
         
         const asideLogoutText = screen.getByTestId('syg-aside-logout-text')
         expect(asideLogoutText).toHaveTextContent("LOGOUT");
@@ -60,8 +76,7 @@ describe('Header', () => {
     test('Aside change component option', () => {
         const onClickAsideElementMockOption1 = jest.fn();
         const onClickAsideElementMockOption2 = jest.fn();
-
-        render(<Aside elements={[
+        render( <MemoryRouter><Aside elements={[
             {
                 text:"Juego",
                 icon: <></>,
@@ -72,7 +87,7 @@ describe('Header', () => {
                 icon: <></>,
                 onClickAsideElement: onClickAsideElementMockOption2
             }
-        ]} username={"Alvaro"} />)
+        ]} username={"Alvaro"} /></MemoryRouter>)
 
         const buttonOption2 = screen.getByText('HISTORICO');
 
