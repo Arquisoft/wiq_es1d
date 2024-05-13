@@ -147,11 +147,11 @@ jobs:
           az container stop --name syg-prometheus --resource-group syg-demo         
           az container stop --name syg-grafana --resource-group syg-demo
                 
-      # - name: Start All Containers in syg resource Group
-      #   run: |
-      #     az container start --name syg-docker-db --resource-group syg-demo
-      #     az container start --name syg-backend --resource-group syg-demo
-      #     az container start --name syg-keycloak --resource-group syg-demo
-      #     az container start --name syg-frontend --resource-group syg-demo
-      #     az container start --name syg-prometheus --resource-group syg-demo
-      #     az container start --name syg-grafana --resource-group syg-demo
+      - name: Start All Containers in syg resource Group
+        run: |
+          az container start --name syg-docker-db --resource-group syg-demo
+          az container start --name syg-backend --resource-group syg-demo
+          az container start --name syg-keycloak --resource-group syg-demo
+          az container start --name syg-frontend --resource-group syg-demo
+          az container start --name syg-prometheus --resource-group syg-demo
+          az container start --name syg-grafana --resource-group syg-demo
