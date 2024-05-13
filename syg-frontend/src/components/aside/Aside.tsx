@@ -23,8 +23,8 @@ const Aside: React.FC<AsideProps> = (props: AsideProps) => {
   }
 
   function handleOnClickLogoutElement() {
-    navigate('/');
     logout()
+    navigate('/');
   }
 
   return (
