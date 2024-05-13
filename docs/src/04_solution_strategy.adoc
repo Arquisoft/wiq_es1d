@@ -3,30 +3,59 @@ ifndef::imagesdir[:imagesdir: ../images]
 [[section-solution-strategy]]
 == Solution Strategy
 
+=== Technology decisions
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape system architecture. It includes
+The technologies we have decided to use for the development of the app are:
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+- Node.js: JavaScript runtime environment that allows JavaScript code to run on the server, facilitating the development of scalable, high-performance web applications.
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the foundation for many other detailed decisions or implementation rules.
+- React: React is an open source JavaScript library used to build interactive and responsive user interfaces for web and mobile applications, enabling the creation of reusable components and efficient management of application state.
 
-.Form
-Keep the explanations of such key decisions short.
+- TypeScript: TypeScript is a superset of JavaScript, meaning that it contains all of the functionality of JavaScript and enables compile-time error detection and facilitates the development of more scalable and maintainable applications.
 
-Motivate what was decided and why it was decided that way,
-based upon problem statement, quality goals and key constraints.
-Refer to details in the following sections.
+- MUI: Library of user interface (UI) components for React
+- Sass: Is a CSS preprocessor that extends the functionality of the CSS language through features such as variables, nesting, mixins, inheritance, among others.
 
+- Jest: Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 
-.Further Information
+- Cypress: End-to-end testing framework specifically designed for automated testing of web applications.
 
-See https://docs.arc42.org/section-4/[Solution Strategy] in the arc42 documentation.
+- Maven: Software project management tool, mainly used for the construction and administration of projects developed in Java.
 
-****
+- SpringBoot: Open source framework for creating Java applications.
+
+- JPA: Is a Java specification that provides a set of standards for mapping Java objects to tables in a relational database.
+
+- MYSQL: Is an open source relational database management system using the SQL language.
+
+- Mockito: Open source testing framework for Java that allows the creation of mocks to facilitate the writing of unit tests.
+
+- Prometheus: Prometheus is open source software, which gives us the ability to monitor API through a wide range of available tools. This data is stored together with a time instance, with which we manage to have a fairly accurate record of the events that occur in our system.
+
+- Grafana: Grafana is an open source software which allows analyze, consult, visualize, alert and explore the metrics, records and monitoring API. With this data we can make interesting graphs and visualizations.
+
+- GitHub: It is a version management system.
+
+- Docker: Facilitates the creation, deployment and execution of applications within containers. 
+
+- Azure: Is a cloud services platform provided by Microsoft that offers a wide range of services, in this case it will be used for the deployment of the app.
+
+- Postman: Postman is an open source software which offers the necessary help to build, use and test APIs, making the steps easier.
+
+=== Decisions about the top-level decomposition of the system
+
+- The frontend will use the Components and Containers design pattern (also known as Presentational and Container Components). Where we can highlight:
+[enumerate]
+. Presentational Components (or Views): These components are mainly in charge of presentation and have no business logic. Their function is to render the user interface and display data. These components are usually reusable and can receive data through props.
+
+. Containers (or Modules): Containers, also known as smart components, encapsulate business logic and presentation logic. They communicate with application state and pass data to presentational components through props. Containers handle events, make API calls and manage application state.
+
+- The backend uses the MVC (model, view, controller) pattern adapted to the hexagonal structure of the API.
+
+=== Decisions to achieve quality goals
+
+In order to try to achieve all the proposed quality objectives, a website with specific requirements that meet all the proposed requirements, both in terms of user comfort and security, must be created. The application must be simple, easy to understand and entertaining (as it is a game) that leaves a good taste in the user's mouth and obviously, as it is a login application with some user data, it must be strongly secured and authenticated.
+
+=== Organizational decisions
+
+As there is only one person in charge of the organisation and development, little can be added in this section as he has the first and last word, however it is possible to highlight behaviours of good use of version control technologies, such as the use of branches in git, issues, assignments of these, etc.
