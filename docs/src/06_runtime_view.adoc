@@ -4,62 +4,38 @@ ifndef::imagesdir[:imagesdir: ../images]
 == Runtime View
 
 
-[role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
+=== Register User
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
+image:06_runtime_registry.png["Runtime view - Register User"]
 
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
+This runtime view shows the process of registering a user, going through SYQ web and Api to database, storing the data in the database.
 
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
+=== Login User
 
-.Form
-There are many notations for describing scenarios, e.g.
+image:06_runtime_login.png["Runtime view - Login User"]
 
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
+This runtime view shows the login process of a user, going through SYQ web and Api to database, via the location stored in the database.
 
+=== Login User
 
-.Further Information
+image:06_runtime_home.png["Runtime view - Login User"]
 
-See https://docs.arc42.org/section-6/[Runtime View] in the arc42 documentation.
+This runtime view shows the home screen, the syg app takes care of.
 
-****
+=== Visualise Historics
 
-=== <Runtime Scenario 1>
+image:06_runtime_historic.png["Runtime view - Visualise Historics"]
 
+The user navigates to the history screen, where he will be able to visualize all his collected data of all his matches, for this the app makes one of the API to obtain the data of his games in database.
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
+=== Visualize and action Ranking
 
-It is possible to use a sequence diagram:
+image:06_runtime_ranking.png["Runtime view - Visualize and action Ranking"]
 
-[plantuml,"Sequence diagram",png]
-----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-----
+The user navigates to the ranking screen, where he can visualise in a table all the measurable statistics in a ranking of all the users of the application, not only can he visualise them but he can also sort them by different parameters to visualise them in a different way
 
-=== <Runtime Scenario 2>
+=== Visualice and play game
 
-=== ...
+image:06_runtime_game.png["Runtime view - Visualice and play game"]
 
-=== <Runtime Scenario n>
+The user will navigate to the game page, where he/she will be able to choose questions to answer from all or a specific category through a dedicated interface.
