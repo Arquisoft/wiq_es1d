@@ -28,13 +28,13 @@ image:06_runtime_historic.png["Runtime view - Visualise Historics"]
 
 The user navigates to the history screen, where he will be able to visualize all his collected data of all his matches, for this the app makes one of the API to obtain the data of his games in database.
 
-=== Visualize and action Ranking
+=== Visualise and action Ranking
 
 image:06_runtime_ranking.png["Runtime view - Visualize and action Ranking"]
 
 The user navigates to the ranking screen, where he can visualise in a table all the measurable statistics in a ranking of all the users of the application, not only can he visualise them but he can also sort them by different parameters to visualise them in a different way
 
-=== Visualice and play game
+=== Visualise and play game
 
 image:06_runtime_game.png["Runtime view - Visualice and play game"]
 
