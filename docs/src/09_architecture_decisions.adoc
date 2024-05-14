@@ -3,33 +3,17 @@ ifndef::imagesdir[:imagesdir: ../images]
 [[section-design-decisions]]
 == Architecture Decisions
 
-
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationales.
-With "decisions" we mean selecting one alternative based on given criteria.
-
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
-
-Avoid redundancy. 
-Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* ADR (https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[Documenting Architecture Decisions]) for every important decision
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-
-.Further Information
-
-See https://docs.arc42.org/section-9/[Architecture Decisions] in the arc42 documentation.
-There you will find links and examples about ADR.
-
-****
+|===
+|Decision|Details|Advantages
+|Hexagonal architecture|At the beginning of the project I decided that the backend would be governed by a hexagonal architecture, this because of the great power that this type of structure has, allowing the use of microservices and the great decoupling that it has|One of the advantages that we found is that this project is for the subject of Software Architecture, so adding a hexagonal architecture to the project gives it more strength. In addition, the intrinsic advantages of a hexagonal architecture, which are decoupling from the database, web and drivers, since the project does not care about the implementation of these, focus more on the application domain, decouple the layers of the backend, this leads to that it was easier for us to perform tests and modifications added.
+|Design architecture | We will use a hexagonal structure oriented MVC pattern for the API and the view-component model in the frontend | The main advantage is that these are fairly well documented and easy to assemble.
+|Database|We chose MySQL to store all the information|Familiar technology that does not leave the already known stablishment
+|Mockito|Used for unit testing|big power to mock up data
+|React|Utilizamos los Hooks y funcionalidades de React en frontend, aprovechando sus utilidades porque es intuitivo
+|Typescript|Typescript was used to be able to type the variables in frontend| That is its main advantage, that typing, that gives a lot of value to the code, avoiding a lot of errors.
+|Internationalisation|Internationalisation of documentation in English and the application in English and Spanish|With this internationalisation we greatly improve accessibility|Time can be a factor and internationalisation in two languages can be very time consuming.
+|MUI|  MUI is used because of the facilities given by some of its components| It´s a good friend of react.
+|SCSS|Used to make our application more beautiful and to make all pages elements stay in its positions.|Is a known language if you know CSS.
+|Seeding the database in Docker|the database will be seed in the build of his image| No need to worry about empty database deployments 
+|Azure|The decision to use Azure was that the school give support to spend money in azure and because azure give  support to docker containers and images.| Save images and run containers in the same platform.
+|===
