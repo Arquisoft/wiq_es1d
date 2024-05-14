@@ -14,13 +14,14 @@ This is the compilation of the identified risks ordered by priority that we must
 | Docker| Using, building and deploying modules and services with docker carries a significant risk in terms of reliability and time
 | Deployment| A deployment is always problematic until it is automated, this process can take time to set up and configure, and this process is also problematic and costly and can be considered a risky process as well. I have also never used azure so the learning curve of deploying in azure and adding continuous integration in azure is growing.
 | Grafana and Prometeus| We have never used these tools to monitor a project and we need to adapt to them. A bit like with azure
+|===
 
-* Team risks:
+=== Team risks:
 
 [options="header",cols="1,1"]
 |===
 |Risk|Explanation
-|Being just 1 member1| The difficulty in developing the entire architecture and functionality is infinitely greater for a single person than for a team of 5-7 people
+| Being just 1 member | The difficulty in developing the entire architecture and functionality is infinitely greater for a single person than for a team of 5-7 people
 |===
 
 
@@ -38,7 +39,7 @@ This is the compilation of the identified risks ordered by priority that we must
 === Technical debts
 
 * Authentication and security with keycloak is implemented, but in the deployment it was necessary to have keycloak with https so it is a problem, which although there is time, may not be solved due to the lack of official certificates. A self-signed certificate will be used just in case.
-* The internationalisation was carried out without problems, except for the internationalisation of the questions, as it involves translating them in the wikidata Q&A search itself. Although it is not a problem to have to search for questions in 4 languages, there are categories that are very reduced even to a single question, so it is still up in the air.
+* The internationalisation was carried out without problems, except for the internationalisation of the questions, as it involves translating them in the wikidata questions and answers search itself. Although it is not a problem to have to search for questions in 4 languages, there are categories that are very reduced even to a single question, so it is still up in the air.
 * Although multiple optional points of functionality were completed, I had intended to do almost all of them, but due to the short time available it was impossible.
 * I would like to improve the logout, as it redirects strangely to the home page for some unknown reason, but I won't be able to look into it before the final delivery.
 * Even though the continuous integration of tests is set up and working, for the coverage label, it only picks up the one from the backend since it's the last one analyzed and overrides the others. Although we'll try to fix it before the final delivery, there may not be enough time.
