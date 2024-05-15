@@ -7,7 +7,7 @@ ENV KEYCLOAK_ADMIN=admin
 ENV KEYCLOAK_ADMIN_PASSWORD=admin
 
 # Copiar archivos de certificado y clave privada
-COPY ./certs /opt/keycloak/certs
+# COPY ./certs /opt/keycloak/certs
 
 # Copiar el archivo de importación del realm al directorio de importación
 COPY ./imports/realm.json /opt/keycloak/data/import/
