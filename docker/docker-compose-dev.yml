@@ -54,8 +54,7 @@ services:
     ports:
       - 9090:9090              
     volumes:
-      - ./syg-backend/SYG-bootstrap/src/prometheus:/etc/prometheus
-    command: ["sh", "-c", "envsubst < /etc/prometheus/prometheus.yml.template > /etc/prometheus/prometheus.yml && prometheus --config.file=/etc/prometheus/prometheus.yml"]
+      - ../syg-backend/SYG-bootstrap/src/prometheus:/etc/prometheus
     restart: always
     networks:
       syg:
@@ -66,7 +65,7 @@ services:
     container_name: grafana
     image: grafana/grafana
     volumes:
-      - ./syg-backend/SYG-bootstrap/src/grafana/provisioning:/etc/grafana/provisioning
+      - ../syg-backend/SYG-bootstrap/src/grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_SERVER_HTTP_PORT=9091
       - GF_AUTH_DISABLE_LOGIN_FORM=true
