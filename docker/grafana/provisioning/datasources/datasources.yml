@@ -4,7 +4,7 @@ datasources:
     type: prometheus
     access: proxy
     orgId: 1
-    url: http://syg-prometheus.cqewdygqded2g4gf.westeurope.azurecontainer.io:9090
+    url: http://syg-prometheus.cqewdygqded2g4gf.uksouth.azurecontainer.io:9090
     basicAuth: false
     isDefault: true
     editable: true
