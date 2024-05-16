@@ -18,5 +18,5 @@ EXPOSE 8090
 EXPOSE 80
 
 # Comando para iniciar Keycloak en modo de desarrollo con puerto y otros argumentos
-CMD ["start-dev", "--import-realm", "--http-port=8090", "--hostname-url=http://syg-keycloak.hdg5fghpcef7a8a2.westeurope.azurecontainer.io"]
+CMD ["start-dev", "--import-realm", "--hostname-url=http://syg-keycloak.hdg5fghpcef7a8a2.westeurope.azurecontainer.io"]
 # CMD ["start", "--import-realm", "--http-port=8100", "--https-port=8090", "--hostname-url=https://syg-keycloak.hdg5fghpcef7a8a2.westeurope.azurecontainer.io:8090", "--https-certificate-file=/opt/keycloak/certs/keycloakcert.pem", "--https-certificate-key-file=/opt/keycloak/certs/keycloakkey.pem"]
