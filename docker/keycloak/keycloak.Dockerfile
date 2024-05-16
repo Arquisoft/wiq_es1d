@@ -1,6 +1,12 @@
 # Usar la imagen oficial de Keycloak
 FROM quay.io/keycloak/keycloak:24.0.1
 
+# Instalar Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Copiar archivos de desafío de Certbot al directorio de Nginx
+COPY ./desafios-certbot /usr/share/nginx/html/.well-known/acme-challenge/
+
 # Definir variables de entorno para el administrador de Keycloak
 # Para mayor seguridad, estas credenciales se deberían manejar externamente
 ENV KEYCLOAK_ADMIN=admin
