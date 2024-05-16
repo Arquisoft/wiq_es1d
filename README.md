@@ -41,7 +41,7 @@ cd docker
 and launch it with docker compose:
 
 ```sh
-docker-compose -f ./docker-compose-dev.yml up --build
+docker compose -f ./docker-compose-dev.yml up --build
 ```
 
 After the deployment is completed, Docker will build six images to subsequently launch the six containers:
@@ -78,5 +78,5 @@ or with docker too:
 
 After all the components are launched, the app should be available in localhost in port 3000.
 
-## Miembros del equipo:
+## Team Memebers:
 - Álvaro González Carracedo - UO251891
