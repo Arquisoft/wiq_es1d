@@ -1,7 +1,7 @@
 # Usar la imagen oficial de Keycloak
 FROM quay.io/keycloak/keycloak:24.0.1
 
-RUN mkdir -p /usr/share/keycloak/.well-known/acme-challenge/
+RUN mkdir -p /opt/keycloak/.well-known/acme-challenge/
 
 # Definir variables de entorno para el administrador de Keycloak
 # Para mayor seguridad, estas credenciales se deberían manejar externamente
