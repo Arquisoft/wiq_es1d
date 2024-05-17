@@ -80,3 +80,7 @@ After all the components are launched, the app should be available in localhost 
 
 ## Team Memebers:
 - Álvaro González Carracedo - UO251891
+
+## Deployment URLs   
+- Frontend: syg-frontend.agh0bwf3ebf9dee6.westeurope.azurecontainer.io
+- Keycloak: https://syg-keycloak.hdg5fghpcef7a8a2.westeurope.azurecontainer.io:8090/
