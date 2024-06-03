@@ -5,7 +5,7 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 === Technology decisions
 
-The technologies we have decided to use for the development of the app are:
+Technologies to be used for the development of the app are:
 
 - Node.js: JavaScript runtime environment that allows JavaScript code to run on the server, facilitating the development of scalable, high-performance web applications.
 
