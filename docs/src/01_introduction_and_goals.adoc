@@ -10,8 +10,6 @@ ifndef::imagesdir[:imagesdir: ../images]
 WIQ is an application based on the Spanish television game show "Saber Y Ganar", where each of the users will be able to test their knowledge with multiple questions of all kinds.
 
 SYG is the name of the application, where you can interact with the game itself, as well as with different extra functionalities of the web, such as consulting your game history, rankings, etc.
-
-It follows the SOLID principles, guaranteeing the privacy of the client's personal data.
 ****
 
 === Requirements Overview
@@ -60,7 +58,7 @@ Spanish: https://docs.google.com/document/d/1pahOfYFY--Wi7_9bbxiKOGevB_9tOSyRm78
 |Priority |Quality Goal|Motivation
 |1| Efficiency | Making a purchase should be easy for the user, reducing response and load times
 |2| Usability | All users must be able to use it, whether they have previous knowledge about the application or not 
-|3| Security | The treatment of private information will be decentralized, ensuring customer privacy 
+|3| Security | The treatment of private information will be securized, ensuring user privacy through a login to the app
 |4| Modifiability | The architecture must be easy to modify, adding new features or changing existing ones 
 |5| Testability | Major components should be easily tested and fixed 
 |===
