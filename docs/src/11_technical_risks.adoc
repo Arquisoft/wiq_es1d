@@ -13,7 +13,7 @@ This is the compilation of the identified risks ordered by priority that we must
 | Keycloak | Although it is a powerful security and authentication framework, integrating it into both the backend and the frontend can be challenging and risky
 | Docker| Using, building and deploying modules and services with docker carries a significant risk in terms of reliability and time
 | Deployment| A deployment is always problematic until it is automated, this process can take time to set up and configure, and this process is also problematic and costly and can be considered a risky process as well. I have also never used azure so the learning curve of deploying in azure and adding continuous integration in azure is growing.
-| Grafana and Prometeus| We have never used these tools to monitor a project and we need to adapt to them. A bit like with azure
+| Grafana and Prometeus| I have never used these tools to monitor a project and we need to adapt to them. A bit like with azure
 |===
 
 === Team risks:
