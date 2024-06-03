@@ -442,6 +442,88 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="revdate">January 2023</span>
 <br><span id="revremark">(based upon AsciiDoc version)</span>
 </div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#section-introduction-and-goals">1. Introduction and Goals</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
+<li><a href="#_quality_goals">1.2. Quality Goals</a></li>
+<li><a href="#_stakeholders">1.3. Stakeholders</a></li>
+</ul>
+</li>
+<li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
+<ul class="sectlevel2">
+<li><a href="#_technical_constraints_backend">2.1. Technical constraints backend</a></li>
+<li><a href="#_technical_constraints_frontend">2.2. Technical constraints frontend</a></li>
+<li><a href="#_technical_constraints_gitdeploy">2.3. Technical constraints git/deploy</a></li>
+<li><a href="#_organizational_and_political_constraints">2.4. Organizational and political constraints</a></li>
+<li><a href="#_conventions">2.5. Conventions</a></li>
+</ul>
+</li>
+<li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
+<ul class="sectlevel2">
+<li><a href="#_technical_context">3.1. Technical Context</a></li>
+</ul>
+</li>
+<li><a href="#section-solution-strategy">4. Solution Strategy</a>
+<ul class="sectlevel2">
+<li><a href="#_technology_decisions">4.1. Technology decisions</a></li>
+<li><a href="#_decisions_about_the_top_level_decomposition_of_the_system">4.2. Decisions about the top-level decomposition of the system</a></li>
+<li><a href="#_decisions_to_achieve_quality_goals">4.3. Decisions to achieve quality goals</a></li>
+<li><a href="#_organizational_decisions">4.4. Organizational decisions</a></li>
+</ul>
+</li>
+<li><a href="#section-building-block-view">5. Building Block View</a>
+<ul class="sectlevel2">
+<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
+<li><a href="#_black_box_descriptions_of_overall_system">5.2. Black Box descriptions of Overall System</a></li>
+<li><a href="#_building_block_view_level_2">5.3. Building block view - Level 2</a></li>
+</ul>
+</li>
+<li><a href="#section-runtime-view">6. Runtime View</a>
+<ul class="sectlevel2">
+<li><a href="#_register_user">6.1. Register User</a></li>
+<li><a href="#_login_user">6.2. Login User</a></li>
+<li><a href="#_login_user_2">6.3. Login User</a></li>
+<li><a href="#_visualise_historics">6.4. Visualise Historics</a></li>
+<li><a href="#_visualise_and_action_ranking">6.5. Visualise and action Ranking</a></li>
+<li><a href="#_visualise_and_play_game">6.6. Visualise and play game</a></li>
+</ul>
+</li>
+<li><a href="#section-deployment-view">7. Deployment View</a>
+<ul class="sectlevel2">
+<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
+<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
+</ul>
+</li>
+<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#_domain_model">8.1. Domain model</a></li>
+<li><a href="#_persistence">8.2. Persistence</a></li>
+<li><a href="#_user_interface">8.3. User interface</a></li>
+<li><a href="#_internazionalization">8.4. Internazionalization</a></li>
+<li><a href="#_security">8.5. Security</a></li>
+<li><a href="#_archiutecture_and_design_patterns">8.6. Archiutecture and design patterns</a></li>
+<li><a href="#_testability">8.7. Testability</a></li>
+</ul>
+</li>
+<li><a href="#section-design-decisions">9. Architecture Decisions</a></li>
+<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_quality_scenarios">10.1. Quality Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_technology_risks">11.1. Technology Risks</a></li>
+<li><a href="#_team_risks">11.2. Team risks:</a></li>
+<li><a href="#_technical_debts">11.3. Technical debts</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">12. Glossary</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
@@ -455,6 +537,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	.arc42help {display:none;}
 }
 </style>
+<div class="paragraph">
+<p><strong>About arc42</strong></p>
+</div>
+<div class="paragraph lead">
+<p>arc42, the template for documentation of software and system architecture.</p>
+</div>
+<div class="paragraph">
+<p>Template Version 8.2 EN. (based upon AsciiDoc version), January 2023</p>
+</div>
+<div class="paragraph">
+<p>Created, maintained and &#169; by Dr. Peter Hruschka, Dr. Gernot Starke and contributors.
+See <a href="https://arc42.org" class="bare">https://arc42.org</a>.</p>
+</div>
+<hr>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This version of the template contains some help and explanations.
+It is used for familiarization with arc42 and the understanding of the concepts.
+For documentation of your own system you use better the <em>plain</em> version.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1658,7 +1774,7 @@ The use of Mock for the backend and the use of jest for the frontend.</p>
 <div id="footer">
 <div id="footer-text">
 Version 8.2 EN<br>
-Last updated 2024-06-03 21:48:40 +0200
+Last updated 2024-06-03 21:54:39 +0200
 </div>
 </div>
 </body>
