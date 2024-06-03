@@ -2,20 +2,11 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-introduction-and-goals]]
 == Introduction and Goals
-
-[role="arc42help"]
-****
-
-
 WIQ is an application based on the Spanish television game show "Saber Y Ganar", where each of the users will be able to test their knowledge with multiple questions of all kinds.
 
 SYG is the name of the application, where you can interact with the game itself, as well as with different extra functionalities of the web, such as consulting your game history, rankings, etc.
-****
 
 === Requirements Overview
-
-[role="arc42help"]
-****
 Requirements document:
 
 English: https://docs.google.com/document/d/12FImFOHdogzXX0ZMeAlaWkCwXMxGtCp6U-XYHk4aV64/edit
@@ -47,12 +38,8 @@ Spanish: https://docs.google.com/document/d/1pahOfYFY--Wi7_9bbxiKOGevB_9tOSyRm78
 
 * Create a system that generates the questions or the answers text in a way that is always different using.
 
-****
-
 === Quality Goals
 
-[role="arc42help"]
-****
 [options="header",cols="1,2,2"]
 |===
 |Priority |Quality Goal|Motivation
@@ -64,12 +51,9 @@ Spanish: https://docs.google.com/document/d/1pahOfYFY--Wi7_9bbxiKOGevB_9tOSyRm78
 |===
 
 Detailed priority in epigraph 10.
-****
 
 === Stakeholders
 
-[role="arc42help"]
-****
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
@@ -78,4 +62,3 @@ Detailed priority in epigraph 10.
 |Product managers|They are responsible for defining the vision and strategy of the application, as well as prioritising features and functionalities.| Define the strategy and vision to be followed by the development team and prioritise the most important functionalities.
 |Managers and directors|Involved in strategic decision-making, resource allocation and overall project oversight.| Supervise that the project and the application meet the required requirements
 |===
-****
