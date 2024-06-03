@@ -585,9 +585,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>SYG is the name of the application, where you can interact with the game itself, as well as with different extra functionalities of the web, such as consulting your game history, rankings, etc.</p>
 </div>
-<div class="paragraph">
-<p>It follows the SOLID principles, guaranteeing the privacy of the client&#8217;s personal data.</p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -677,7 +674,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The treatment of private information will be decentralized, ensuring customer privacy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The treatment of private information will be securized, ensuring user privacy through a login to the app</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
@@ -791,7 +788,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We will use the React Framework for the UI (User Interface)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript library for building user interfaces</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScrypt</p></td>
@@ -803,7 +800,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">is a library of user interface components for React, based on Google&#8217;s Material Design, which offers a wide range of predefined elements for building web applications</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Is a library of user interface components for React, based on Google&#8217;s Material Design, which offers a wide range of predefined elements for building web applications</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sass</p></td>
@@ -830,7 +827,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We will use GitHub to deploy the project and all the files related with it</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deploy the project and all the files related with it</p></td>
 </tr>
 </tbody>
 </table>
@@ -872,7 +869,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Aesthetic and ease of use</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The UI (User Interface) has to be aesthetic and easy to use. Both of them are very important criteria in our application, so all of our decisions need to have this in mind</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The UI (User Interface) has to be aesthetic and easy to use. Both of them are very important criteria in our application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
@@ -880,7 +877,11 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We will use TypeScript/JavaScript naming conventions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript/JavaScript naming conventions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backend</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The API will use all necessary code design conventions, without losing simplicity and maintainability in the code, such as design patterns.</p></td>
 </tr>
 </tbody>
 </table>
@@ -935,9 +936,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>Our application is divided into frontend (React with node.js), backend (restapi with maven), testing (e2e, integration and unit Test). In backend, we use a hexagonal architecture improving the security and performance of the website, with which we get an immutable domain for the rest of the components that can attach to this domain. The system is made with the idea of microservices in mind, using docker containers, for the deployment of these microservices used both in the project and in testing (e2e and integration test), for the unit tests Mock is used. On the frontend, the React framework is used along with typescript and MUI, together with its own styles in Sass.
 The database is using MySQL, although with an immutable domain it could support other databases.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/03_technical_context.png" alt="Technical Context diagram"></span></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -999,7 +997,7 @@ The database is using MySQL, although with an immutable domain it could support 
 <div class="sect2">
 <h3 id="_technology_decisions">4.1. Technology decisions</h3>
 <div class="paragraph">
-<p>The technologies we have decided to use for the development of the app are:</p>
+<p>Technologies to be used for the development of the app are:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1233,11 +1231,11 @@ The database is using MySQL, although with an immutable domain it could support 
 <ul>
 <li>
 <p>Motivation:
-This diagram helps to point out the different components that we will have to use and their dependencies. It helps us to visualise the deployment path for the system to work.</p>
+This diagram helps to point out the different components we will need to use and their dependencies. It helps to visualise the deployment path for the system to work.</p>
 </li>
 <li>
 <p>Quality and/or Performance Features:
-To improve the quality of the system we have used the best technologies at our disposal, trying to minimise waiting times for user requests.</p>
+In order to improve the quality of the system, the latest and most advanced technologies will be used, trying to minimise waiting times for user requests.</p>
 </li>
 <li>
 <p>Mapping of Building Blocks to Infrastructure:
@@ -1256,7 +1254,7 @@ This second diagram details the launching of the layers.</p>
 </li>
 <li>
 <p>Quality and/or Performance Features:
-As we can see in the following image, we are going to use Azure to deploy the application, serving as a remote server. We will also use Docker to launch each part of the system.</p>
+As we can see in the following image, Azure will be used to deploy the application, serving as a remote server. We will also use Docker to launch each part of the system.</p>
 </li>
 <li>
 <p>Mapping of Building Blocks to Infrastructure:
@@ -1549,7 +1547,7 @@ The use of Mock for the backend and the use of jest for the frontend.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the app is able to respond quickly to different user requests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The app is able to respond quickly to different user requests</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
@@ -1609,7 +1607,7 @@ The use of Mock for the backend and the use of jest for the frontend.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Grafana and Prometeus</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We have never used these tools to monitor a project and we need to adapt to them. A bit like with azure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I have never used these tools to monitor a project and we need to adapt to them. A bit like with azure</p></td>
 </tr>
 </tbody>
 </table>
