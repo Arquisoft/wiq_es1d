@@ -8,10 +8,10 @@ ifndef::imagesdir[:imagesdir: ../images]
 === Infrastructure Level 1
 
 * Motivation:
- This diagram helps to point out the different components that we will have to use and their dependencies. It helps us to visualise the deployment path for the system to work. 
+ This diagram helps to point out the different components we will need to use and their dependencies. It helps to visualise the deployment path for the system to work.
 
 * Quality and/or Performance Features:
- To improve the quality of the system we have used the best technologies at our disposal, trying to minimise waiting times for user requests.
+In order to improve the quality of the system, the latest and most advanced technologies will be used, trying to minimise waiting times for user requests.
  
 * Mapping of Building Blocks to Infrastructure:
  image:07_deployment_view_L1.png["Deployment View Level 1"]
@@ -23,7 +23,7 @@ ifndef::imagesdir[:imagesdir: ../images]
  This second diagram details the launching of the layers. 
 
 * Quality and/or Performance Features:
- As we can see in the following image, we are going to use Azure to deploy the application, serving as a remote server. We will also use Docker to launch each part of the system. 
+ As we can see in the following image, Azure will be used to deploy the application, serving as a remote server. We will also use Docker to launch each part of the system.
  
 * Mapping of Building Blocks to Infrastructure:
  image:07_deployment_view_L2.png["Deployment View Level 2"]
