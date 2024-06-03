@@ -12,7 +12,7 @@ image:10_quality_tree.png["Quality Requirements"]
 | Maintainability | The app is built following architectural and coding architecture and design patterns in a way that simplifies the understanding of the code and the code itself, making it easy to make changes to the code.| Low | High 
 | Scalability | The product must continue evolving without neglecting the other requirements, meaning it should not stagnate. However, for this project, once the delivery is completed, it would only represent an initial version for future developments | Medium | Medium 
 | Security | Keycloak will be used as an external framewirk for backend and frontend security, as well as for user authentication | High | High 
-| Performance |the app is able to respond quickly to different user requests | High | High 
+| Performance |The app is able to respond quickly to different user requests | High | High 
 | Usability | Users are able to navigate, play and visualise the different elements of the site in a comfortable, simple and easy way | High | Medium 
 | Reliability | The application does not crash or crashes strangely | High | High 
 |===
