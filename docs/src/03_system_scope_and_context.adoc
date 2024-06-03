@@ -19,8 +19,6 @@ image:03_business_context.png["Business Context diagram"]
 Our application is divided into frontend (React with node.js), backend (restapi with maven), testing (e2e, integration and unit Test). In backend, we use a hexagonal architecture improving the security and performance of the website, with which we get an immutable domain for the rest of the components that can attach to this domain. The system is made with the idea of microservices in mind, using docker containers, for the deployment of these microservices used both in the project and in testing (e2e and integration test), for the unit tests Mock is used. On the frontend, the React framework is used along with typescript and MUI, together with its own styles in Sass.
 The database is using MySQL, although with an immutable domain it could support other databases.
 
-image:03_technical_context.png["Technical Context diagram"]
-
 [options = "header",cols="1,1"]
 |===
 | Technology | Explication 
