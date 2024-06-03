@@ -4,6 +4,9 @@
 // ====================================
 
 // configure EN settings for asciidoc
+include::src/config.adoc[]
+
+// configure EN settings for asciidoc
 
 = image:./images/arc42-logo.png[arc42] SYG-wiq_es1d
 :revnumber: 8.2 EN
