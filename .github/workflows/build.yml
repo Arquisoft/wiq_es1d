@@ -169,9 +169,9 @@ jobs:
   
       - name: Build and push images
         run: |
-          docker build -f ./docker/database-mysql.Dockerfile -t alvaro251891/syg-docker-db:0.1.0-SNAPSHOT ./docker
-          docker push alvaro251891/syg-docker-db:0.1.0-SNAPSHOT
+          docker build -f ./docker/database-mysql.Dockerfile -t alvaro251891/wiq_es1d/syg-docker-db:0.1.0-SNAPSHOT ./docker
+          docker push alvaro251891/wiq_es1d/syg-docker-db:0.1.0-SNAPSHOT
 
       # - name: Start Docker containers
-      #   run: docker run --name syg-docker-db -d alvaro251891/syg-docker-db:0.1.0-SNAPSHOT
+      #   run: docker run --name syg-docker-db -d alvaro251891/wiq_es1d/syg-docker-db:0.1.0-SNAPSHOT
              
