@@ -27,6 +27,11 @@
     	<sonar.coverage.jacoco.xmlReportPaths>SYG-bootstrap/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     	<sonar.exclusions>SYG-bootstrap/**, SYG-domain/src/main/java/syg/domain/model/** </sonar.exclusions>
 
+	    <gatling.version>3.11.3</gatling.version>
+	    <gatling-maven-plugin.version>4.9.4</gatling-maven-plugin.version>
+	    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+	    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+	    <maven-jar-plugin.version>3.4.1</maven-jar-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -78,6 +83,12 @@
 				<version>${junit-jupiter.version}</version>
 				<scope>test</scope>
 			</dependency>
+			 <dependency>
+		      <groupId>io.gatling.highcharts</groupId>
+		      <artifactId>gatling-charts-highcharts</artifactId>
+		      <version>${gatling.version}</version>
+		      <scope>test</scope>
+		    </dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -187,6 +198,28 @@
 		        <artifactId>sonar-maven-plugin</artifactId>
 		        <version>3.11.0.3922</version>
 		    </plugin>
+           
+		      <plugin>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>${maven-compiler-plugin.version}</version>
+		      </plugin>
+		      <plugin>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>${maven-resources-plugin.version}</version>
+		      </plugin>
+		      <plugin>
+		        <artifactId>maven-jar-plugin</artifactId>
+		        <version>${maven-jar-plugin.version}</version>
+		      </plugin>
+		      <plugin>
+		        <groupId>io.gatling</groupId>
+		        <artifactId>gatling-maven-plugin</artifactId>
+		        <version>${gatling-maven-plugin.version}</version>
+		        <configuration>
+		          <!-- Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/#working-with-gatling-enterprise-cloud -->
+		          <!-- Enterprise Self-Hosted configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/#working-with-gatling-enterprise-self-hosted -->
+		        </configuration>
+		      </plugin>
         </plugins>
 	</build>
 

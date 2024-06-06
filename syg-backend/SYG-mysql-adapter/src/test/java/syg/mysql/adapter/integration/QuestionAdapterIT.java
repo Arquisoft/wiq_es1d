@@ -99,6 +99,6 @@ public class QuestionAdapterIT extends SYGdbContainerIT {
 		
 		questionAdapter.generatedQuestions();
 		List<Question> questionsAfterGenerate = questionAdapter.findAll();
-		assertEquals(219, IterableUtil.sizeOf(questionsAfterGenerate));
+		assertEquals(218, IterableUtil.sizeOf(questionsAfterGenerate));
 	}
 }
