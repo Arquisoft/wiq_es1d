@@ -90,8 +90,8 @@ jobs:
       - name: Prepare Coverage Reports
         run: |
           mkdir -p coverage
-          cp -r syg-backend/jacoco.xml coverage/
-          cp syg-frontend/lcov.info coverage/
+          cp -r syg-backend/SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
+          cp syg-frontend/coverage/lcov.info coverage/
   
       # SonarCloud analysis
       - name: SonarCloud Analysis
