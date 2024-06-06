@@ -79,10 +79,33 @@ To test API code, Postman was used during the whole development of the work, to 
 
 ==== Unit tests
 Unit testing was carried out on both the backend and frontend using different technologies to test all the necessary components or modules.
-The use of Mock for the backend and the use of jest for the frontend.
+
+The backend has been tested with Jacoco and Java unit tests with Mockito:
+image:08_api_jacoco_tests.png["Jacoco tests"]
+image:08_java_tests.png["Unit tests"]
+
+The frontend has used Jest for its unit tests:
+image:08_jest_unit_test.png["Jest tests"]
 
 ==== Integration tests
-The integration tests were carried out in test containers with a test database built in these test containers for the adapter layer. It does not make sense to do integration tests on another layer.
+The integration tests were carried out in test containers with a test database built in these test containers for the adapter layer. It does not make sense to do integration tests on another layer. This tests was launcher with Jacoco anda java unit test too.
 
 ==== e2e tests
 For the e2e tests as well as the unit tests and in order to test the application to the maximum, they were carried out both in the frontend with cypress and in the backend with test container again.
+
+E2E cypress tests:
+image:08_cypress-tool.png["Cypress tool"]
+image:08_cypress_tool_tests.png["Cypress tool tests"]
+image:08_cypress_test_running.png["Cypress test running"]
+
+==== load tests
+For the load tests, the Gatling tool has been used to measure and monitor the application's times in different scenarios:
+image:08_category_gatling_test_01.png["Category gatling 01"]
+image:08_category_gatling_test_02.png["Category gatling 02"]
+image:08_category_gatling_test_03.png["Category gatling 03"]
+image:08_question_gatling_test_01.png["Question gatling 01"]
+image:08_question_gatling_test_02.png["Question gatling 02"]
+image:08_question_gatling_test_03.png["Question gatling 03"]
+image:08_user_gatling_test_01.png["User gatling 01"]
+image:08_user_gatling_test_02.png["User gatling 02"]
+image:08_user_gatling_test_03.png["User gatling 03"]
