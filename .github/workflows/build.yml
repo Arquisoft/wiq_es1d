@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - develop
+      - feature/39_coverage_conflict
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -42,53 +42,104 @@ jobs:
       - run: npm run test:coverage
       - run: npm run lint
 
-  sonarcloudBackend:
-    name: sonarcloudBackend
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: syg-backend
-    steps:
-     - uses: actions/checkout@v4
-       with:
-        fetch-depth: 0
+  sonarCloud:
+      runs-on: ubuntu-latest
 
-     - name: Setup Java
-       uses: actions/setup-java@v3
-       with:
-         distribution: 'temurin'
-         java-version: '17'
-
-      # Build and test the project
-     - name: Build and Test
-       run: mvn clean verify
-
-     # SonarCloud analysis
-     - name: SonarCloud Analysis
-       run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-       env:
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
-  sonarcloudFrontend:
-    name: sonarcloudFrontend
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: syg-frontend
-    steps:
+      steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+  
+      # Backend setup and build
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+  
+      - name: Build and Test Backend
+        run: mvn clean verify
+        working-directory: syg-backend
+  
+      # Frontend setup and build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 21
-      - run: npm ci
-      - run: npm test
-      - run: npm run test:coverage
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+  
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: syg-frontend
+  
+      - name: Run Frontend Tests
+        run: npm test
+        working-directory: syg-frontend
+  
+      - name: Run Frontend Coverage
+        run: npm run test:coverage
+        working-directory: syg-frontend
+  
+      # Combine coverage reports if needed
+      - name: Combine Coverage Reports
+        run: |
+          # Assuming you have tools to combine coverage reports, add those commands here
+          # For example, you might use `nyc` to combine lcov reports
+          # This step is a placeholder and should be adapted to your specific needs
+  
+      # SonarCloud analysis
+      - name: SonarCloud Analysis
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.javascript.lcov.reportPaths=syg-frontend/coverage/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        working-directory: syg-backend
+    
+  # sonarcloudBackend:
+  #   name: sonarcloudBackend
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: syg-backend
+  #   steps:
+  #    - uses: actions/checkout@v4
+  #      with:
+  #       fetch-depth: 0
+
+  #    - name: Setup Java
+  #      uses: actions/setup-java@v3
+  #      with:
+  #        distribution: 'temurin'
+  #        java-version: '17'
+
+  #     # Build and test the project
+  #    - name: Build and Test
+  #      run: mvn clean verify
+
+  #    # SonarCloud analysis
+  #    - name: SonarCloud Analysis
+  #      run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+  #      env:
+  #        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+  # sonarcloudFrontend:
+  #   name: sonarcloudFrontend
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: syg-frontend
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 21
+  #     - run: npm ci
+  #     - run: npm test
+  #     - run: npm run test:coverage
+  #     - name: SonarCloud Scan
+  #       uses: sonarsource/sonarcloud-github-action@master
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   # deployment:
   #   runs-on: ubuntu-latest
@@ -155,27 +206,4 @@ jobs:
   #         az container start --name syg-frontend --resource-group syg-demo
   #         az container start --name syg-prometheus --resource-group syg-demo
   #         az container start --name syg-grafana --resource-group syg-demo
-
-  deployment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-         username: ${{ secrets.DOCKER_USERNAME }}
-         password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Remove existing images
-        run: |
-          docker rmi -f alvaro251891/syg-docker-db:0.1.0-SNAPSHOT || true
-  
-      - name: Build and push images
-        run: |
-          docker build -f ./docker/database-mysql.Dockerfile -t alvaro251891/syg-docker-db:0.1.0-SNAPSHOT ./docker
-          docker push alvaro251891/syg-docker-db:0.1.0-SNAPSHOT
-
-      - name: Start Docker containers
-        run: docker run --name syg-docker-db -d alvaro251891/syg-docker-db:0.1.0-SNAPSHOT
              
