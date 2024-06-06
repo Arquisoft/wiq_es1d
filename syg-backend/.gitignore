@@ -1,0 +1,18 @@
+# Ignorar directorios de compilación
+/target/
+
+# Ignorar configuraciones de IDE
+/.settings/
+/.classpath
+/.project
+
+# Ignorar archivos específicos de IntelliJ IDEA
+/.idea/
+/*.iml
+
+# Ignorar archivos específicos de VSCode
+/.vscode/
+
+# Ignorar otros archivos innecesarios
+*.log
+*.swp
