@@ -79,28 +79,28 @@ jobs:
         run: npm run test:coverage
         working-directory: syg-frontend
        
-      # Debug: Echo the contents of the directories
-      - name: Echo Backend Directory
-        run: ls -R syg-backend
+      # # Debug: Echo the contents of the directories
+      # - name: Echo Backend Directory
+      #   run: ls -R syg-backend
   
-      - name: Echo Frontend Directory
-        run: ls -R syg-frontend
+      # - name: Echo Frontend Directory
+      #   run: ls -R syg-frontend
   
-      # # Copy coverage reports to a common directory if needed
-      # - name: Prepare Coverage Reports
-      #   run: |
-      #     mkdir -p coverage
-      #     cp -r syg-backend/target/site/jacoco/* coverage/
-      #     cp syg-frontend/coverage/lcov.info coverage/
+      # Copy coverage reports to a common directory if needed
+      - name: Prepare Coverage Reports
+        run: |
+          mkdir -p coverage
+          cp -r syg-backend/jacoco.xml coverage/
+          cp syg-frontend/lcov.info coverage/
   
-      # # SonarCloud analysis
-      # - name: SonarCloud Analysis
-      #   run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-      #         -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-      #         -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   working-directory: syg-backend
+      # SonarCloud analysis
+      - name: SonarCloud Analysis
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+              -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+              -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        working-directory: syg-backend
     
   # sonarcloudBackend:
   #   name: sonarcloudBackend
