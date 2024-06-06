@@ -79,16 +79,18 @@ jobs:
         run: npm run test:coverage
         working-directory: syg-frontend
   
-      # Combine coverage reports if needed
-      - name: Combine Coverage Reports
+      # Copy coverage reports to a common directory if needed
+      - name: Prepare Coverage Reports
         run: |
-          # Assuming you have tools to combine coverage reports, add those commands here
-          # For example, you might use `nyc` to combine lcov reports
-          # This step is a placeholder and should be adapted to your specific needs
+          mkdir -p coverage
+          cp -r syg-backend/target/site/jacoco/* coverage/
+          cp syg-frontend/coverage/lcov.info coverage/
   
       # SonarCloud analysis
       - name: SonarCloud Analysis
-        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.javascript.lcov.reportPaths=syg-frontend/coverage/lcov.info
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+              -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+              -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         working-directory: syg-backend
