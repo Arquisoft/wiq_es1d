@@ -78,13 +78,6 @@ jobs:
       - name: Run Frontend Coverage
         run: npm run test:coverage
         working-directory: syg-frontend
-       
-      # Debug: Echo the contents of the directories
-      - name: Echo Backend Directory
-        run: ls -R syg-backend
-  
-      - name: Echo Frontend Directory
-        run: ls -R syg-frontend
   
       # Copy coverage reports to a common directory if needed
       - name: Prepare Coverage Reports
@@ -93,11 +86,13 @@ jobs:
           cp -r syg-backend/SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
           cp syg-frontend/coverage/lcov.info coverage/
   
-      # SonarCloud analysis
+    # SonarCloud analysis
       - name: SonarCloud Analysis
         run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-              -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-              -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml
+              -Dsonar.projectBaseDir=. \
+              -Dsonar.sources=syg-backend,syg-frontend \
+              -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml \
+              -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         working-directory: syg-backend
