@@ -79,12 +79,12 @@ jobs:
         run: npm run test:coverage
         working-directory: syg-frontend
        
-      # # Debug: Echo the contents of the directories
-      # - name: Echo Backend Directory
-      #   run: ls -R syg-backend
+      # Debug: Echo the contents of the directories
+      - name: Echo Backend Directory
+        run: ls -R syg-backend
   
-      # - name: Echo Frontend Directory
-      #   run: ls -R syg-frontend
+      - name: Echo Frontend Directory
+        run: ls -R syg-frontend
   
       # Copy coverage reports to a common directory if needed
       - name: Prepare Coverage Reports
