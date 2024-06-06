@@ -16,3 +16,4 @@
 # Ignorar otros archivos innecesarios
 *.log
 *.swp
+/bin/
