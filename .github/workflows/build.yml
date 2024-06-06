@@ -86,13 +86,9 @@ jobs:
           cp -r syg-backend/SYG-bootstrap/target/site/jacoco-aggregate/* coverage/
           cp syg-frontend/coverage/lcov.info coverage/
   
-    # SonarCloud analysis
+      # SonarCloud analysis
       - name: SonarCloud Analysis
-        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-              -Dsonar.projectBaseDir=. \
-              -Dsonar.sources=syg-backend,syg-frontend \
-              -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml \
-              -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.coverage.jacoco.xmlReportPaths=coverage/jacoco.xml -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         working-directory: syg-backend
